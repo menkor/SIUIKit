@@ -1,6 +1,6 @@
 {
   "name": "SIUIKit",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "summary": "SIUIKit.",
   "description": "UIKit of Super Id",
   "homepage": "http://superid.cn:81/iOS/SIUIKit",
@@ -13,11 +13,23 @@
   },
   "source": {
     "git": "git@git.superid.cn:iOS/SIUIKit.git",
-    "tag": "0.1.0"
+    "tag": "0.1.1"
   },
   "platforms": {
     "ios": "8.0"
   },
   "source_files": "SIUIKit/Classes/**/*",
-  "frameworks": "UIKit"
+  "frameworks": "UIKit",
+  "subspecs": [
+    {
+      "name": "Font",
+      "source_files": "./Classes/SIFont/*",
+      "public_header_files": "./Classes/SIFont/*.h"
+    },
+    {
+      "name": "Color",
+      "source_files": "./Classes/SIColor/*",
+      "public_header_files": "./Classes/SIColor/*.h"
+    }
+  ]
 }
