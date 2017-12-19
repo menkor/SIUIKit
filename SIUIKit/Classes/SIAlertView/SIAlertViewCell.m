@@ -9,6 +9,9 @@
 #import "SIAlertViewCell.h"
 #import "SIAlertAction.h"
 #import "SIRectCornerLayer.h"
+#import "SIColor.h"
+#import "SIFont.h"
+@import Masonry;
 
 @interface SIAlertViewCell ()
 
@@ -47,9 +50,9 @@
     self.cornerLayer = [SIRectCornerLayer layer];
     self.cornerLayer.cornerRadius = 12;
     if (model.style == SIAlertActionStyleCancel) {
-        self.cornerLayer.frame = CGRectMake(10, 9, ScreenWidth - 20, model.menuHeight - 18);
+        self.cornerLayer.frame = CGRectMake(10, 9, [UIScreen mainScreen].bounds.size.width - 20, model.menuHeight - 18);
     } else {
-        self.cornerLayer.frame = CGRectMake(10, 0, ScreenWidth - 20, model.menuHeight);
+        self.cornerLayer.frame = CGRectMake(10, 0, [UIScreen mainScreen].bounds.size.width - 20, model.menuHeight);
     }
     if (model.style == SIAlertActionStyleTitle || model.style == SIAlertActionStyleMessage) {
         self.title.font = [SIFont systemFontOfSize:16];

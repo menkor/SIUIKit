@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SIUIKit'
-  s.version          = '0.1.6'
+  s.version          = '0.1.7'
   s.summary          = 'SIUIKit.'
 
 # This description is used to generate tags and improve search results.
@@ -26,13 +26,16 @@ Pod::Spec.new do |s|
   s.author           = { 'ungacy' => 'yetao@superid.cn' }
   s.source           = { :git => 'git@git.superid.cn:iOS/SIUIKit.git', :tag => s.version.to_s }
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
   s.public_header_files = 'SIUIKit/Classes/*.h'
   s.source_files = 'SIUIKit/Classes/*'
 
   s.subspec 'Alert' do |ss|
     ss.source_files = 'SIUIKit/Classes/SIAlertView/*'
 	ss.public_header_files = 'SIUIKit/Classes/SIAlertView/*.h'
+    ss.dependency 'YCEasyTool'
+    ss.dependency 'SIUIKit/Font'
+    ss.dependency 'SIUIKit/Color'
   end
 
   s.subspec 'Font' do |ss|
@@ -44,6 +47,8 @@ Pod::Spec.new do |s|
     ss.source_files = 'SIUIKit/Classes/SIColor/*'
 	ss.public_header_files = 'SIUIKit/Classes/SIColor/*.h'
   end
+  
   s.frameworks = 'UIKit', 'QuartzCore'
+  s.dependency 'Masonry'
   # s.dependency 'AFNetworking', '~> 2.3'
 end

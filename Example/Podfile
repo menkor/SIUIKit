@@ -1,4 +1,6 @@
 use_frameworks!
+source 'https://github.com/CocoaPods/Specs.git'
+source 'git@git.superid.cn:iOS/SISpecs.git'
 
 target 'SIUIKit_Example' do
   pod 'SIUIKit', :path => '../'

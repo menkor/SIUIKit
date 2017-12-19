@@ -8,6 +8,8 @@
 
 #import "SIAlertView.h"
 #import "SIAlertViewCell.h"
+#import "SIFont.h"
+#import "SIColor.h"
 
 @interface SIAlertViewManager : NSObject
 
@@ -106,7 +108,7 @@
         SIAlertAction<SIAlertActionProtocol> *message = (id)[SIAlertAction actionWithTitle:self.message
                                                                                      style:SIAlertActionStyleMessage
                                                                                    handler:nil];
-        CGSize size = [self.message boundingRectWithSize:CGSizeMake(ScreenWidth - 100, CGFLOAT_MAX)
+        CGSize size = [self.message boundingRectWithSize:CGSizeMake([UIScreen mainScreen].bounds.size.width - 100, CGFLOAT_MAX)
                                                  options:NSStringDrawingUsesLineFragmentOrigin
                                               attributes:@{NSFontAttributeName: [SIFont systemFontOfSize:16]}
                                                  context:NULL]
@@ -126,7 +128,7 @@
         SIAlertAction<SIAlertActionProtocol> *title = (id)[SIAlertAction actionWithTitle:self.title
                                                                                    style:SIAlertActionStyleTitle
                                                                                  handler:nil];
-        CGSize size = [self.title boundingRectWithSize:CGSizeMake(ScreenWidth - 100, CGFLOAT_MAX)
+        CGSize size = [self.title boundingRectWithSize:CGSizeMake([UIScreen mainScreen].bounds.size.width - 100, CGFLOAT_MAX)
                                                options:NSStringDrawingUsesLineFragmentOrigin
                                             attributes:@{NSFontAttributeName: [SIFont systemFontOfSize:16]}
                                                context:NULL]
