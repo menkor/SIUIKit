@@ -1,6 +1,6 @@
 {
   "name": "SIUIKit",
-  "version": "0.1.3",
+  "version": "0.1.5",
   "summary": "SIUIKit.",
   "description": "UIKit of Super Id",
   "homepage": "http://superid.cn:81/iOS/SIUIKit",
@@ -13,14 +13,23 @@
   },
   "source": {
     "git": "git@git.superid.cn:iOS/SIUIKit.git",
-    "tag": "0.1.3"
+    "tag": "0.1.5"
   },
   "platforms": {
     "ios": "8.0"
   },
   "public_header_files": "SIUIKit/Classes/*.h",
-  "frameworks": "UIKit",
+  "source_files": "SIUIKit/Classes/*",
+  "frameworks": [
+    "UIKit",
+    "QuartzCore"
+  ],
   "subspecs": [
+    {
+      "name": "Alert",
+      "source_files": "SIUIKit/Classes/SIAlertView/*",
+      "public_header_files": "SIUIKit/Classes/SIAlertView/*.h"
+    },
     {
       "name": "Font",
       "source_files": "SIUIKit/Classes/SIFont/*",

@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SIUIKit'
-  s.version          = '0.1.5'
+  s.version          = '0.1.6'
   s.summary          = 'SIUIKit.'
 
 # This description is used to generate tags and improve search results.
@@ -30,6 +30,11 @@ Pod::Spec.new do |s|
   s.public_header_files = 'SIUIKit/Classes/*.h'
   s.source_files = 'SIUIKit/Classes/*'
 
+  s.subspec 'Alert' do |ss|
+    ss.source_files = 'SIUIKit/Classes/SIAlertView/*'
+	ss.public_header_files = 'SIUIKit/Classes/SIAlertView/*.h'
+  end
+
   s.subspec 'Font' do |ss|
     ss.source_files = 'SIUIKit/Classes/SIFont/*'
 	ss.public_header_files = 'SIUIKit/Classes/SIFont/*.h'
@@ -39,6 +44,6 @@ Pod::Spec.new do |s|
     ss.source_files = 'SIUIKit/Classes/SIColor/*'
 	ss.public_header_files = 'SIUIKit/Classes/SIColor/*.h'
   end
-  s.frameworks = 'UIKit'
+  s.frameworks = 'UIKit', 'QuartzCore'
   # s.dependency 'AFNetworking', '~> 2.3'
 end

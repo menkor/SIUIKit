@@ -12,6 +12,11 @@
 
 #import "SIUIKit.h"
 #import "SIUIKitGlobal.h"
+#import "SIAlertAction.h"
+#import "SIAlertView.h"
+#import "SIAlertViewCell.h"
+#import "SIAlertViewDefine.h"
+#import "SIRectCornerLayer.h"
 #import "SIColor.h"
 #import "SIFont.h"
 #import "SIFontDef.h"

@@ -7,18 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		109FADAA18550969A560DF2CB4251278 /* SIColor.h in Headers */ = {isa = PBXBuildFile; fileRef = B89FF59D816096DBC3E2491C22BC1B93 /* SIColor.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1214EB715E0FBECE0D585DC2C76616F5 /* SIUIKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FDAEF196CB817545293ED8F189F6C5A /* SIUIKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		16D470B47640C080F15304D9266A905D /* SIUIKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E747157D6B65CD2E1AC2D8312579C17 /* SIUIKit-dummy.m */; };
-		2625A7F11C6340FF50E3E9EA4922F930 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B63C6A64CF66340668996F78DA6BB482 /* UIKit.framework */; };
-		552DF5BBDD6887CFF1BA581D2B55FF1F /* SIFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 00867872D0A4FEC17F7BE7F24E9D7E0C /* SIFont.m */; };
-		574840B925A2C23A5A17EAE1082E0A74 /* SIFont.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B31B88CC4FAEF62776B8C6BA44B732E /* SIFont.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		57A533AD83C9D33F0E3C45A40ACE176F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */; };
-		5C77CFFB8543EB596D9589B0865D25EA /* SIFontDef.h in Headers */ = {isa = PBXBuildFile; fileRef = A2B6359C15C52E6893A8F18A06927632 /* SIFontDef.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1F4EBAB763242208930AED0A44724BFC /* SIAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A54CF2AC4FC672E7EECA08F40256B0F /* SIAlertView.m */; };
+		4D45F4081671749064403A4200337549 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3917A50EB224EEDBC66971700D698782 /* UIKit.framework */; };
+		57A533AD83C9D33F0E3C45A40ACE176F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33083C616C9CA8AF16FA7C690BC673C7 /* Foundation.framework */; };
+		587D0592866A9AD73E83215F19FB4508 /* SIAlertViewDefine.h in Headers */ = {isa = PBXBuildFile; fileRef = 90C8EF1F636081E62611A5F1E89156BE /* SIAlertViewDefine.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5F99F4F561254E04A794A8F7A789F2D3 /* SIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C6CF01A656C5141CC84A49C7BB233B /* SIColor.m */; };
+		6B35D9C6967035B8318045AB2E9E0276 /* SIUIKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DC320973E836E003CB197CFF33BA4562 /* SIUIKit-dummy.m */; };
+		6BA663C6CD42D54BC6AF5AE6C78E34E0 /* SIUIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 3465802F0A2FC05508B7FC2704687496 /* SIUIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6D8CAABD49B69222FB587869A7C4BE1E /* SIRectCornerLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 80804DEEABA22A3A719B825E286D4C56 /* SIRectCornerLayer.m */; };
+		6E4FAB4967AAB29B84987476550A5EB7 /* SIFontDef.h in Headers */ = {isa = PBXBuildFile; fileRef = 84B79BCB4F877887EA3D1B77DBD7B791 /* SIFontDef.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7429FAF4710FDF6B768AF56F2B88D569 /* SIAlertView.h in Headers */ = {isa = PBXBuildFile; fileRef = A0A8BF3B4E2FFF4DD497757FA84FD923 /* SIAlertView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7A938243F742BB58DC5D69E784717045 /* Pods-SIUIKit_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DF329DDB4D02FDB63BDE8D7B434C689 /* Pods-SIUIKit_Example-dummy.m */; };
-		89865B47730B1BC54C136856032F4F67 /* SIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BE325366ABDBEAAEABDAE6C951E9A7 /* SIColor.m */; };
+		7FD54EF89B0B1028AC6EF7D92CB4C0DD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB7751D4D791D1183FB66D3CCA52CD8E /* QuartzCore.framework */; };
+		85FF63E79C62495F60CDF2021D8797D0 /* SIRectCornerLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = F80F08D255E70FE3FE8CEEEA1CF61138 /* SIRectCornerLayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8F1D58FD9D547E0994C4EE9CC2FB5774 /* Pods-SIUIKit_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 58D9792A0D52BA743E29C646ABAB5A85 /* Pods-SIUIKit_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A95E11D00A0F98388EC9BD2894F4A7EE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */; };
+		94B3A2B45B6EB020FEFD60F0FE41B6D7 /* SIUIKitGlobal.h in Headers */ = {isa = PBXBuildFile; fileRef = F7E0B3756E6324A0E8B597F6939A7892 /* SIUIKitGlobal.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9B2BB23BADF725DAD8C854F604AC1CE9 /* SIAlertViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D63843F112F464C36A19628B84C31A9C /* SIAlertViewCell.m */; };
+		BB2526697DFA1CD10B054E73408118D9 /* SIFont.h in Headers */ = {isa = PBXBuildFile; fileRef = D1A8318096F6B977AB764A987E21CD6A /* SIFont.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BCA028064F0D3711CA12146E8CDDD1EC /* SIAlertViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = D4F91622CA39EF70A883AB4E932DE798 /* SIAlertViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CA3EFCEEFAF170238710F26D97C683F3 /* SIUIKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AD091F1B90696722419DA19B11A66F30 /* SIUIKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CD9C19A7A19E67E23CDCB8158681FCE8 /* SIFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC4D3374C467D899B94E1EC14DF0BA2 /* SIFont.m */; };
+		D26210DD0555280952800F90CA95BB28 /* SIAlertAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D97C4ABAE51108DF95EC23D024FE729 /* SIAlertAction.m */; };
+		F186752ECF6B42FF26757772DBD5E3EE /* SIAlertAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 174D69FDF25EA2B154DC8169D7F346E2 /* SIAlertAction.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F4C911CEA767999DAD9A7698A2EBE085 /* SIColor.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F81EA3B74C90967CD6FAA859CCCC8B8 /* SIColor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F4FFAABBA9349C4BE929EF29161385C7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33083C616C9CA8AF16FA7C690BC673C7 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,41 +44,54 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		00867872D0A4FEC17F7BE7F24E9D7E0C /* SIFont.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SIFont.m; path = SIUIKit/Classes/SIFont/SIFont.m; sourceTree = "<group>"; };
 		0DF329DDB4D02FDB63BDE8D7B434C689 /* Pods-SIUIKit_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SIUIKit_Example-dummy.m"; sourceTree = "<group>"; };
-		1F3C09B6993B727211F1445ADA04F1E8 /* SIUIKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SIUIKit.xcconfig; sourceTree = "<group>"; };
+		0F81EA3B74C90967CD6FAA859CCCC8B8 /* SIColor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SIColor.h; path = SIUIKit/Classes/SIColor/SIColor.h; sourceTree = "<group>"; };
+		174D69FDF25EA2B154DC8169D7F346E2 /* SIAlertAction.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SIAlertAction.h; path = SIUIKit/Classes/SIAlertView/SIAlertAction.h; sourceTree = "<group>"; };
+		1D97C4ABAE51108DF95EC23D024FE729 /* SIAlertAction.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SIAlertAction.m; path = SIUIKit/Classes/SIAlertView/SIAlertAction.m; sourceTree = "<group>"; };
 		2575652B8B740526F291D59E2D52ECB8 /* Pods-SIUIKit_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SIUIKit_Example-resources.sh"; sourceTree = "<group>"; };
-		36BE325366ABDBEAAEABDAE6C951E9A7 /* SIColor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SIColor.m; path = SIUIKit/Classes/SIColor/SIColor.m; sourceTree = "<group>"; };
-		3FDAEF196CB817545293ED8F189F6C5A /* SIUIKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SIUIKit-umbrella.h"; sourceTree = "<group>"; };
+		2BC4D3374C467D899B94E1EC14DF0BA2 /* SIFont.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SIFont.m; path = SIUIKit/Classes/SIFont/SIFont.m; sourceTree = "<group>"; };
+		33083C616C9CA8AF16FA7C690BC673C7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		3465802F0A2FC05508B7FC2704687496 /* SIUIKit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SIUIKit.h; path = SIUIKit/Classes/SIUIKit.h; sourceTree = "<group>"; };
+		3917A50EB224EEDBC66971700D698782 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		431475EE4EE501D3D691E16895174237 /* Pods_SIUIKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_SIUIKit_Example.framework; path = "Pods-SIUIKit_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		527CCC6BFC5E76800F7832ABC2D51CEF /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		58D9792A0D52BA743E29C646ABAB5A85 /* Pods-SIUIKit_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SIUIKit_Example-umbrella.h"; sourceTree = "<group>"; };
+		5E60873C3958CC4D0BB8E515BC3FFCC3 /* SIUIKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SIUIKit-prefix.pch"; sourceTree = "<group>"; };
 		67A350F4F9479D89EA352B2E9EEF850E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6B31B88CC4FAEF62776B8C6BA44B732E /* SIFont.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SIFont.h; path = SIUIKit/Classes/SIFont/SIFont.h; sourceTree = "<group>"; };
 		6BACFC7F42C3D2A27168D537254B0A03 /* Pods-SIUIKit_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-SIUIKit_Example.modulemap"; sourceTree = "<group>"; };
-		8E747157D6B65CD2E1AC2D8312579C17 /* SIUIKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SIUIKit-dummy.m"; sourceTree = "<group>"; };
+		747CAED6A1164930DFFDE81C1654F340 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		80804DEEABA22A3A719B825E286D4C56 /* SIRectCornerLayer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SIRectCornerLayer.m; path = SIUIKit/Classes/SIAlertView/SIRectCornerLayer.m; sourceTree = "<group>"; };
+		84B79BCB4F877887EA3D1B77DBD7B791 /* SIFontDef.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SIFontDef.h; path = SIUIKit/Classes/SIFont/SIFontDef.h; sourceTree = "<group>"; };
+		8A54CF2AC4FC672E7EECA08F40256B0F /* SIAlertView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SIAlertView.m; path = SIUIKit/Classes/SIAlertView/SIAlertView.m; sourceTree = "<group>"; };
+		90C8EF1F636081E62611A5F1E89156BE /* SIAlertViewDefine.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SIAlertViewDefine.h; path = SIUIKit/Classes/SIAlertView/SIAlertViewDefine.h; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A052E9F418765065D9FCA810619E9502 /* Pods-SIUIKit_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SIUIKit_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		A2B6359C15C52E6893A8F18A06927632 /* SIFontDef.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SIFontDef.h; path = SIUIKit/Classes/SIFont/SIFontDef.h; sourceTree = "<group>"; };
+		A0A8BF3B4E2FFF4DD497757FA84FD923 /* SIAlertView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SIAlertView.h; path = SIUIKit/Classes/SIAlertView/SIAlertView.h; sourceTree = "<group>"; };
 		A62094503B7FA27DBDB604F7BFE47F4B /* Pods-SIUIKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SIUIKit_Example.release.xcconfig"; sourceTree = "<group>"; };
-		AB44412A46CB1FF400A2C5DE132D4433 /* SIUIKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SIUIKit-prefix.pch"; sourceTree = "<group>"; };
+		AD091F1B90696722419DA19B11A66F30 /* SIUIKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SIUIKit-umbrella.h"; sourceTree = "<group>"; };
 		B3E8E5930B123DACD81D0CA3785525B1 /* Pods-SIUIKit_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SIUIKit_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		B63C6A64CF66340668996F78DA6BB482 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		B6770723152ED413725C83AE050C0756 /* SIUIKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = SIUIKit.modulemap; sourceTree = "<group>"; };
-		B89FF59D816096DBC3E2491C22BC1B93 /* SIColor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SIColor.h; path = SIUIKit/Classes/SIColor/SIColor.h; sourceTree = "<group>"; };
+		C47730CE275B2DCF6AF60EA8B5600F9D /* SIUIKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SIUIKit.xcconfig; sourceTree = "<group>"; };
+		C8C6CF01A656C5141CC84A49C7BB233B /* SIColor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SIColor.m; path = SIUIKit/Classes/SIColor/SIColor.m; sourceTree = "<group>"; };
 		C935585F5647052E6969BB6F860DCB95 /* Pods-SIUIKit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SIUIKit_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		D1A8318096F6B977AB764A987E21CD6A /* SIFont.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SIFont.h; path = SIUIKit/Classes/SIFont/SIFont.h; sourceTree = "<group>"; };
+		D4F91622CA39EF70A883AB4E932DE798 /* SIAlertViewCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SIAlertViewCell.h; path = SIUIKit/Classes/SIAlertView/SIAlertViewCell.h; sourceTree = "<group>"; };
+		D63843F112F464C36A19628B84C31A9C /* SIAlertViewCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SIAlertViewCell.m; path = SIUIKit/Classes/SIAlertView/SIAlertViewCell.m; sourceTree = "<group>"; };
 		D9C8AD8F72374525ADEEB5F10F66CCD3 /* Pods-SIUIKit_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SIUIKit_Example-frameworks.sh"; sourceTree = "<group>"; };
+		DA22B3566B16293E0F95759265B24F18 /* SIUIKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = SIUIKit.modulemap; sourceTree = "<group>"; };
+		DC320973E836E003CB197CFF33BA4562 /* SIUIKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SIUIKit-dummy.m"; sourceTree = "<group>"; };
+		F7E0B3756E6324A0E8B597F6939A7892 /* SIUIKitGlobal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SIUIKitGlobal.h; path = SIUIKit/Classes/SIUIKitGlobal.h; sourceTree = "<group>"; };
+		F80F08D255E70FE3FE8CEEEA1CF61138 /* SIRectCornerLayer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SIRectCornerLayer.h; path = SIUIKit/Classes/SIAlertView/SIRectCornerLayer.h; sourceTree = "<group>"; };
+		FB7751D4D791D1183FB66D3CCA52CD8E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 		FCAE91DF263135371311293F207C3CB5 /* SIUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SIUIKit.framework; path = SIUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		182A6C2F6881956ADECA904646B27E60 /* Frameworks */ = {
+		4FCB64B78156A47C334CAA65D3C1C8E0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A95E11D00A0F98388EC9BD2894F4A7EE /* Foundation.framework in Frameworks */,
-				2625A7F11C6340FF50E3E9EA4922F930 /* UIKit.framework in Frameworks */,
+				F4FFAABBA9349C4BE929EF29161385C7 /* Foundation.framework in Frameworks */,
+				7FD54EF89B0B1028AC6EF7D92CB4C0DD /* QuartzCore.framework in Frameworks */,
+				4D45F4081671749064403A4200337549 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,64 +124,37 @@
 			path = "Target Support Files/Pods-SIUIKit_Example";
 			sourceTree = "<group>";
 		};
-		0E1D233AFE97E181186C861B645D1CB2 /* SIUIKit */ = {
+		122DA2E5084A4393C29BE363C764795C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B74BA1D74212C61E2C5E007559C1DE79 /* Color */,
-				25C923B5F72144F8B01E71880B35D719 /* Font */,
-				5DF2EA517EDEF11BB4DB2CDC273E2ED0 /* Support Files */,
-			);
-			name = SIUIKit;
-			path = ../..;
-			sourceTree = "<group>";
-		};
-		25C923B5F72144F8B01E71880B35D719 /* Font */ = {
-			isa = PBXGroup;
-			children = (
-				6B31B88CC4FAEF62776B8C6BA44B732E /* SIFont.h */,
-				00867872D0A4FEC17F7BE7F24E9D7E0C /* SIFont.m */,
-				A2B6359C15C52E6893A8F18A06927632 /* SIFontDef.h */,
-			);
-			name = Font;
-			sourceTree = "<group>";
-		};
-		433CD3331B6C3787F473C941B61FC68F /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				438B396F6B4147076630CAEFE34282C1 /* iOS */,
+				93A319F2C1969B7AA0B17444A3F8BA22 /* iOS */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		438B396F6B4147076630CAEFE34282C1 /* iOS */ = {
+		43B82455CFC6A1691D73F8BC3AF477D6 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */,
-				B63C6A64CF66340668996F78DA6BB482 /* UIKit.framework */,
+				E062F71FD8ACA1FFFAA685AE158F9B40 /* SIUIKit */,
 			);
-			name = iOS;
+			name = "Development Pods";
 			sourceTree = "<group>";
 		};
-		5DF2EA517EDEF11BB4DB2CDC273E2ED0 /* Support Files */ = {
+		47A9FF65BBDA44EDCEF6EE32C76573BD /* Color */ = {
 			isa = PBXGroup;
 			children = (
-				527CCC6BFC5E76800F7832ABC2D51CEF /* Info.plist */,
-				B6770723152ED413725C83AE050C0756 /* SIUIKit.modulemap */,
-				1F3C09B6993B727211F1445ADA04F1E8 /* SIUIKit.xcconfig */,
-				8E747157D6B65CD2E1AC2D8312579C17 /* SIUIKit-dummy.m */,
-				AB44412A46CB1FF400A2C5DE132D4433 /* SIUIKit-prefix.pch */,
-				3FDAEF196CB817545293ED8F189F6C5A /* SIUIKit-umbrella.h */,
+				0F81EA3B74C90967CD6FAA859CCCC8B8 /* SIColor.h */,
+				C8C6CF01A656C5141CC84A49C7BB233B /* SIColor.m */,
 			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/SIUIKit";
+			name = Color;
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
-				D0667F5A626EF1885DC4182A18AB7EEF /* Development Pods */,
-				433CD3331B6C3787F473C941B61FC68F /* Frameworks */,
+				43B82455CFC6A1691D73F8BC3AF477D6 /* Development Pods */,
+				122DA2E5084A4393C29BE363C764795C /* Frameworks */,
 				DDFF4752C322DEE26BAFCB4537D1A070 /* Products */,
 				88F467AC85408F0A22FDBECAF570150B /* Targets Support Files */,
 			);
@@ -170,21 +168,30 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		B74BA1D74212C61E2C5E007559C1DE79 /* Color */ = {
+		93A319F2C1969B7AA0B17444A3F8BA22 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				B89FF59D816096DBC3E2491C22BC1B93 /* SIColor.h */,
-				36BE325366ABDBEAAEABDAE6C951E9A7 /* SIColor.m */,
+				33083C616C9CA8AF16FA7C690BC673C7 /* Foundation.framework */,
+				FB7751D4D791D1183FB66D3CCA52CD8E /* QuartzCore.framework */,
+				3917A50EB224EEDBC66971700D698782 /* UIKit.framework */,
 			);
-			name = Color;
+			name = iOS;
 			sourceTree = "<group>";
 		};
-		D0667F5A626EF1885DC4182A18AB7EEF /* Development Pods */ = {
+		BB1ECCEA0544A47B8C0A0DD882CE1913 /* Alert */ = {
 			isa = PBXGroup;
 			children = (
-				0E1D233AFE97E181186C861B645D1CB2 /* SIUIKit */,
+				174D69FDF25EA2B154DC8169D7F346E2 /* SIAlertAction.h */,
+				1D97C4ABAE51108DF95EC23D024FE729 /* SIAlertAction.m */,
+				A0A8BF3B4E2FFF4DD497757FA84FD923 /* SIAlertView.h */,
+				8A54CF2AC4FC672E7EECA08F40256B0F /* SIAlertView.m */,
+				D4F91622CA39EF70A883AB4E932DE798 /* SIAlertViewCell.h */,
+				D63843F112F464C36A19628B84C31A9C /* SIAlertViewCell.m */,
+				90C8EF1F636081E62611A5F1E89156BE /* SIAlertViewDefine.h */,
+				F80F08D255E70FE3FE8CEEEA1CF61138 /* SIRectCornerLayer.h */,
+				80804DEEABA22A3A719B825E286D4C56 /* SIRectCornerLayer.m */,
 			);
-			name = "Development Pods";
+			name = Alert;
 			sourceTree = "<group>";
 		};
 		DDFF4752C322DEE26BAFCB4537D1A070 /* Products */ = {
@@ -196,25 +203,70 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		E062F71FD8ACA1FFFAA685AE158F9B40 /* SIUIKit */ = {
+			isa = PBXGroup;
+			children = (
+				3465802F0A2FC05508B7FC2704687496 /* SIUIKit.h */,
+				F7E0B3756E6324A0E8B597F6939A7892 /* SIUIKitGlobal.h */,
+				BB1ECCEA0544A47B8C0A0DD882CE1913 /* Alert */,
+				47A9FF65BBDA44EDCEF6EE32C76573BD /* Color */,
+				F311285F5B74A01BBE0C0F62B5B6DC7A /* Font */,
+				F75024B5356A75C045AD930D6183C424 /* Support Files */,
+			);
+			name = SIUIKit;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		F311285F5B74A01BBE0C0F62B5B6DC7A /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				D1A8318096F6B977AB764A987E21CD6A /* SIFont.h */,
+				2BC4D3374C467D899B94E1EC14DF0BA2 /* SIFont.m */,
+				84B79BCB4F877887EA3D1B77DBD7B791 /* SIFontDef.h */,
+			);
+			name = Font;
+			sourceTree = "<group>";
+		};
+		F75024B5356A75C045AD930D6183C424 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				747CAED6A1164930DFFDE81C1654F340 /* Info.plist */,
+				DA22B3566B16293E0F95759265B24F18 /* SIUIKit.modulemap */,
+				C47730CE275B2DCF6AF60EA8B5600F9D /* SIUIKit.xcconfig */,
+				DC320973E836E003CB197CFF33BA4562 /* SIUIKit-dummy.m */,
+				5E60873C3958CC4D0BB8E515BC3FFCC3 /* SIUIKit-prefix.pch */,
+				AD091F1B90696722419DA19B11A66F30 /* SIUIKit-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/SIUIKit";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		3514C546F40FBCA372E7563D89A1F440 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F186752ECF6B42FF26757772DBD5E3EE /* SIAlertAction.h in Headers */,
+				7429FAF4710FDF6B768AF56F2B88D569 /* SIAlertView.h in Headers */,
+				BCA028064F0D3711CA12146E8CDDD1EC /* SIAlertViewCell.h in Headers */,
+				587D0592866A9AD73E83215F19FB4508 /* SIAlertViewDefine.h in Headers */,
+				F4C911CEA767999DAD9A7698A2EBE085 /* SIColor.h in Headers */,
+				BB2526697DFA1CD10B054E73408118D9 /* SIFont.h in Headers */,
+				6E4FAB4967AAB29B84987476550A5EB7 /* SIFontDef.h in Headers */,
+				85FF63E79C62495F60CDF2021D8797D0 /* SIRectCornerLayer.h in Headers */,
+				CA3EFCEEFAF170238710F26D97C683F3 /* SIUIKit-umbrella.h in Headers */,
+				6BA663C6CD42D54BC6AF5AE6C78E34E0 /* SIUIKit.h in Headers */,
+				94B3A2B45B6EB020FEFD60F0FE41B6D7 /* SIUIKitGlobal.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8EDBDEDBD6215AC9E86D081BC92C6EDA /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				8F1D58FD9D547E0994C4EE9CC2FB5774 /* Pods-SIUIKit_Example-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D2665B38B986D82E15A99260B5B63CAF /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				109FADAA18550969A560DF2CB4251278 /* SIColor.h in Headers */,
-				574840B925A2C23A5A17EAE1082E0A74 /* SIFont.h in Headers */,
-				5C77CFFB8543EB596D9589B0865D25EA /* SIFontDef.h in Headers */,
-				1214EB715E0FBECE0D585DC2C76616F5 /* SIUIKit-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,9 +295,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6154E4F0A9A653539CEE1B456D8F4114 /* Build configuration list for PBXNativeTarget "SIUIKit" */;
 			buildPhases = (
-				B41A5120E3334404484A83B219ACBA37 /* Sources */,
-				182A6C2F6881956ADECA904646B27E60 /* Frameworks */,
-				D2665B38B986D82E15A99260B5B63CAF /* Headers */,
+				A67062C1F4FA9DA8C6AC0F206DF899DB /* Sources */,
+				4FCB64B78156A47C334CAA65D3C1C8E0 /* Frameworks */,
+				3514C546F40FBCA372E7563D89A1F440 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -284,13 +336,17 @@
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		B41A5120E3334404484A83B219ACBA37 /* Sources */ = {
+		A67062C1F4FA9DA8C6AC0F206DF899DB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				89865B47730B1BC54C136856032F4F67 /* SIColor.m in Sources */,
-				552DF5BBDD6887CFF1BA581D2B55FF1F /* SIFont.m in Sources */,
-				16D470B47640C080F15304D9266A905D /* SIUIKit-dummy.m in Sources */,
+				D26210DD0555280952800F90CA95BB28 /* SIAlertAction.m in Sources */,
+				1F4EBAB763242208930AED0A44724BFC /* SIAlertView.m in Sources */,
+				9B2BB23BADF725DAD8C854F604AC1CE9 /* SIAlertViewCell.m in Sources */,
+				5F99F4F561254E04A794A8F7A789F2D3 /* SIColor.m in Sources */,
+				CD9C19A7A19E67E23CDCB8158681FCE8 /* SIFont.m in Sources */,
+				6D8CAABD49B69222FB587869A7C4BE1E /* SIRectCornerLayer.m in Sources */,
+				6B35D9C6967035B8318045AB2E9E0276 /* SIUIKit-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,7 +487,7 @@
 		};
 		7E4E943EB77878AAC0B92225C7EB5144 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1F3C09B6993B727211F1445ADA04F1E8 /* SIUIKit.xcconfig */;
+			baseConfigurationReference = C47730CE275B2DCF6AF60EA8B5600F9D /* SIUIKit.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -526,7 +582,7 @@
 		};
 		B26340427C8FD2A84A42A7EDF21A4B2F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1F3C09B6993B727211F1445ADA04F1E8 /* SIUIKit.xcconfig */;
+			baseConfigurationReference = C47730CE275B2DCF6AF60EA8B5600F9D /* SIUIKit.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
