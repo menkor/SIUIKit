@@ -1,9 +1,9 @@
 PODS:
-  - SIUIKit (0.1.2):
-    - SIUIKit/Color (= 0.1.2)
-    - SIUIKit/Font (= 0.1.2)
-  - SIUIKit/Color (0.1.2)
-  - SIUIKit/Font (0.1.2)
+  - SIUIKit (0.1.3):
+    - SIUIKit/Color (= 0.1.3)
+    - SIUIKit/Font (= 0.1.3)
+  - SIUIKit/Color (0.1.3)
+  - SIUIKit/Font (0.1.3)
 
 DEPENDENCIES:
   - SIUIKit (from `../`)
@@ -13,7 +13,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  SIUIKit: 112aad3f47e791554b84e78006ad6628d11fe278
+  SIUIKit: 3bcf8dbf657bb128f4d2fea05c102e0fbe7e9ca0
 
 PODFILE CHECKSUM: ff33df0b26a91bf384242c14e3704c8c42dde965
 
