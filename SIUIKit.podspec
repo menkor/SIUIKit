@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SIUIKit'
-  s.version          = '0.1.2'
+  s.version          = '0.1.3'
   s.summary          = 'SIUIKit.'
 
 # This description is used to generate tags and improve search results.
@@ -25,26 +25,18 @@ Pod::Spec.new do |s|
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'ungacy' => 'yetao@superid.cn' }
   s.source           = { :git => 'git@git.superid.cn:iOS/SIUIKit.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
 
-  s.source_files = 'SIUIKit/Classes/**/*'
-  
-  # s.resource_bundles = {
-  #   'SIUIKit' => ['SIUIKit/Assets/*.png']
-  # }
   s.subspec 'Font' do |ss|
-    ss.source_files = './Classes/SIFont/*'
-	ss.public_header_files = './Classes/SIFont/*.h'
+    ss.source_files = 'SIUIKit/Classes/SIFont/*'
+	ss.public_header_files = 'SIUIKit/Classes/SIFont/*.h'
   end
   
   s.subspec 'Color' do |ss|
-    ss.source_files = './Classes/SIColor/*'
-	ss.public_header_files = './Classes/SIColor/*.h'
+    ss.source_files = 'SIUIKit/Classes/SIColor/*'
+	ss.public_header_files = 'SIUIKit/Classes/SIColor/*.h'
   end
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'UIKit'
   # s.dependency 'AFNetworking', '~> 2.3'
 end
