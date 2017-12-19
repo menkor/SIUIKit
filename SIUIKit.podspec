@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SIUIKit'
-  s.version          = '0.1.4'
+  s.version          = '0.1.5'
   s.summary          = 'SIUIKit.'
 
 # This description is used to generate tags and improve search results.
@@ -28,6 +28,7 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '8.0'
   s.public_header_files = 'SIUIKit/Classes/*.h'
+  s.source_files = 'SIUIKit/Classes/*'
 
   s.subspec 'Font' do |ss|
     ss.source_files = 'SIUIKit/Classes/SIFont/*'
