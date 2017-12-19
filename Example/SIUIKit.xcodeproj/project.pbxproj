@@ -23,7 +23,6 @@
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		C48A2ADEDC6A421E2A99479D /* Pods_SIUIKit_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C79EC1C7BD5BA8B9847DCA56 /* Pods_SIUIKit_Example.framework */; };
-		E3A76B73D58D9BEAA59D0F55 /* Pods_SIUIKit_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C3686B743EC7E5A513C2EFF /* Pods_SIUIKit_Tests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,9 +62,7 @@
 		B5B03F103988608C96F6C0C6 /* SIUIKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = SIUIKit.podspec; path = ../SIUIKit.podspec; sourceTree = "<group>"; };
 		C5939B217CBF73D24F55C7E8 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		C79EC1C7BD5BA8B9847DCA56 /* Pods_SIUIKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SIUIKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D43813EE56157C5E40A1FFB6 /* Pods-SIUIKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SIUIKit_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SIUIKit_Tests/Pods-SIUIKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		D6ADA3EA2214A524CD658D26 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		E45A5A8960BB3B0F51133B04 /* Pods-SIUIKit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SIUIKit_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SIUIKit_Tests/Pods-SIUIKit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		FCF7DAEC9E5C30D64A0C02FD /* Pods-SIUIKit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SIUIKit_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SIUIKit_Example/Pods-SIUIKit_Example.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -88,7 +85,6 @@
 				6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */,
 				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
-				E3A76B73D58D9BEAA59D0F55 /* Pods_SIUIKit_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,8 +186,6 @@
 			children = (
 				FCF7DAEC9E5C30D64A0C02FD /* Pods-SIUIKit_Example.debug.xcconfig */,
 				0C62C6543F43B1D2ED1D5D1E /* Pods-SIUIKit_Example.release.xcconfig */,
-				E45A5A8960BB3B0F51133B04 /* Pods-SIUIKit_Tests.debug.xcconfig */,
-				D43813EE56157C5E40A1FFB6 /* Pods-SIUIKit_Tests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -223,12 +217,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6003F5C2195388D20070C39A /* Build configuration list for PBXNativeTarget "SIUIKit_Tests" */;
 			buildPhases = (
-				C282802458268C22CE84B32B /* [CP] Check Pods Manifest.lock */,
 				6003F5AA195388D20070C39A /* Sources */,
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
-				8D2F47FB434CE80F15B81ED0 /* [CP] Embed Pods Frameworks */,
-				024F687640D9FB5D837FE792 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -297,21 +288,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		024F687640D9FB5D837FE792 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SIUIKit_Tests/Pods-SIUIKit_Tests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		114C61D79E6E53A45E5DB467 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -361,42 +337,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SIUIKit_Example/Pods-SIUIKit_Example-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8D2F47FB434CE80F15B81ED0 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-SIUIKit_Tests/Pods-SIUIKit_Tests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/FBSnapshotTestCase/FBSnapshotTestCase.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSnapshotTestCase.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SIUIKit_Tests/Pods-SIUIKit_Tests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C282802458268C22CE84B32B /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SIUIKit_Tests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -563,7 +503,6 @@
 		};
 		6003F5C3195388D20070C39A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E45A5A8960BB3B0F51133B04 /* Pods-SIUIKit_Tests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -587,7 +526,6 @@
 		};
 		6003F5C4195388D20070C39A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D43813EE56157C5E40A1FFB6 /* Pods-SIUIKit_Tests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (

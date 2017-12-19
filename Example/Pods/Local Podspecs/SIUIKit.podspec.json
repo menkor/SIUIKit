@@ -1,0 +1,22 @@
+{
+  "name": "SIUIKit",
+  "version": "0.1.0",
+  "summary": "A short description of SIUIKit.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/ungacy/SIUIKit",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "ungacy": "ungacy@126.com"
+  },
+  "source": {
+    "git": "https://github.com/ungacy/SIUIKit.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "SIUIKit/Classes/**/*"
+}

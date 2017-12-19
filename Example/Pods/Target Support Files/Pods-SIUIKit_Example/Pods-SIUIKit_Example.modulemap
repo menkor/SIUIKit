@@ -1,0 +1,6 @@
+framework module Pods_SIUIKit_Example {
+  umbrella header "Pods-SIUIKit_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}
