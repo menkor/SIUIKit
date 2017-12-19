@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'SIUIKit_Example' do
+  pod 'SIUIKit', :path => '../'
+
+  target 'SIUIKit_Tests' do
+    inherit! :search_paths
+
+    pod 'FBSnapshotTestCase'
+  end
+end
