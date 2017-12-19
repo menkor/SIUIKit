@@ -11,7 +11,7 @@
 #import "SIRectCornerLayer.h"
 #import "SIColor.h"
 #import "SIFont.h"
-@import Masonry;
+#import <Masonry/Masonry.h>
 
 @interface SIAlertViewCell ()
 
