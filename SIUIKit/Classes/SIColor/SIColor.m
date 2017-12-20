@@ -59,7 +59,11 @@
 }
 
 + (UIColor *)colorWithHex:(unsigned long)hexValue {
-    return [self colorWithHex:hexValue alpha:1];
+    CGFloat alpha = 1;
+    if (hexValue > 0xFFFFFF) {
+        alpha = ((hexValue & 0xFF000000) >> 24) / 255.0;
+    }
+    return [self colorWithHex:hexValue alpha:alpha];
 }
 
 @end
