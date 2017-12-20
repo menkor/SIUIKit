@@ -20,6 +20,9 @@
 #import "SIColor.h"
 #import "SIFont.h"
 #import "SIFontDef.h"
+#import "SIProgressView.h"
+#import "SIRefreshHeader.h"
+#import "SIRefreshHeaderDef.h"
 
 FOUNDATION_EXPORT double SIUIKitVersionNumber;
 FOUNDATION_EXPORT const unsigned char SIUIKitVersionString[];

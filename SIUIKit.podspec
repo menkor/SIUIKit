@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SIUIKit'
-  s.version          = '0.1.8'
+  s.version          = '0.1.9'
   s.summary          = 'SIUIKit.'
 
 # This description is used to generate tags and improve search results.
@@ -47,6 +47,16 @@ Pod::Spec.new do |s|
     ss.source_files = 'SIUIKit/Classes/SIColor/*'
 	ss.public_header_files = 'SIUIKit/Classes/SIColor/*.h'
   end
+  
+  s.subspec 'Refresh' do |ss|
+    ss.source_files = 'SIUIKit/Classes/SIRefreshHeader/*'
+	ss.public_header_files = 'SIUIKit/Classes/SIRefreshHeader/*.h'
+    ss.dependency 'MJRefresh'
+    ss.dependency 'SIUIKit/Font'
+    ss.dependency 'SIUIKit/Color'
+  end
+  
+  
   
   s.frameworks = 'UIKit', 'QuartzCore'
   s.dependency 'Masonry'

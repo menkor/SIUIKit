@@ -50,6 +50,21 @@ platform :ios do
     end
     commit_podspec_file(version)
     add_git_tag(version)
+    pod_push(
+      path: "./#{lib_name}.podspec",
+      allow_warnings: true,
+      repo: 'SISpecs',
+      use_libraries: true,
+      sources: ['git@git.superid.cn:iOS/SISpecs.git', 'https://github.com/CocoaPods/Specs.git']
+    )
+  end
+  
+  lane :lint do |options|
+    lib_name=Dir.pwd.sub('/fastlane','').split('/').last
+    pod_lib_lint(
+      private: true,
+      sources: ['git@git.superid.cn:iOS/SISpecs.git', 'https://github.com/CocoaPods/Specs.git']
+    )
   end
   
   # You can define as many lanes as you want
