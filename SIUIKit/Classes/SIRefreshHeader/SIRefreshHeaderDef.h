@@ -30,10 +30,10 @@ typedef NS_ENUM(NSUInteger, SIRefreshHeaderStyle) {
 
 #pragma mark - State
 
-typedef NS_ENUM(NSUInteger, HTRefreshResultState) {
-    HTRefreshResultStateOrigin,
-    HTRefreshResultStateSuccess,
-    HTRefreshResultStateError,
+typedef NS_ENUM(NSUInteger, SIRefreshResultState) {
+    SIRefreshResultStateOrigin,
+    SIRefreshResultStateSuccess,
+    SIRefreshResultStateError,
 };
 
 #pragma mark - Text

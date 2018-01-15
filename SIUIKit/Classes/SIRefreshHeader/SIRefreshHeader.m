@@ -14,7 +14,7 @@
 //样式
 @property (nonatomic, assign) SIRefreshHeaderStyle style;
 //下拉结果状态.成功,失败,初始
-@property (nonatomic, assign) HTRefreshResultState resultState;
+@property (nonatomic, assign) SIRefreshResultState resultState;
 //显示文本
 @property (nonatomic, weak) UILabel *statusLabel;
 //进度
@@ -81,7 +81,7 @@
     [self.indicatorView startAnimating];
 }
 
-- (void)resetProgressView {
+- (void)stopAnimation {
     if (self.state != MJRefreshStateRefreshing) {
         return;
     }
@@ -106,17 +106,17 @@
         [self.minPullingTimer invalidate];
         self.minPullingTimer = nil;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(timeInterval * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            self.resultState = HTRefreshResultStateSuccess;
+            self.resultState = SIRefreshResultStateSuccess;
             [self resetState];
         });
     } else {
-        self.resultState = HTRefreshResultStateSuccess;
+        self.resultState = SIRefreshResultStateSuccess;
         [self resetState];
     }
 }
 
 - (void)fail {
-    self.resultState = HTRefreshResultStateError;
+    self.resultState = SIRefreshResultStateError;
     [self resetState];
 }
 
@@ -158,7 +158,7 @@
 
 #pragma mark - State
 
-- (void)setResultState:(HTRefreshResultState)resultState {
+- (void)setResultState:(SIRefreshResultState)resultState {
     _resultState = resultState;
     [self updateWithResultState];
 }
@@ -171,10 +171,10 @@
         return;
     }
     switch (self.resultState) {
-        case HTRefreshResultStateError:
+        case SIRefreshResultStateError:
             self.statusLabel.text = [self stateText:kSIRefreshHeaderTitleError];
             break;
-        case HTRefreshResultStateSuccess:
+        case SIRefreshResultStateSuccess:
             self.statusLabel.text = [self stateText:kSIRefreshHeaderTitleSuccess];
             break;
         default:
@@ -186,11 +186,11 @@
  *  @brief 设置state为MJRefreshStateIdle
  */
 - (void)resetState {
-    [self resetProgressView];
+    [self stopAnimation];
     __weak typeof(self) weak_self = self;
     [self endRefreshingWithCompletionBlock:^{
-        //设置完成状态为HTRefreshResultStateOrigin,此时会允许设置其他的提示信息
-        weak_self.resultState = HTRefreshResultStateOrigin;
+        //设置完成状态为SIRefreshResultStateOrigin,此时会允许设置其他的提示信息
+        weak_self.resultState = SIRefreshResultStateOrigin;
         //恢复初始状态
         [weak_self setState:MJRefreshStateIdle];
     }];
@@ -205,15 +205,16 @@
     switch (self.state) {
         case MJRefreshStateIdle: {
             /*!
-         *  @brief 只有在HTRefreshResultStateOrigin的完成状态下,才更新提示信息
+         *  @brief 只有在SIRefreshResultStateOrigin的完成状态下,才更新提示信息
          *  这样做是保证下拉完成时到下拉列表隐藏,显示的提示信息都是完成状态[刷新完成/失败]的提示
          */
-            if (self.resultState == HTRefreshResultStateOrigin) {
+            if (self.resultState == SIRefreshResultStateOrigin) {
                 self.statusLabel.text = [self stateText:kSIRefreshHeaderTitleIdle];
             }
         } break;
         case MJRefreshStatePulling: {
             self.statusLabel.text = [self stateText:kSIRefreshHeaderTitlePulling];
+            [self animation];
         }
 
         break;
@@ -239,21 +240,5 @@
     NSString *lastUpdatedTimeString = [self.formatter stringFromDate:[self lastPullingTime]];
     return [string stringByAppendingFormat:kSIRefreshHeaderTitleFormat, lastUpdatedTimeString];
 }
-
-#pragma mark - Pulling Percent
-- (void)setPullingPercent:(CGFloat)pullingPercent {
-    [super setPullingPercent:pullingPercent];
-    /*!
-     *  @brief 延迟30%出现.体现递增/减过程
-     */
-    if (pullingPercent >= 0 && pullingPercent <= 1.2) {
-        pullingPercent = pullingPercent - 0.2;
-    }
-    if (pullingPercent > 1) {
-        pullingPercent = 1;
-    }
-    [self animation];
-}
-
 
 @end
