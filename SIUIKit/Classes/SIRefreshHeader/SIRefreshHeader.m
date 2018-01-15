@@ -6,7 +6,6 @@
 //
 
 #import "SIRefreshHeader.h"
-#import "SIProgressView.h"
 #import "SIColor.h"
 #import "SIFont.h"
 #import <Masonry/Masonry.h>
@@ -18,10 +17,8 @@
 @property (nonatomic, assign) HTRefreshResultState resultState;
 //显示文本
 @property (nonatomic, weak) UILabel *statusLabel;
-//图片
-@property (nonatomic, weak) UIImageView *logo;
 //进度
-@property (nonatomic, weak) SIProgressView *progressView;
+@property (nonatomic, strong) UIActivityIndicatorView *indicatorView;
 //超时定时器
 @property (nonatomic, weak) NSTimer *timeoutTimer;
 //超时,默认3秒
@@ -45,6 +42,21 @@
     return cmp;
 }
 
+- (UIActivityIndicatorView *)indicatorView {
+    if (!_indicatorView) {
+        _indicatorView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
+        _indicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+        _indicatorView.color = [SIColor colorWithHex:0x9b9b9b];
+        [self addSubview:_indicatorView];
+        [_indicatorView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.mas_equalTo(self.mas_bottom).offset(-20);
+            make.size.mas_equalTo(CGSizeMake(24, 24));
+            make.centerX.mas_equalTo(self.mas_centerX);
+        }];
+    }
+    return _indicatorView;
+}
+
 - (void)prepare {
     [super prepare];
     // 设置控件的高度
@@ -60,74 +72,27 @@
         make.height.mas_equalTo(12);
         make.right.left.mas_equalTo(self);
     }];
-
-    SIProgressView *progressView = [[SIProgressView alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
-    [self addSubview:progressView];
-    [progressView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(self.mas_bottom).offset(-20);
-        make.size.mas_equalTo(CGSizeMake(24, 24));
-        make.centerX.mas_equalTo(self.mas_centerX);
-    }];
-    self.progressView = progressView;
-    [progressView setTrackColor:[UIColor clearColor]];
-    [progressView setStartAngle:M_PI_2];
-
-    UIImageView *logo = [[UIImageView alloc] init];
-    [self addSubview:logo];
-    [logo mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(12, 12));
-        make.centerX.mas_equalTo(self.mas_centerX);
-        make.top.mas_equalTo(progressView.mas_top).offset(6);
-    }];
-    self.logo = logo;
     self.lastPullingTime = [NSDate date];
 }
 
 #pragma mark - Animation
 
 - (void)animation {
-    [self.progressView setStartAngle:kSIRefreshAnimationStartAngle];
-    [self.progressView setProgress:(1 - 60 / 360.0)];
-    [self rotateView:self.progressView];
-}
-
-- (void)rotateView:(UIView *)view {
-    [UIView animateWithDuration:0.25
-        delay:0
-        options:UIViewAnimationOptionCurveLinear
-        animations:^{
-            CGAffineTransform transfrom = view.layer.affineTransform;
-            view.layer.affineTransform = CGAffineTransformRotate(transfrom, M_PI_2);
-        }
-        completion:^(BOOL finished) {
-            if (finished) {
-                [self rotateView:view];
-            }
-        }];
+    [self.indicatorView startAnimating];
 }
 
 - (void)resetProgressView {
     if (self.state != MJRefreshStateRefreshing) {
         return;
     }
-
-    [CATransaction begin];
-    [self.progressView.layer removeAllAnimations];
-    [CATransaction commit];
-    self.progressView.layer.affineTransform = CGAffineTransformIdentity;
-    [self.progressView setStartAngle:M_PI_2];
-    [self.progressView setProgress:1];
+    [self.indicatorView stopAnimating];
 }
 
 #pragma mark - Subviews
 - (void)placeSubviews {
     [super placeSubviews];
     UIColor *themeColor = kSIRefreshHeaderColorDict[@(self.style)];
-    UIImage *icon = kSIRefreshHeaderIconDict[@(self.style)];
-    self.logo.image = icon;
     self.statusLabel.textColor = themeColor;
-    [self.progressView setTrackColor:[UIColor clearColor]];
-    [self.progressView setProgressColor:themeColor];
 }
 
 #pragma mark - Finish or Fail
@@ -275,14 +240,6 @@
     return [string stringByAppendingFormat:kSIRefreshHeaderTitleFormat, lastUpdatedTimeString];
 }
 
-- (NSDateFormatter *)formatter {
-    if (!_formatter) {
-        _formatter = [[NSDateFormatter alloc] init];
-        _formatter.dateFormat = kSIRefreshHeaderDateFormat;
-    }
-    return _formatter;
-}
-
 #pragma mark - Pulling Percent
 - (void)setPullingPercent:(CGFloat)pullingPercent {
     [super setPullingPercent:pullingPercent];
@@ -295,7 +252,8 @@
     if (pullingPercent > 1) {
         pullingPercent = 1;
     }
-    [self.progressView setProgress:pullingPercent < 0 ? 0 : pullingPercent];
+    [self animation];
 }
+
 
 @end

@@ -40,9 +40,9 @@ typedef NS_ENUM(NSUInteger, HTRefreshResultState) {
 
 static NSString *const kSIRefreshHeaderTitleIdle = @"向下拉刷新";
 
-static NSString *const kSIRefreshHeaderTitlePulling = @"释放刷新";
+static NSString *const kSIRefreshHeaderTitlePulling = @"释放立即更新...";
 
-static NSString *const kSIRefreshHeaderTitleRefreshing = @"正在刷新";
+static NSString *const kSIRefreshHeaderTitleRefreshing = @"正在加载数据...";
 
 static NSString *const kSIRefreshHeaderTitleSuccess = @"刷新完成";
 
@@ -52,7 +52,7 @@ static NSString *const kSIRefreshHeaderTitleFormat = @" 最后更新 %@";
 
 static NSString *const kSIRefreshHeaderDateFormat = @"HH:mm";
 
-static const BOOL kSIRefreshHeaderTitleAppendDate = YES;
+static const BOOL kSIRefreshHeaderTitleAppendDate = NO;
 
 #pragma mark - Min Pulling Time
 //最小下拉时间间隔
