@@ -29,6 +29,8 @@
 
 @property (nonatomic, assign) BOOL available;
 
+@property (nonatomic, strong) UIFont *font;
+
 @end
 
 @implementation SIAlertAction

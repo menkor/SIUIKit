@@ -55,7 +55,7 @@
         self.cornerLayer.frame = CGRectMake(10, 0, [UIScreen mainScreen].bounds.size.width - 20, model.menuHeight);
     }
     if (model.style == SIAlertActionStyleTitle || model.style == SIAlertActionStyleMessage) {
-        self.title.font = [SIFont systemFontOfSize:16];
+        self.title.font = model.font ?: [SIFont systemFontOfSize:16];
     }
     self.cornerLayer.fillColor = [SIColor whiteColor].CGColor;
     UIRectCorner style = 0;

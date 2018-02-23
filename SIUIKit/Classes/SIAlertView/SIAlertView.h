@@ -23,6 +23,10 @@
 
 - (void)show;
 
-+ (void)setTintColor:(UIColor *)tintColor once:(BOOL)once;
+@end
+
+@interface SIAlertView (Appearance)
+
++ (void)setTheme:(NSDictionary *)theme once:(BOOL)once;
 
 @end

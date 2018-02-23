@@ -40,6 +40,10 @@ typedef NS_ENUM(NSInteger, SIAlertActionStyle) {
 
 @property (nonatomic, strong) UIColor *tintColor;
 
+@property (nonatomic, strong) UIFont *font;
+
 @end
+
+static NSString *const kSIAlertThemeMessageFont = @"messageFont";
 
 #endif /* SIAlertViewDefine_h */

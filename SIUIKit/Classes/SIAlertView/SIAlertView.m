@@ -13,9 +13,9 @@
 
 @interface SIAlertViewManager : NSObject
 
-@property (nonatomic, strong) UIColor *tintColor;
+@property (nonatomic, strong) NSMutableDictionary *theme;
 
-@property (nonatomic, assign) BOOL once;
+@property (nonatomic, strong) NSMutableDictionary *onceTheme;
 
 @property (nonatomic, strong) NSMutableSet *instanceSet;
 
@@ -37,6 +37,9 @@
     self = [super init];
     if (self) {
         _instanceSet = [NSMutableSet set];
+        _theme = [kSIAlertViewActionTitleColorDict mutableCopy];
+        _onceTheme = [NSMutableDictionary dictionary];
+        _theme[kSIAlertThemeMessageFont] = [SIFont systemFontOfSize:16];
     }
     return self;
 }
@@ -51,21 +54,18 @@
 
 @property (nonatomic, assign) BOOL addedCancel;
 
+@property (nonatomic, strong) NSMutableDictionary *theme;
+
 @end
 
 @implementation SIAlertView
 
-+ (void)setTintColor:(UIColor *)tintColor once:(BOOL)once {
-    [SIAlertViewManager sharedInstance].tintColor = tintColor;
-    [SIAlertViewManager sharedInstance].once = once;
-}
-
 + (instancetype)alertControllerWithTitle:(NSString *)title message:(NSString *)message {
     SIAlertView *alert = [SIAlertView new];
-    alert.tintColor = [SIAlertViewManager sharedInstance].tintColor;
-    if ([SIAlertViewManager sharedInstance].once) {
-        [SIAlertViewManager sharedInstance].tintColor = nil;
-    }
+    NSDictionary *defaultTheme = [SIAlertViewManager sharedInstance].theme;
+    alert.theme = [defaultTheme mutableCopy];
+    [alert.theme setValuesForKeysWithDictionary:[SIAlertViewManager sharedInstance].onceTheme];
+    [[SIAlertViewManager sharedInstance].onceTheme removeAllObjects];
     alert.title = title;
     alert.message = message;
     alert.actions = [NSMutableArray array];
@@ -95,25 +95,22 @@
             _handerMap[@(_actions.count)] = action.handler;
         }
     }
-    if (action.style == SIAlertActionStyleDefault) {
-        action.tintColor = self.tintColor ?: kSIAlertViewActionTitleColorDict[@(action.style)];
-    } else {
-        action.tintColor = kSIAlertViewActionTitleColorDict[@(action.style)];
-    }
+    action.tintColor = self.theme[@(action.style)];
     [_actions addObject:action];
 }
 
 - (void)show {
     if (self.message) {
+        UIFont *messageFont = self.theme[kSIAlertThemeMessageFont];
         SIAlertAction<SIAlertActionProtocol> *message = (id)[SIAlertAction actionWithTitle:self.message
                                                                                      style:SIAlertActionStyleMessage
                                                                                    handler:nil];
         CGSize size = [self.message boundingRectWithSize:CGSizeMake([UIScreen mainScreen].bounds.size.width - 100, CGFLOAT_MAX)
-                                                 options:NSStringDrawingUsesLineFragmentOrigin
-                                              attributes:@{NSFontAttributeName: [SIFont systemFontOfSize:16]}
+                                                 options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                                              attributes:@{ NSFontAttributeName: messageFont }
                                                  context:NULL]
                           .size;
-        if (size.height == [SIFont systemFontOfSize:16].lineHeight) { //超过一行
+        if (size.height == messageFont.lineHeight) { //超过一行
             message.menuHeight = 56;
         } else {
             message.menuHeight = size.height + 32;
@@ -121,7 +118,8 @@
         _actions.firstObject.first = NO;
         message.first = YES;
         message.available = NO;
-        message.tintColor = kSIAlertViewActionTitleColorDict[@(message.style)];
+        message.tintColor = self.theme[@(message.style)];
+        message.font = messageFont;
         [_actions insertObject:message atIndex:0];
     }
     if (self.title) {
@@ -130,7 +128,7 @@
                                                                                  handler:nil];
         CGSize size = [self.title boundingRectWithSize:CGSizeMake([UIScreen mainScreen].bounds.size.width - 100, CGFLOAT_MAX)
                                                options:NSStringDrawingUsesLineFragmentOrigin
-                                            attributes:@{NSFontAttributeName: [SIFont systemFontOfSize:16]}
+                                            attributes:@{ NSFontAttributeName: [SIFont systemFontOfSize:16] }
                                                context:NULL]
                           .size;
         if (size.height == [SIFont systemFontOfSize:16].lineHeight) { //超过一行
@@ -141,7 +139,7 @@
         _actions.firstObject.first = NO;
         title.first = YES;
         title.available = NO;
-        title.tintColor = kSIAlertViewActionTitleColorDict[@(title.style)];
+        title.tintColor = self.theme[@(title.style)];
         [_actions insertObject:title atIndex:0];
     }
     YCPopMenu *popMenu = [YCPopMenu popMenuWithCellClass:[SIAlertViewCell class]
@@ -164,3 +162,15 @@
 }
 
 @end
+
+@implementation SIAlertView (Appearance)
+
++ (void)setTheme:(NSDictionary *)theme once:(BOOL)once {
+    NSMutableDictionary *old = once ? [SIAlertViewManager sharedInstance].onceTheme : [SIAlertViewManager sharedInstance].theme;
+    if ([theme isKindOfClass:[NSDictionary class]]) {
+        [old setValuesForKeysWithDictionary:theme];
+    }
+}
+
+@end
+
