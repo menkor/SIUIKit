@@ -10,8 +10,6 @@
 #endif
 #endif
 
-#import "SIUIKit.h"
-#import "SIUIKitGlobal.h"
 #import "SIAlertAction.h"
 #import "SIAlertView.h"
 #import "SIAlertViewCell.h"

@@ -1,6 +1,6 @@
 {
   "name": "SIUIKit",
-  "version": "0.1.8",
+  "version": "0.1.15",
   "summary": "SIUIKit.",
   "description": "UIKit of Super Id",
   "homepage": "http://superid.cn:81/iOS/SIUIKit",
@@ -13,13 +13,13 @@
   },
   "source": {
     "git": "git@git.superid.cn:iOS/SIUIKit.git",
-    "tag": "0.1.8"
+    "tag": "0.1.15"
   },
   "platforms": {
     "ios": "9.0"
   },
-  "public_header_files": "SIUIKit/Classes/*.h",
-  "source_files": "SIUIKit/Classes/*",
+  "public_header_files": "SIUIKit/Classes/*/*.h",
+  "source_files": "SIUIKit/Classes/**/*.[hm]",
   "frameworks": [
     "UIKit",
     "QuartzCore"
@@ -28,49 +28,5 @@
     "Masonry": [
 
     ]
-  },
-  "subspecs": [
-    {
-      "name": "Alert",
-      "source_files": "SIUIKit/Classes/SIAlertView/*",
-      "public_header_files": "SIUIKit/Classes/SIAlertView/*.h",
-      "dependencies": {
-        "YCEasyTool": [
-
-        ],
-        "SIUIKit/Font": [
-
-        ],
-        "SIUIKit/Color": [
-
-        ]
-      }
-    },
-    {
-      "name": "Font",
-      "source_files": "SIUIKit/Classes/SIFont/*",
-      "public_header_files": "SIUIKit/Classes/SIFont/*.h"
-    },
-    {
-      "name": "Color",
-      "source_files": "SIUIKit/Classes/SIColor/*",
-      "public_header_files": "SIUIKit/Classes/SIColor/*.h"
-    },
-    {
-      "name": "Refresh",
-      "source_files": "SIUIKit/Classes/SIRefreshHeader/*",
-      "public_header_files": "SIUIKit/Classes/SIRefreshHeader/*.h",
-      "dependencies": {
-        "MJRefresh": [
-
-        ],
-        "SIUIKit/Font": [
-
-        ],
-        "SIUIKit/Color": [
-
-        ]
-      }
-    }
-  ]
+  }
 }
