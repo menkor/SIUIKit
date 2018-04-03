@@ -8,6 +8,6 @@
 #ifndef SIUIKit_h
 #define SIUIKit_h
 
-
+#import "SIUIKitGlobal.h"
 
 #endif /* SIUIKit_h */
