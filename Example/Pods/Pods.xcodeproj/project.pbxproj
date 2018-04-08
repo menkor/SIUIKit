@@ -214,7 +214,7 @@
 		0CFE32162AC3762FD048CA6DEF85E7B7 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 		10727503934E8FD56E8B5C72905B3BE8 /* MJRefreshComponent.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJRefreshComponent.h; path = MJRefresh/Base/MJRefreshComponent.h; sourceTree = "<group>"; };
 		1143875EB3042018157A6E518D8DD9C3 /* MJRefreshAutoGifFooter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJRefreshAutoGifFooter.h; path = MJRefresh/Custom/Footer/Auto/MJRefreshAutoGifFooter.h; sourceTree = "<group>"; };
-		11C5054CE935B979C933921DB19F3DAD /* SIUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SIUIKit.framework; path = SIUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		11C5054CE935B979C933921DB19F3DAD /* SIUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SIUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		14D6626DEE39B9F6F65EFD9115271A19 /* MASCompositeConstraint.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASCompositeConstraint.m; path = Masonry/MASCompositeConstraint.m; sourceTree = "<group>"; };
 		19B030F3EAC08052C3D7CE1014D13BCA /* YCTreeMenuProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YCTreeMenuProtocol.h; path = YCEasyTool/Classes/UI/TreeMenu/YCTreeMenuProtocol.h; sourceTree = "<group>"; };
 		1E6B083775C17A20F0A9924025280658 /* SIRectCornerLayer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SIRectCornerLayer.h; sourceTree = "<group>"; };
@@ -239,7 +239,7 @@
 		3E929842F466BDEEC837DD7F8904E3FB /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F5431F4C7CCF87FDF108B81C97C61AD /* MJRefreshAutoGifFooter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJRefreshAutoGifFooter.m; path = MJRefresh/Custom/Footer/Auto/MJRefreshAutoGifFooter.m; sourceTree = "<group>"; };
 		436CABBA5043A04419AFF3DE60D6D8E7 /* Masonry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Masonry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4390F4A772FDF9982B5EC128D31B92F9 /* YCEasyTool.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = YCEasyTool.framework; path = YCEasyTool.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4390F4A772FDF9982B5EC128D31B92F9 /* YCEasyTool.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YCEasyTool.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43A52B09C397D0B7936B46ACF3990927 /* MASLayoutConstraint.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASLayoutConstraint.m; path = Masonry/MASLayoutConstraint.m; sourceTree = "<group>"; };
 		442B84FC24BBE457E7355582089EDDE2 /* SIRefreshHeader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SIRefreshHeader.m; sourceTree = "<group>"; };
 		45A6F33999A7997A44BC8DD2B9E2C027 /* UIView+MJExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+MJExtension.h"; path = "MJRefresh/UIView+MJExtension.h"; sourceTree = "<group>"; };
@@ -271,7 +271,7 @@
 		628FE658046116E8225D08BD90D9A22F /* SIProgressView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SIProgressView.m; sourceTree = "<group>"; };
 		6368CBECB0CDBA580C5A2C89DB910B0B /* YCSegmentItem.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YCSegmentItem.m; path = YCEasyTool/Classes/UI/Segment/YCSegmentItem.m; sourceTree = "<group>"; };
 		69737F28B96DD3DAF02F246365F1F9BA /* YCEasyTool.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YCEasyTool.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		698B9BBC444DDE84BD735168992BDC09 /* Masonry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Masonry.framework; path = Masonry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		698B9BBC444DDE84BD735168992BDC09 /* Masonry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Masonry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B81CCEB41E956969C2079CD86AC31EC /* NSArray+MASAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSArray+MASAdditions.m"; path = "Masonry/NSArray+MASAdditions.m"; sourceTree = "<group>"; };
 		6B88BCFA9B7E6BCB63489BF480E9CB1B /* View+MASShorthandAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "View+MASShorthandAdditions.h"; path = "Masonry/View+MASShorthandAdditions.h"; sourceTree = "<group>"; };
 		6BEA54145D4AEE96F5CD82C9B6811FCF /* MJRefresh.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = MJRefresh.bundle; path = MJRefresh/MJRefresh.bundle; sourceTree = "<group>"; };
@@ -284,7 +284,7 @@
 		7718D18A5E5F24E5DE2A213A033E1DED /* MJRefreshNormalHeader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJRefreshNormalHeader.h; path = MJRefresh/Custom/Header/MJRefreshNormalHeader.h; sourceTree = "<group>"; };
 		77F0A513E51580765D7C09F2E6697E3E /* YCProperty.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YCProperty.h; path = YCEasyTool/Classes/Property/YCProperty.h; sourceTree = "<group>"; };
 		785E4C788A6C0C76F6A7770508680EB0 /* YCCollectionView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YCCollectionView.h; path = YCEasyTool/Classes/UI/CollectionView/YCCollectionView.h; sourceTree = "<group>"; };
-		7910546BB1D8221E34D28647D91B5841 /* SIUIKit.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = SIUIKit.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		7910546BB1D8221E34D28647D91B5841 /* SIUIKit.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; path = SIUIKit.podspec; sourceTree = "<group>"; };
 		79452368E05B0C609F56DD2C37DC3917 /* YCEasyTool-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "YCEasyTool-dummy.m"; sourceTree = "<group>"; };
 		7D0A480DBF6DA28F6CE02B0D5C347282 /* YCEasyTool.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = YCEasyTool.xcconfig; sourceTree = "<group>"; };
 		80D8C8D65DA254A156FE26B317E10B7C /* MJRefreshAutoFooter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJRefreshAutoFooter.h; path = MJRefresh/Base/MJRefreshAutoFooter.h; sourceTree = "<group>"; };
@@ -292,7 +292,7 @@
 		86CAEEF8B06FF97B9472F75A2B82A8FF /* View+MASAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "View+MASAdditions.m"; path = "Masonry/View+MASAdditions.m"; sourceTree = "<group>"; };
 		87E165FE8ABE95ABDC0BB36BA7FC6617 /* Pods-SIUIKit_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SIUIKit_Example-umbrella.h"; sourceTree = "<group>"; };
 		885AC5A3437DF0103835A36800E7864A /* YCForeverSqlHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YCForeverSqlHelper.h; path = YCEasyTool/Classes/Forever/YCForeverSqlHelper.h; sourceTree = "<group>"; };
-		895247D5519DC4E5C8FA5FE59A6070B0 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		895247D5519DC4E5C8FA5FE59A6070B0 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		89F4AB80B0FACA940FD62920B19B5DA0 /* SIColor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SIColor.h; sourceTree = "<group>"; };
 		89FA149844520C158BEE2A765BDB490D /* Pods-SIUIKit_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SIUIKit_Example-dummy.m"; sourceTree = "<group>"; };
 		8B2886A1BFA507951775F0DBD22B6867 /* YCEasyTool.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = YCEasyTool.modulemap; sourceTree = "<group>"; };
@@ -301,7 +301,7 @@
 		90996AF77D8B746D52768B6E0E8BB4BE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		911786032533D1F3EBA4640727051FA5 /* MJRefresh-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MJRefresh-dummy.m"; sourceTree = "<group>"; };
 		92E3EEC18AD7D545079B0BA816B3431F /* MJRefreshStateHeader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJRefreshStateHeader.m; path = MJRefresh/Custom/Header/MJRefreshStateHeader.m; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		94AEB3E5F6C2FA31A524D3A0588B60E0 /* Masonry-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Masonry-umbrella.h"; sourceTree = "<group>"; };
 		966911D1EE93920245BE3DBD09CE99EB /* Masonry.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Masonry.xcconfig; sourceTree = "<group>"; };
 		979D39148B571966B5AF1853AA076155 /* NSArray+MASAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSArray+MASAdditions.h"; path = "Masonry/NSArray+MASAdditions.h"; sourceTree = "<group>"; };
@@ -323,9 +323,9 @@
 		AB2CBA5DA6E0DE611279B462D2D100E0 /* YCSegmentedControl.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YCSegmentedControl.h; path = YCEasyTool/Classes/UI/Segment/YCSegmentedControl.h; sourceTree = "<group>"; };
 		AC6D79834C538F2D61D6525BF854E9E1 /* MJRefresh-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MJRefresh-prefix.pch"; sourceTree = "<group>"; };
 		AC8B2686DC89E1CFA4D76F1269AB7A80 /* NSLayoutConstraint+MASDebugAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSLayoutConstraint+MASDebugAdditions.h"; path = "Masonry/NSLayoutConstraint+MASDebugAdditions.h"; sourceTree = "<group>"; };
-		ACFB7B3C9A397E4A536F20E9026371FE /* MJRefresh.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = MJRefresh.framework; path = MJRefresh.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ACFB7B3C9A397E4A536F20E9026371FE /* MJRefresh.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MJRefresh.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD0F5AE4216E3DFBB08B0BC5D5B41DE1 /* YCEasyTool-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "YCEasyTool-umbrella.h"; sourceTree = "<group>"; };
-		ADC9728240B6267847835BB150A85DDB /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		ADC9728240B6267847835BB150A85DDB /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		ADE5794879F7A9F6499B3A0F04C168C3 /* MJRefreshStateHeader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJRefreshStateHeader.h; path = MJRefresh/Custom/Header/MJRefreshStateHeader.h; sourceTree = "<group>"; };
 		AF57D48BE357DA8FE81D16012D66FFF0 /* MJRefreshFooter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJRefreshFooter.m; path = MJRefresh/Base/MJRefreshFooter.m; sourceTree = "<group>"; };
 		B38A545B2BE51FE6C80C9A0B6EF73A0C /* YCForeverSqlHelper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YCForeverSqlHelper.m; path = YCEasyTool/Classes/Forever/YCForeverSqlHelper.m; sourceTree = "<group>"; };
@@ -364,7 +364,7 @@
 		E1B4E22FCF192C6519DF3EE9FD5D249D /* UIView+MJExtension.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+MJExtension.m"; path = "MJRefresh/UIView+MJExtension.m"; sourceTree = "<group>"; };
 		E2253941A5889352159FD206E579C5B4 /* SIProgressView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SIProgressView.h; sourceTree = "<group>"; };
 		E2E40BCBA4C3F4F940753C7FE049DE58 /* SIAlertView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SIAlertView.h; sourceTree = "<group>"; };
-		E50C0AFE207B0A4C34DA2BE0A2CC8A8E /* Pods_SIUIKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_SIUIKit_Example.framework; path = "Pods-SIUIKit_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E50C0AFE207B0A4C34DA2BE0A2CC8A8E /* Pods_SIUIKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SIUIKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E57D6A2A404D60A1A1DAAE1E58C29719 /* MJRefreshConst.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJRefreshConst.m; path = MJRefresh/MJRefreshConst.m; sourceTree = "<group>"; };
 		E8984075310ABC596DE516BE0A7B7026 /* NSBundle+MJRefresh.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSBundle+MJRefresh.m"; path = "MJRefresh/NSBundle+MJRefresh.m"; sourceTree = "<group>"; };
 		EB9C26811477725051325717975D412D /* MASViewAttribute.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASViewAttribute.m; path = Masonry/MASViewAttribute.m; sourceTree = "<group>"; };
@@ -761,7 +761,6 @@
 				F8E51F4AE0D69671652F51630F2954D7 /* Resources */,
 				6450DC2904BE35F7544A5B6C48D5DBEE /* Support Files */,
 			);
-			name = MJRefresh;
 			path = MJRefresh;
 			sourceTree = "<group>";
 		};
@@ -820,7 +819,6 @@
 				986CFA936503F8B0A066350B18E670EB /* ViewController+MASAdditions.m */,
 				3CF4E23A86E4437542FD0B63970F8F62 /* Support Files */,
 			);
-			name = Masonry;
 			path = Masonry;
 			sourceTree = "<group>";
 		};
@@ -834,7 +832,6 @@
 				459B63FAE83F5E9C2E67CB46DD03829A /* Tools */,
 				0089C1228DC90C7F235B7D169ED9D93A /* UI */,
 			);
-			name = YCEasyTool;
 			path = YCEasyTool;
 			sourceTree = "<group>";
 		};

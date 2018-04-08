@@ -8,9 +8,9 @@
 
 #import "SIAlertViewCell.h"
 #import "SIAlertAction.h"
-#import "SIRectCornerLayer.h"
 #import "SIColor.h"
 #import "SIFont.h"
+#import "SIRectCornerLayer.h"
 #import <Masonry/Masonry.h>
 
 @interface SIAlertViewCell ()

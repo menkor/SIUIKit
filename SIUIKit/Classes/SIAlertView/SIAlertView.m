@@ -107,7 +107,7 @@
                                                                                    handler:nil];
         CGSize size = [self.message boundingRectWithSize:CGSizeMake([UIScreen mainScreen].bounds.size.width - 100, CGFLOAT_MAX)
                                                  options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
-                                              attributes:@{ NSFontAttributeName: messageFont }
+                                              attributes:@{NSFontAttributeName: messageFont}
                                                  context:NULL]
                           .size;
         if (size.height == messageFont.lineHeight) { //超过一行
@@ -128,7 +128,7 @@
                                                                                  handler:nil];
         CGSize size = [self.title boundingRectWithSize:CGSizeMake([UIScreen mainScreen].bounds.size.width - 100, CGFLOAT_MAX)
                                                options:NSStringDrawingUsesLineFragmentOrigin
-                                            attributes:@{ NSFontAttributeName: [SIFont systemFontOfSize:16] }
+                                            attributes:@{NSFontAttributeName: [SIFont systemFontOfSize:16]}
                                                context:NULL]
                           .size;
         if (size.height == [SIFont systemFontOfSize:16].lineHeight) { //超过一行
