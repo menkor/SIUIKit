@@ -10,6 +10,7 @@
 #endif
 #endif
 
+#import "NSObject+YCForeverMaker.h"
 #import "YCForever.h"
 #import "YCForeverDAO.h"
 #import "YCForeverProtocol.h"

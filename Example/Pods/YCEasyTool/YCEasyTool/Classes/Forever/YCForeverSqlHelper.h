@@ -19,11 +19,16 @@
 
 + (NSString *)updateSqlWithItem:(id<YCForeverItemProtocol>)item
                           table:(NSString *)table
-                          where:(id)where;
+                          where:(id)where
+             overrideWhenUpdate:(BOOL)overrideWhenUpdate;
 
 + (NSString *)removeSqlWithItem:(id<YCForeverItemProtocol>)item
                           table:(NSString *)table
                           where:(id)where;
+
++ (NSString *)removeSqlWithItemClass:(Class)itemClass
+                               table:(NSString *)table
+                               where:(NSString *)where;
 
 + (NSString *)selectSqlWithItem:(id<YCForeverItemProtocol>)item
                           table:(NSString *)table;
@@ -34,7 +39,7 @@
 + (NSString *)querySqlWithTable:(NSString *)table
                           class:(Class)cls
                           limit:(NSUInteger)limit
-                      condition:(id<YCForeverItemProtocol>)item
+                          where:(NSString *)where
                          offset:(NSUInteger)offset
                           order:(NSString *)order;
 

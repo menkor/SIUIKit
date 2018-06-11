@@ -16,4 +16,6 @@
 
 - (instancetype)initWithTitle:(NSString *)title icon:(UIImage *)icon;
 
++ (instancetype)segmentItemWithTitle:(NSString *)title icon:(UIImage *)icon;
+
 @end

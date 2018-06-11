@@ -14,9 +14,9 @@ typedef void (^YCPollingEntityRunningBlock)(NSTimeInterval current);
 
 @property (nonatomic, readonly) BOOL running;
 
-+ (instancetype)pollingWithTimeInterval:(NSTimeInterval)timeInterval;
++ (instancetype)pollingEntityWithTimeInterval:(NSTimeInterval)timeInterval;
 
-+ (instancetype)pollingWithTimeInterval:(NSTimeInterval)timeInterval max:(NSTimeInterval)max;
++ (instancetype)pollingEntityWithTimeInterval:(NSTimeInterval)timeInterval max:(NSTimeInterval)max;
 
 - (void)startRunningWithBlock:(YCPollingEntityRunningBlock)block;
 

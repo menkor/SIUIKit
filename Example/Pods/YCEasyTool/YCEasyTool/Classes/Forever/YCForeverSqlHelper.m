@@ -132,8 +132,8 @@ static inline id ModelCreateNumberFromProperty(__unsafe_unretained id model,
     }
     NSMutableString *sql = [NSMutableString stringWithFormat:@"INSERT OR REPLACE INTO '%@' VALUES ( ", table];
     NSArray<YCProperty *> *propertyArray = [item yc_propertyArray];
-    for (NSUInteger index = 0; index < [propertyArray count]; index++) {
-        [sql appendFormat:@"?%zd,", index + 1];
+    for (int index = 0; index < [propertyArray count]; index++) {
+        [sql appendFormat:@"?%d,", index + 1];
     }
     [sql deleteCharactersInRange:NSMakeRange([sql length] - 1, 1)];
     [sql appendString:@")"];
@@ -142,7 +142,8 @@ static inline id ModelCreateNumberFromProperty(__unsafe_unretained id model,
 
 + (NSString *)updateSqlWithItem:(NSObject<YCForeverItemProtocol> *)item
                           table:(NSString *)table
-                          where:(id)where {
+                          where:(id)where
+             overrideWhenUpdate:(BOOL)overrideWhenUpdate {
     if (!table) {
         return nil;
     }
@@ -180,6 +181,8 @@ static inline id ModelCreateNumberFromProperty(__unsafe_unretained id model,
             } else {
                 [sql appendFormat:@" \"%@\" = %@, ", obj.name, value];
             }
+        } else if (overrideWhenUpdate && ![whereKeyArray containsObject:obj.name]) {
+            [sql appendFormat:@" \"%@\" = NULL, ", obj.name];
         }
         if ([whereKeyArray containsObject:obj.name]) {
             id value = ModelCreateNumberFromProperty(item, obj);
@@ -205,7 +208,7 @@ static inline id ModelCreateNumberFromProperty(__unsafe_unretained id model,
     if (buildinWhere) {
         [sql appendString:whereCondition];
     } else {
-        [sql appendString:where];
+        [sql appendFormat:@" %@", where];
     }
 
     return sql;
@@ -258,6 +261,19 @@ static inline id ModelCreateNumberFromProperty(__unsafe_unretained id model,
 
     if ([sql hasSuffix:@" AND "]) {
         [sql deleteCharactersInRange:NSMakeRange([sql length] - 5, 5)];
+    }
+    return sql;
+}
+
++ (NSString *)removeSqlWithItemClass:(Class)itemClass
+                               table:(NSString *)table
+                               where:(NSString *)where {
+    if (!table) {
+        return nil;
+    }
+    NSMutableString *sql = [NSMutableString stringWithFormat:@"DELETE FROM '%@' ", table];
+    if (where) {
+        [sql appendString:where];
     }
     return sql;
 }
@@ -317,44 +333,26 @@ static inline id ModelCreateNumberFromProperty(__unsafe_unretained id model,
 + (NSString *)querySqlWithTable:(NSString *)table
                           class:(Class)cls
                           limit:(NSUInteger)limit
-                      condition:(NSObject<YCForeverItemProtocol> *)item
+                          where:(NSString *)where
                          offset:(NSUInteger)offset
                           order:(NSString *)order {
     if (!table) {
         return nil;
     }
     NSMutableString *sql = [NSMutableString stringWithFormat:@"SELECT * FROM '%@' ", table];
-    if (item) {
-        [sql appendString:@"WHERE"];
-        NSArray<YCProperty *> *propertyArray = [cls yc_propertyArray];
-        [propertyArray enumerateObjectsUsingBlock:^(YCProperty *_Nonnull obj,
-                                                    NSUInteger idx,
-                                                    BOOL *_Nonnull stop) {
-            id value = ModelCreateNumberFromProperty(item, obj);
-            if (value) {
-                if (obj.type == YCEncodingTypeString) {
-                    [sql appendFormat:@" \"%@\" = '%@' AND", obj.name, value];
-                } else {
-                    [sql appendFormat:@" \"%@\" = %@ AND", obj.name, value];
-                }
-            }
-        }];
-        if ([sql hasSuffix:@"AND"]) {
-            [sql deleteCharactersInRange:NSMakeRange([sql length] - 3, 3)];
-        } else if ([sql hasSuffix:@"WHERE"]) {
-            [sql deleteCharactersInRange:NSMakeRange([sql length] - 5, 5)];
-        }
+    if (where) {
+        [sql appendFormat:@" %@", where];
     }
     if (order) {
-        [sql appendString:order];
+        [sql appendFormat:@" %@", order];
     }
     if (limit > 0) {
-        [sql appendFormat:@" LIMIT %zd OFFSET %zd", limit, offset];
+        [sql appendFormat:@" LIMIT %ld OFFSET %ld", (long)limit, (long)offset];
     }
     return sql;
 }
 
-+ (NSString *)dropSqlWithTable:(NSString *)table {
+    + (NSString *)dropSqlWithTable : (NSString *)table {
     if (!table) {
         return nil;
     }
@@ -371,4 +369,3 @@ static inline id ModelCreateNumberFromProperty(__unsafe_unretained id model,
 }
 
 @end
-

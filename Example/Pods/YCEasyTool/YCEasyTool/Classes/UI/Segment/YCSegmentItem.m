@@ -19,4 +19,8 @@
     return self;
 }
 
++ (instancetype)segmentItemWithTitle:(NSString *)title icon:(UIImage *)icon {
+    return [[YCSegmentItem alloc] initWithTitle:title icon:icon];
+}
+
 @end

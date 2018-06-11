@@ -26,11 +26,11 @@
 
 @implementation YCPollingEntity
 
-+ (instancetype)pollingWithTimeInterval:(NSTimeInterval)timeInterval {
-    return [self pollingWithTimeInterval:timeInterval max:0];
++ (instancetype)pollingEntityWithTimeInterval:(NSTimeInterval)timeInterval {
+    return [self pollingEntityWithTimeInterval:timeInterval max:0];
 }
 
-+ (instancetype)pollingWithTimeInterval:(NSTimeInterval)timeInterval max:(NSTimeInterval)max {
++ (instancetype)pollingEntityWithTimeInterval:(NSTimeInterval)timeInterval max:(NSTimeInterval)max {
     YCPollingEntity *polling = [[YCPollingEntity alloc] init];
     polling.timeInterval = timeInterval;
     polling.max = max;

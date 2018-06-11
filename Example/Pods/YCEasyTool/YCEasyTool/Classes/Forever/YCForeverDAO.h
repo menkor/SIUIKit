@@ -21,15 +21,17 @@
 
 - (BOOL)addItem:(id)item table:(NSString *)table;
 
-- (BOOL)updateItem:(id)item table:(NSString *)table where:(id)where;
+- (BOOL)updateItem:(id)item table:(NSString *)table where:(id)where overrideWhenUpdate:(BOOL)overrideWhenUpdate;
 
 - (NSArray *)loadItem:(id)item table:(NSString *)table;
 
 - (BOOL)removeItem:(id)item table:(NSString *)table where:(id)where;
 
+- (BOOL)removeItemClass:(Class)itemClass table:(NSString *)table where:(id)where;
+
 - (NSArray<id<YCForeverItemProtocol>> *)queryWithTable:(NSString *)table
                                                  class:(Class)cls
-                                             condition:(id)item
+                                                 where:(NSString *)where
                                                  limit:(NSUInteger)limit
                                                 offset:(NSUInteger)offset
                                                  order:(NSString *)order;

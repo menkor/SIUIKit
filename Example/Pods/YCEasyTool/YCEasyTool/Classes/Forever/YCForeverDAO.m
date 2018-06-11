@@ -10,6 +10,7 @@
 #import "YCForeverSqlHelper.h"
 #import "YCProperty.h"
 #import <sqlite3.h>
+#import <UIKit/UIKit.h>
 
 #define Lock() dispatch_semaphore_wait(self->_lock, DISPATCH_TIME_FOREVER)
 #define Unlock() dispatch_semaphore_signal(self->_lock)
@@ -387,7 +388,7 @@ static inline void YCBindObjectToStatement(__unsafe_unretained id model,
             } else if (strcmp(charType, "real") == 0) {
                 double value = sqlite3_column_double(stmt, column);
                 dict[key] = @(value);
-            }  else if (strcmp(charType, "integer") == 0) {
+            } else if (strcmp(charType, "integer") == 0) {
                 uint64_t value = sqlite3_column_int64(stmt, column);
                 dict[key] = @(value);
             }
@@ -440,13 +441,13 @@ static inline void YCBindObjectToStatement(__unsafe_unretained id model,
     return result;
 }
 
-- (BOOL)updateItem:(id)item table:(NSString *)table where:(id)where {
+- (BOOL)updateItem:(id)item table:(NSString *)table where:(id)where overrideWhenUpdate:(BOOL)overrideWhenUpdate {
     Lock();
     if (![self _dbCheckWithTable:table class:[item class]]) {
         Unlock();
         return NO;
     }
-    NSString *sql = [YCForeverSqlHelper updateSqlWithItem:item table:table where:where];
+    NSString *sql = [YCForeverSqlHelper updateSqlWithItem:item table:table where:where overrideWhenUpdate:overrideWhenUpdate];
     if (!sql) {
         Unlock();
         return NO;
@@ -511,9 +512,21 @@ static inline void YCBindObjectToStatement(__unsafe_unretained id model,
     return result;
 }
 
+- (BOOL)removeItemClass:(Class)itemClass table:(NSString *)table where:(id)where {
+    Lock();
+    if (![self _dbCheckWithTable:table class:itemClass]) {
+        Unlock();
+        return NO;
+    }
+    NSString *sql = [YCForeverSqlHelper removeSqlWithItemClass:itemClass table:table where:(id)where];
+    BOOL result = [self _dbExecute:sql];
+    Unlock();
+    return result;
+}
+
 - (NSArray<id<YCForeverItemProtocol>> *)queryWithTable:(NSString *)table
                                                  class:(Class)cls
-                                             condition:(id<YCForeverItemProtocol>)item
+                                                 where:(NSString *)where
                                                  limit:(NSUInteger)limit
                                                 offset:(NSUInteger)offset
                                                  order:(NSString *)order {
@@ -524,7 +537,7 @@ static inline void YCBindObjectToStatement(__unsafe_unretained id model,
     NSString *sql = [YCForeverSqlHelper querySqlWithTable:table
                                                     class:cls
                                                     limit:limit
-                                                condition:item
+                                                    where:(NSString *)where
                                                    offset:offset
                                                     order:order];
     return [self queryWithSql:sql class:cls];
