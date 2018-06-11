@@ -8,8 +8,8 @@
 
 #import "SIAlertView.h"
 #import "SIAlertViewCell.h"
-#import "SIColor.h"
-#import "SIFont.h"
+#import <SITheme/SIColor.h>
+#import <SITheme/SIFont.h>
 
 @interface SIAlertViewManager : NSObject
 
