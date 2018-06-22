@@ -1,6 +1,0 @@
-framework module SITheme {
-  umbrella header "SITheme-umbrella.h"
-
-  export *
-  module * { export * }
-}
