@@ -16,6 +16,8 @@
 #import "SIAlertViewDefine.h"
 #import "SIRectCornerLayer.h"
 #import "SIArrowView.h"
+#import "SIChooseTypeView.h"
+#import "SIChooseTypeViewCell.h"
 #import "SIEmptyView.h"
 #import "SIEmptyViewDefine.h"
 #import "SIMessageBox.h"
