@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SIUIKit'
-  s.version          = '0.1.24'
+  s.version          = '0.1.25'
   s.summary          = 'SIUIKit.'
 
 # This description is used to generate tags and improve search results.
@@ -35,5 +35,5 @@ Pod::Spec.new do |s|
   s.dependency 'MJRefresh'
   s.dependency 'YCEasyTool'
   s.dependency 'SITheme'
-
+  s.dependency 'SIDefine'
 end

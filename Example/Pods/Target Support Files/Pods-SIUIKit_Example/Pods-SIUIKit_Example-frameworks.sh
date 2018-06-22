@@ -143,15 +143,19 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SIDefine/SIDefine.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SITheme/SITheme.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SIUIKit/SIUIKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/YCEasyTool/YCEasyTool.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SIDefine/SIDefine.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SITheme/SITheme.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SIUIKit/SIUIKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/YCEasyTool/YCEasyTool.framework"

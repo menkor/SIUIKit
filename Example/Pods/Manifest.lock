@@ -1,11 +1,20 @@
 PODS:
+  - CocoaLumberjack (3.4.2):
+    - CocoaLumberjack/Default (= 3.4.2)
+    - CocoaLumberjack/Extensions (= 3.4.2)
+  - CocoaLumberjack/Default (3.4.2)
+  - CocoaLumberjack/Extensions (3.4.2):
+    - CocoaLumberjack/Default
   - Masonry (1.1.0)
   - MJRefresh (3.1.15.3)
+  - SIDefine (0.1.7):
+    - CocoaLumberjack
   - SITheme (0.1.3):
     - Masonry
-  - SIUIKit (0.1.23):
+  - SIUIKit (0.1.24):
     - Masonry
     - MJRefresh
+    - SIDefine
     - SITheme
     - YCEasyTool
   - YCEasyTool (0.2.4):
@@ -40,8 +49,10 @@ DEPENDENCIES:
 
 SPEC REPOS:
   "git@git.superid.cn:iOS/SISpecs.git":
+    - SIDefine
     - SITheme
   https://github.com/CocoaPods/Specs.git:
+    - CocoaLumberjack
     - Masonry
     - MJRefresh
     - YCEasyTool
@@ -51,12 +62,14 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
+  CocoaLumberjack: db7cc9e464771f12054c22ff6947c5a58d43a0fd
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
+  SIDefine: 09edc367025519df772777aa9b64710973b9328d
   SITheme: 990c82d696d5f72ccbd326185e1cf06a2e7c566d
-  SIUIKit: dbd0c747e4f641c09d0de110013aaf1cb3c9b55e
+  SIUIKit: e9447ee5c60c79a759e3cff144b547a0d3a7d73f
   YCEasyTool: b2c63ded39fa586b129682abf03519c2849bd8b4
 
-PODFILE CHECKSUM: 1b8104e93af5dd20d2a12ef5ea2e39bbfc04599e
+PODFILE CHECKSUM: c3e2c52b4762c3a2cfc6fff627ffd01f016d4d26
 
 COCOAPODS: 1.5.0

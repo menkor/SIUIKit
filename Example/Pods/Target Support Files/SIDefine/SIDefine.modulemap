@@ -1,0 +1,6 @@
+framework module SIDefine {
+  umbrella header "SIDefine-umbrella.h"
+
+  export *
+  module * { export * }
+}
