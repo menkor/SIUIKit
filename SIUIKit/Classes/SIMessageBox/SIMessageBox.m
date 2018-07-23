@@ -289,7 +289,9 @@
         CGFloat messageWidth = frame.size.width - kSIMessageBoxMessageXOffset * 2;
         CGSize messageSize = [self content:self.message font:kSIMessageBoxMessageFont fitWidth:messageWidth];
         CGFloat messageHeight = messageSize.height;
-
+        if (!self.title) {
+            messageHeight += 50;
+        }
         frame.size.height += messageHeight + kSIMessageBoxMessageYOffset + kSIMessageBoxMessageBottomOffset;
         self.containerView.frame = frame;
 
@@ -310,7 +312,7 @@
         [self.contentView addSubview:messageLabel];
         messageLabel.font = kSIMessageBoxMessageFont;
         CGFloat lineHeight = messageLabel.font.lineHeight;
-        if (lineHeight == messageHeight) {
+        if ((lineHeight == messageHeight) || (self.type & SIMessageBoxTypeMask) == SIMessageBoxTypeNone) {
             messageLabel.textAlignment = NSTextAlignmentCenter;
         } else {
             messageLabel.textAlignment = NSTextAlignmentLeft;
