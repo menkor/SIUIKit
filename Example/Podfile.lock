@@ -11,7 +11,7 @@ PODS:
     - CocoaLumberjack
   - SITheme (0.1.3):
     - Masonry
-  - SIUIKit (0.1.28):
+  - SIUIKit (0.1.30):
     - Masonry
     - MJRefresh
     - SIDefine
@@ -72,7 +72,7 @@ SPEC CHECKSUMS:
   MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
   SIDefine: 09edc367025519df772777aa9b64710973b9328d
   SITheme: 990c82d696d5f72ccbd326185e1cf06a2e7c566d
-  SIUIKit: 8bcc75a8af72617039e855694b450c280674768c
+  SIUIKit: 4974e3445b336db0c4e8507fdedd92f4175ea03a
   YCEasyTool: b2c63ded39fa586b129682abf03519c2849bd8b4
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
