@@ -35,6 +35,10 @@ platform :ios do
   desc "Set the current pod to version you set"
   desc "It will auto increase version if no version is set"
   lane :version do |options|
+    quick = options[:quick]
+    if quick
+      `sed -i '' 's/  validate_podspec_files/  #validate_podspec_files/g' /usr/local/lib/ruby/gems/2.4.0/gems/cocoapods-1.5.0/lib/cocoapods/command/repo/push.rb`
+    end
     lib_name=Dir.pwd.sub('/fastlane','').split('/').last
     custom_version=options[:version]
     version=custom_version
@@ -57,6 +61,9 @@ platform :ios do
       use_libraries: true,
       sources: ['git@git.superid.cn:iOS/SISpecs.git', 'https://github.com/CocoaPods/Specs.git']
     )
+    if quick
+      `sed -i '' 's/  #validate_podspec_files/  validate_podspec_files/g' /usr/local/lib/ruby/gems/2.4.0/gems/cocoapods-1.5.0/lib/cocoapods/command/repo/push.rb`
+    end
   end
   
   lane :lint do |options|
