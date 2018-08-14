@@ -71,7 +71,7 @@
 - (NSUInteger)addButtonWithTitle:(NSString *)title
                           action:(SIMessageBoxActionBlock)actionBlock;
 
-@property (nonatomic, strong) UIColor *coverColor; //default is `[UIColor colorWithWhite:0 alpha:0.4]`
+@property (nonatomic, strong) UIColor *coverColor; //default is `clear`
 
 @property (nonatomic, assign) NSTextAlignment messageAlignment; //default is `Center`
 

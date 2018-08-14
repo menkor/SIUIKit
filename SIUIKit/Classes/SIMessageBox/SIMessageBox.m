@@ -488,7 +488,7 @@
     [UIView animateWithDuration:0.4
                      animations:^{
                          if (self.visible) {
-                             self.backgroundColor = self.coverColor ?: [SIColor colorWithWhite:0 alpha:0.4];
+                             self.backgroundColor = self.coverColor;
                          } else {
                              self.backgroundColor = [SIColor clearColor];
                          }
