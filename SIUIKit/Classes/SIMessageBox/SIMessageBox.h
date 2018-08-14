@@ -71,7 +71,9 @@
 - (NSUInteger)addButtonWithTitle:(NSString *)title
                           action:(SIMessageBoxActionBlock)actionBlock;
 
-@property (nonatomic, strong) UIColor *coverColor;
+@property (nonatomic, strong) UIColor *coverColor; //default is `[UIColor colorWithWhite:0 alpha:0.4]`
+
+@property (nonatomic, assign) NSTextAlignment messageAlignment; //default is `Center`
 
 #pragma mark - Visible
 
@@ -102,9 +104,8 @@
 #pragma mark - Custom Message View
 
 /*!
- @brief 最大宽度为270
  @code
- HTMessageBox *box = [HTMessageBox boxWithType:(HTMessageBoxTypeOK) title:@"提示" message:nil];
+ SIMessageBox *box = [SIMessageBox boxWithType:(HTMessageBoxTypeOK) title:@"提示" message:nil];
  UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 50)];
  view.backgroundColor = [UIColor redColor];
  [box setCustomMessageView:view];

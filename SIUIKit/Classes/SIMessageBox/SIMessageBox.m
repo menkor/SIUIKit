@@ -180,6 +180,7 @@
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:nil];
         tap.delegate = self;
         [self addGestureRecognizer:tap];
+        _messageAlignment = NSTextAlignmentCenter;
     }
     return self;
 }
@@ -311,12 +312,7 @@
 
         [self.contentView addSubview:messageLabel];
         messageLabel.font = kSIMessageBoxMessageFont;
-        CGFloat lineHeight = messageLabel.font.lineHeight;
-        if ((lineHeight == messageHeight) || (self.type & SIMessageBoxTypeMask) == SIMessageBoxTypeNone) {
-            messageLabel.textAlignment = NSTextAlignmentCenter;
-        } else {
-            messageLabel.textAlignment = NSTextAlignmentLeft;
-        }
+        messageLabel.textAlignment = _messageAlignment;
     }
 }
 
