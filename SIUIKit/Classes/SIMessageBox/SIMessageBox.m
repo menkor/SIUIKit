@@ -325,11 +325,8 @@
     CGFloat messageWidth = self.messageView.frame.size.width;
     CGRect frame = self.containerView.frame;
     frame.size.height += messageHeight;
+    frame.size.width = messageWidth;
     self.containerView.frame = frame;
-    if (messageWidth > frame.size.width) {
-        NSAssert(1 == 0, @"CustomMessageView 的宽度不能大于270!");
-        return;
-    }
     CGRect messageFrame = self.messageView.frame;
     messageFrame.origin.x = (frame.size.width - messageWidth) / 2;
     messageFrame.origin.y = frame.size.height - messageHeight;
@@ -495,7 +492,7 @@
     [UIView animateWithDuration:0.4
                      animations:^{
                          if (self.visible) {
-                             self.backgroundColor = self.coverColor;
+                             self.backgroundColor = self.coverColor ?: [SIColor colorWithWhite:0 alpha:0.4];
                          } else {
                              self.backgroundColor = [SIColor clearColor];
                          }
