@@ -8,10 +8,10 @@
 
 #import "SIAlertViewCell.h"
 #import "SIAlertAction.h"
-#import <SITheme/SIColor.h>
-#import <SITheme/SIFont.h>
 #import "SIRectCornerLayer.h"
 #import <Masonry/Masonry.h>
+#import <SITheme/SIColor.h>
+#import <SITheme/SIFont.h>
 
 @interface SIAlertViewCell ()
 

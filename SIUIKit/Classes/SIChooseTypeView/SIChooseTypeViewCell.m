@@ -7,10 +7,9 @@
 //
 
 #import "SIChooseTypeViewCell.h"
+#import <Masonry/Masonry.h>
 #import <SITheme/SIColor.h>
 #import <SITheme/SIFont.h>
-#import <Masonry/Masonry.h>
-
 
 @interface SIChooseTypeViewCell ()
 

@@ -8,11 +8,11 @@
 
 #import "SIChooseTypeView.h"
 #import "SIChooseTypeViewCell.h"
+#import <Masonry/Masonry.h>
 #import <SIDefine/SIDefine.h>
-#import <YCEasyTool/YCCollectionView.h>
 #import <SITheme/SIColor.h>
 #import <SITheme/SIFont.h>
-#import <Masonry/Masonry.h>
+#import <YCEasyTool/YCCollectionView.h>
 
 @interface SIChooseTypeView () <YCCollectionViewDelegate>
 
