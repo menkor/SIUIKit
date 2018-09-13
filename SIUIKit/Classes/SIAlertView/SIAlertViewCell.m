@@ -46,6 +46,7 @@
 - (void)reloadWithData:(SIAlertAction<SIAlertActionProtocol> *)model {
     self.title.text = model.title;
     self.title.textColor = model.tintColor;
+    self.title.textAlignment = model.textAlignment;
     [self.cornerLayer removeFromSuperlayer];
     self.cornerLayer = [SIRectCornerLayer layer];
     self.cornerLayer.cornerRadius = 12;

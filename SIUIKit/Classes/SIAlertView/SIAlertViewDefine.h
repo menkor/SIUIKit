@@ -42,6 +42,10 @@ typedef NS_ENUM(NSInteger, SIAlertActionStyle) {
 
 @property (nonatomic, strong) UIFont *font;
 
+@property (nonatomic, assign) NSTextAlignment textAlignment;
+
+@property (nonatomic, copy) NSString *cellIdentifier;
+
 @end
 
 static NSString *const kSIAlertThemeMessageFont = @"messageFont";

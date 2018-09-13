@@ -75,7 +75,9 @@
 
 - (void)addAction:(SIAlertAction<SIAlertActionProtocol> *)action {
     //action.menuHeight = 50 + 20 * _actions.count;
-    action.menuHeight = 56;
+    if (action.menuHeight <= 0) {
+        action.menuHeight = 56;
+    }
     if (action.style == SIAlertActionStyleCancel) {
         if (self.addedCancel) {
             NSAssert(NO, @"SIAlertView can only have one action with a style of SIAlertActionStyleCancel");
@@ -95,21 +97,38 @@
             _handerMap[@(_actions.count)] = action.handler;
         }
     }
-    action.tintColor = self.theme[@(action.style)];
+    action.tintColor = action.tintColor ?: self.theme[@(action.style)];
     [_actions addObject:action];
 }
 
 - (void)show {
-    if (self.message) {
-        UIFont *messageFont = self.theme[kSIAlertThemeMessageFont];
-        SIAlertAction<SIAlertActionProtocol> *message = (id)[SIAlertAction actionWithTitle:self.message
-                                                                                     style:SIAlertActionStyleMessage
-                                                                                   handler:nil];
-        CGSize size = [self.message boundingRectWithSize:CGSizeMake([UIScreen mainScreen].bounds.size.width - 100, CGFLOAT_MAX)
-                                                 options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
-                                              attributes:@{NSFontAttributeName: messageFont}
-                                                 context:NULL]
-                          .size;
+    __block SIAlertAction<SIAlertActionProtocol> *message = nil;
+    __block SIAlertAction<SIAlertActionProtocol> *title = nil;
+    NSMutableArray *cellIdentifierArrray = [NSMutableArray array];
+    NSMutableArray *actions = [self.actions mutableCopy];
+    [self.actions enumerateObjectsUsingBlock:^(SIAlertAction<SIAlertActionProtocol> * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (obj.style == SIAlertActionStyleTitle) {
+            title = obj;
+            [actions removeObject:obj];
+        } else if (obj.style == SIAlertActionStyleMessage) {
+            message = obj;
+            [actions removeObject:obj];
+        }
+        if (obj.cellIdentifier) {
+            [cellIdentifierArrray addObject:obj.cellIdentifier];
+        }
+    }];
+    self.actions = actions;
+    if (!message && self.message) {
+        message = (id)[SIAlertAction actionWithTitle:self.message
+                                               style:SIAlertActionStyleMessage
+                                             handler:nil];
+        UIFont *messageFont = message.font ?: self.theme[kSIAlertThemeMessageFont];
+        CGSize size = [message.title boundingRectWithSize:CGSizeMake([UIScreen mainScreen].bounds.size.width - 100, CGFLOAT_MAX)
+                                                  options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                                               attributes:@{NSFontAttributeName: messageFont}
+                                                  context:NULL]
+        .size;
         if (size.height == messageFont.lineHeight) { //超过一行
             message.menuHeight = 56;
         } else {
@@ -118,20 +137,24 @@
         _actions.firstObject.first = NO;
         message.first = YES;
         message.available = NO;
-        message.tintColor = self.theme[@(message.style)];
+        message.tintColor = message.tintColor ?: self.theme[@(message.style)];
         message.font = messageFont;
+    }
+    if (message) {
         [_actions insertObject:message atIndex:0];
     }
-    if (self.title) {
-        SIAlertAction<SIAlertActionProtocol> *title = (id)[SIAlertAction actionWithTitle:self.title
-                                                                                   style:SIAlertActionStyleTitle
-                                                                                 handler:nil];
-        CGSize size = [self.title boundingRectWithSize:CGSizeMake([UIScreen mainScreen].bounds.size.width - 100, CGFLOAT_MAX)
-                                               options:NSStringDrawingUsesLineFragmentOrigin
-                                            attributes:@{NSFontAttributeName: [SIFont systemFontOfSize:16]}
-                                               context:NULL]
-                          .size;
-        if (size.height == [SIFont systemFontOfSize:16].lineHeight) { //超过一行
+    
+    if (!title && self.title) {
+        title = (id)[SIAlertAction actionWithTitle:self.title
+                                             style:SIAlertActionStyleTitle
+                                           handler:nil];
+        UIFont *font = title.font ?: [SIFont systemFontOfSize:16];
+        CGSize size = [title.title boundingRectWithSize:CGSizeMake([UIScreen mainScreen].bounds.size.width - 100, CGFLOAT_MAX)
+                                                options:NSStringDrawingUsesLineFragmentOrigin
+                                             attributes:@{NSFontAttributeName: font}
+                                                context:NULL]
+        .size;
+        if (size.height == font.lineHeight) { //超过一行
             title.menuHeight = 56;
         } else {
             title.menuHeight = size.height + 32;
@@ -139,7 +162,9 @@
         _actions.firstObject.first = NO;
         title.first = YES;
         title.available = NO;
-        title.tintColor = self.theme[@(title.style)];
+        title.tintColor = title.tintColor ?: self.theme[@(title.style)];
+    }
+    if (title) {
         [_actions insertObject:title atIndex:0];
     }
     YCPopMenu *popMenu = [YCPopMenu popMenuWithCellClass:[SIAlertViewCell class]
@@ -152,6 +177,9 @@
                                                  }
                                              }];
     [popMenu setDirection:YCPopMenuDirectionUp];
+    [cellIdentifierArrray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [popMenu.tableView registerClass:NSClassFromString(obj) forCellReuseIdentifier:obj];
+    }];
     popMenu.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     popMenu.maxCellCount = 10;
     popMenu.menuSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, 56);

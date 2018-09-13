@@ -31,6 +31,10 @@
 
 @property (nonatomic, strong) UIFont *font;
 
+@property (nonatomic, assign) NSTextAlignment textAlignment;
+
+@property (nonatomic, copy) NSString *cellIdentifier;
+
 @end
 
 @implementation SIAlertAction
@@ -43,6 +47,7 @@
     action.title = title;
     action.style = style;
     action.available = YES;
+    action.textAlignment = NSTextAlignmentCenter;
     return action;
 }
 
