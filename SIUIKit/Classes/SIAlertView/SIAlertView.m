@@ -106,7 +106,7 @@
     __block SIAlertAction<SIAlertActionProtocol> *title = nil;
     NSMutableArray *cellIdentifierArrray = [NSMutableArray array];
     NSMutableArray *actions = [self.actions mutableCopy];
-    [self.actions enumerateObjectsUsingBlock:^(SIAlertAction<SIAlertActionProtocol> * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.actions enumerateObjectsUsingBlock:^(SIAlertAction<SIAlertActionProtocol> *_Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
         if (obj.style == SIAlertActionStyleTitle) {
             title = obj;
             [actions removeObject:obj];
@@ -128,7 +128,7 @@
                                                   options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
                                                attributes:@{NSFontAttributeName: messageFont}
                                                   context:NULL]
-        .size;
+                          .size;
         if (size.height == messageFont.lineHeight) { //超过一行
             message.menuHeight = 56;
         } else {
@@ -143,7 +143,7 @@
     if (message) {
         [_actions insertObject:message atIndex:0];
     }
-    
+
     if (!title && self.title) {
         title = (id)[SIAlertAction actionWithTitle:self.title
                                              style:SIAlertActionStyleTitle
@@ -153,7 +153,7 @@
                                                 options:NSStringDrawingUsesLineFragmentOrigin
                                              attributes:@{NSFontAttributeName: font}
                                                 context:NULL]
-        .size;
+                          .size;
         if (size.height == font.lineHeight) { //超过一行
             title.menuHeight = 56;
         } else {
@@ -177,7 +177,7 @@
                                                  }
                                              }];
     [popMenu setDirection:YCPopMenuDirectionUp];
-    [cellIdentifierArrray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [cellIdentifierArrray enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
         [popMenu.tableView registerClass:NSClassFromString(obj) forCellReuseIdentifier:obj];
     }];
     popMenu.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
