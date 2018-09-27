@@ -30,6 +30,8 @@
 
 @property (nonatomic, strong) UIColor *themeColor;
 
+@property (nonatomic, strong) UIColor *textColor;
+
 @end
 
 @implementation SINavigationBar
@@ -317,6 +319,7 @@
         }
         button.frame = frame;
         [button setTitle:title forState:UIControlStateNormal];
+        [button setTitleColor:self.textColor ?: [SIColor whiteColor] forState:UIControlStateNormal];
         button.titleLabel.font = kThemeFontDefault;
         button.titleLabel.adjustsFontSizeToFitWidth = YES;
         button.titleLabel.minimumScaleFactor = 0.5;

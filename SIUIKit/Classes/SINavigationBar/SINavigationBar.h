@@ -52,6 +52,8 @@
 
 - (void)setThemeColor:(UIColor *)themeColor;
 
+- (void)setTextColor:(UIColor *)textColor;
+
 #pragma mark - Convenient
 
 /*!
