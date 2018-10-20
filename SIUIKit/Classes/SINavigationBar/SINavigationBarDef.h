@@ -84,7 +84,7 @@ typedef NSArray<UIView *> * (^SINavigationBarAddItem)(void);
 
 static const CGFloat kSINavigationItemHeight = 40;
 
-static const CGFloat kSINavigationItemYOffset = 22;
+static const CGFloat kSINavigationItemYOffset = 20;
 
 static const CGFloat kSINavigationButtonYOffset = 15;
 
