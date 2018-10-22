@@ -132,4 +132,9 @@
                   resource:(NSString *)resource
                   selector:(SEL)selector;
 
+/*!
+ *  @brief 导航栏上元素离top的距离.默认20
+ */
+@property (nonatomic, assign) CGFloat topBaseline;//default is status bar height
+
 @end
