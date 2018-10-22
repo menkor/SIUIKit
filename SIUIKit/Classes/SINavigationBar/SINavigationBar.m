@@ -48,7 +48,6 @@
     if (self) {
         _visible = YES;
         [self setTheme:SINavigationThemeWhite];
-        _topBaseline = kSINavigationItemYOffset;
         self.hideNavigationBarLine = NO;
     }
     return self;
@@ -397,7 +396,7 @@
         case SINavigationItemPositionLeft: {
             [newItem mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.left.mas_equalTo(self.mas_left);
-                make.top.mas_equalTo(self).offset(_topBaseline);
+                make.centerY.mas_equalTo(self.mas_centerY).offset(kSINavigationItemYOffset / 2);
                 make.size.mas_equalTo(newItem.frame.size);
             }];
         } break;
@@ -405,7 +404,7 @@
         case SINavigationItemPositionTitle: {
             [newItem mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.centerX.mas_equalTo(self.mas_centerX);
-                make.top.mas_equalTo(self).offset(_topBaseline);
+                make.centerY.mas_equalTo(self.mas_centerY).offset(kSINavigationItemYOffset / 2);
                 make.size.mas_equalTo(newItem.frame.size);
             }];
         } break;
@@ -413,7 +412,7 @@
         case SINavigationItemPositionRight: {
             [newItem mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.right.mas_equalTo(self.mas_right);
-                make.top.mas_equalTo(self).offset(_topBaseline);
+                make.centerY.mas_equalTo(self.mas_centerY).offset(kSINavigationItemYOffset / 2);
                 make.size.mas_equalTo(newItem.frame.size);
             }];
         } break;
@@ -458,13 +457,13 @@
             if (idx == 0) {
                 [newItem mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.right.mas_equalTo(self.mas_right);
-                    make.centerY.mas_equalTo(self.mas_centerY).offset(_topBaseline / 2);
+                    make.centerY.mas_equalTo(self.mas_centerY).offset(kSINavigationItemYOffset / 2);
                     make.size.mas_equalTo(newItem.frame.size);
                 }];
             } else {
                 [newItem mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.left.mas_equalTo(pre.mas_left);
-                    make.centerY.mas_equalTo(self.mas_centerY).offset(_topBaseline / 2);
+                    make.centerY.mas_equalTo(self.mas_centerY).offset(kSINavigationItemYOffset / 2);
                     make.size.mas_equalTo(newItem.frame.size);
                 }];
             }
