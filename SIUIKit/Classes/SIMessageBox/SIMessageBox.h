@@ -105,7 +105,7 @@
 
 /*!
  @code
- SIMessageBox *box = [SIMessageBox boxWithType:(HTMessageBoxTypeOK) title:@"提示" message:nil];
+ SIMessageBox *box = [SIMessageBox boxWithType:(SIMessageBoxTypeOK) title:@"提示" message:nil];
  UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 50)];
  view.backgroundColor = [UIColor redColor];
  [box setCustomMessageView:view];
@@ -113,5 +113,7 @@
  @endcode
  */
 - (void)setCustomMessageView:(UIView *)view;
+
+@property (nonatomic, strong) NSDictionary *theme;
 
 @end

@@ -204,7 +204,8 @@
 - (void)addContainerView {
     UIVisualEffectView *containerView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleDark]];
     containerView.frame = CGRectMake(0, 0, kSIMessageBoxWidth, 0);
-    containerView.layer.cornerRadius = kSIMessageBoxRadius;
+    NSNumber *cornerRadius =  self.theme[@"cornerRadius"];
+    containerView.layer.cornerRadius = cornerRadius ? cornerRadius.floatValue : kSIMessageBoxRadius;
     containerView.layer.masksToBounds = YES;
     containerView.subviews[1].backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
     self.containerView = containerView;
