@@ -169,6 +169,9 @@
     CGPoint touchPoint = [touch locationInView:self];
     BOOL touchInBackground = !CGRectContainsPoint(self.containerView.frame, touchPoint);
     if (touchInBackground && !self.isWaiting) {
+        if (self.allActionBlock) {
+            self.allActionBlock(SIMessageBoxButtonIndexCancel);
+        }
         [self hide];
     }
     return NO;
