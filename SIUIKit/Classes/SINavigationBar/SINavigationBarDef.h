@@ -82,7 +82,7 @@ typedef NSArray<UIView *> * (^SINavigationBarAddItem)(void);
 
 #pragma mark - UI
 
-static const CGFloat kSINavigationItemHeight = 40;
+static const CGFloat kSINavigationItemHeight = 44;
 
 static const CGFloat kSINavigationItemYOffset = 20;
 
