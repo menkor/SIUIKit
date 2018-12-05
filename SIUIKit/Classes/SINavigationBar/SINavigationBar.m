@@ -88,10 +88,10 @@
         [self addSubview:_bottomLine];
         [_bottomLine mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.mas_equalTo(self);
-            make.bottom.mas_equalTo(self.mas_bottom);
+            make.top.mas_equalTo(self.mas_bottom);
             make.height.mas_equalTo(0.5);
         }];
-        _bottomLine.backgroundColor = [SIColor colorWithWhite:0 alpha:0.3];
+        _bottomLine.backgroundColor = [SIColor colorWithHex:0x2b2b2b];
     }
     return _bottomLine;
 }
@@ -380,18 +380,6 @@
     return title;
 }
 
-- (void)setTopBaseline:(CGFloat)topBaseline {
-    if (topBaseline == _topBaseline) {
-        return;
-    }
-    _topBaseline = topBaseline;
-    [self.itemDict enumerateKeysAndObjectsUsingBlock:^(NSNumber *_Nonnull key, UIView *_Nonnull obj, BOOL *_Nonnull stop) {
-        self.position = key.integerValue;
-        [self adjustPosition:obj];
-    }];
-    self.position = SINavigationItemPositionError;
-}
-
 #pragma mark - Custom UI
 
 - (UIView *)addItem:(SINavigationBarAddItem)itemBlock {
@@ -408,7 +396,7 @@
     switch (self.position) {
         case SINavigationItemPositionLeft: {
             [newItem mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.left.mas_equalTo(self.mas_left).inset(8);
+                make.left.mas_equalTo(self.mas_left);
                 make.centerY.mas_equalTo(self.mas_centerY).offset(_topBaseline / 2);
                 make.size.mas_equalTo(newItem.frame.size);
             }];
@@ -424,7 +412,7 @@
 
         case SINavigationItemPositionRight: {
             [newItem mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.right.mas_equalTo(self.mas_right).inset(8);
+                make.right.mas_equalTo(self.mas_right);
                 make.centerY.mas_equalTo(self.mas_centerY).offset(_topBaseline / 2);
                 make.size.mas_equalTo(newItem.frame.size);
             }];
@@ -468,9 +456,8 @@
             }
             [self addSubview:newItem];
             if (idx == 0) {
-                self.itemDict[@(self.position)] = newItem;
                 [newItem mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.right.mas_equalTo(self.mas_right).inset(8);
+                    make.right.mas_equalTo(self.mas_right);
                     make.centerY.mas_equalTo(self.mas_centerY).offset(_topBaseline / 2);
                     make.size.mas_equalTo(newItem.frame.size);
                 }];
