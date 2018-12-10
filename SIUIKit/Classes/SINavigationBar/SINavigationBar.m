@@ -247,14 +247,6 @@
     return button;
 }
 
-- (UIButton *)itemWithIcon:(NSString *)icon selector:(SEL)selector {
-    return [self itemWithType:SINavigationItemTypeCustomImage resource:icon selector:selector];
-}
-
-- (UIButton *)itemWithTitle:(NSString *)title selector:(SEL)selector {
-    return [self itemWithType:SINavigationItemTypeCustomText resource:title selector:selector];
-}
-
 - (UIButton *)itemWithType:(SINavigationItemType)type
                     action:(SINavigationBarActionBlock)actionBlock {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];

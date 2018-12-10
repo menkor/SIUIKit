@@ -132,12 +132,6 @@
                   resource:(NSString *)resource
                   selector:(SEL)selector;
 
-- (UIButton *)itemWithTitle:(NSString *)title
-                  selector:(SEL)selector;
-
-- (UIButton *)itemWithIcon:(NSString *)icon
-                   selector:(SEL)selector;
-
 /*!
  *  @brief 导航栏上元素离top的距离.默认20
  */
