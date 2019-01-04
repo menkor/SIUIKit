@@ -69,7 +69,7 @@ typedef NS_ENUM(NSUInteger, SINavigationTheme) {
     @(SINavigationThemeBlack): kThemeBlackColor, \
 }
 
-#define kThemeFontTitle [SIFont boldSystemFontOfSize:20]
+#define kThemeFontTitle [SIFont boldSystemFontOfSize:16]
 #define kThemeFontDefault [SIFont systemFontOfSize:14]
 
 #define kSINavigationBarBottomLineColor [SIColor whiteColor]
