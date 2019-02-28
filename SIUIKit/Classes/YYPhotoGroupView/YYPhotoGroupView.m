@@ -289,26 +289,6 @@
     self.frame = [UIScreen mainScreen].bounds;
     self.clipsToBounds = YES;
 
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss)];
-    tap.delegate = self;
-    [self addGestureRecognizer:tap];
-
-    UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTap:)];
-    tap2.delegate = self;
-    tap2.numberOfTapsRequired = 2;
-    [tap requireGestureRecognizerToFail:tap2];
-    [self addGestureRecognizer:tap2];
-
-    UILongPressGestureRecognizer *press = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress)];
-    press.delegate = self;
-    [self addGestureRecognizer:press];
-
-    if (kSystemVersion >= 7) {
-        UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
-        [self addGestureRecognizer:pan];
-        _panGesture = pan;
-    }
-
     _cells = @[].mutableCopy;
 
     _background = UIImageView.new;
@@ -350,6 +330,29 @@
     [_contentView addSubview:_pager];
 
     return self;
+}
+
+- (void)addGesture {
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss)];
+    tap.delegate = self;
+    [self addGestureRecognizer:tap];
+
+    UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTap:)];
+    tap2.delegate = self;
+    tap2.numberOfTapsRequired = 2;
+    [tap requireGestureRecognizerToFail:tap2];
+    [self addGestureRecognizer:tap2];
+
+    UILongPressGestureRecognizer *press = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
+    press.delegate = self;
+    press.minimumPressDuration = 0.75;
+    [self addGestureRecognizer:press];
+
+    if (kSystemVersion >= 7) {
+        UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
+        [self addGestureRecognizer:pan];
+        _panGesture = pan;
+    }
 }
 
 - (void)presentFromImageView:(UIView *)fromView
@@ -448,6 +451,7 @@
                 [self scrollViewDidScroll:_scrollView];
                 _scrollView.userInteractionEnabled = YES;
                 [self hidePager];
+                [self addGesture];
                 if (completion)
                     completion();
             }];
@@ -490,6 +494,7 @@
                         [self scrollViewDidScroll:_scrollView];
                         _scrollView.userInteractionEnabled = YES;
                         [self hidePager];
+                        [self addGesture];
                         if (completion)
                             completion();
                     }];
@@ -780,7 +785,11 @@
     }
 }
 
-- (void)longPress {
+- (void)longPress:(UILongPressGestureRecognizer *)recognizer {
+    if (self.longPressBlock) {
+        self.longPressBlock(recognizer);
+        return;
+    }
     if (!_isPresented)
         return;
 

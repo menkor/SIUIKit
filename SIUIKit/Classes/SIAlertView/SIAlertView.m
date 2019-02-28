@@ -8,6 +8,7 @@
 
 #import "SIAlertView.h"
 #import "SIAlertViewCell.h"
+#import <SIDefine/SIDefine.h>
 #import <SITheme/SIColor.h>
 #import <SITheme/SIFont.h>
 
@@ -185,7 +186,7 @@
     popMenu.menuSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, 56);
     popMenu.coverColor = [SIColor colorWithWhite:0 alpha:0.5];
     popMenu.arrowSize = CGSizeMake(0, 0);
-    CGPoint point = CGPointMake(0, [UIScreen mainScreen].bounds.size.height);
+    CGPoint point = CGPointMake(0, [UIScreen mainScreen].bounds.size.height - kBottomHeight);
     [popMenu showFromPoint:point];
 }
 

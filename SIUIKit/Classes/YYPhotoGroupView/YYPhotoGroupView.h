@@ -25,6 +25,7 @@
 - (instancetype)initWithFrame:(CGRect)frame UNAVAILABLE_ATTRIBUTE;
 + (instancetype) new UNAVAILABLE_ATTRIBUTE;
 - (instancetype)initWithGroupItems:(NSArray *)groupItems;
+@property (nonatomic, copy) void (^_Nonnull longPressBlock)(UILongPressGestureRecognizer *_Nonnull recognizer);
 
 - (void)presentFromImageView:(UIView *)fromView
                  toContainer:(UIView *)container

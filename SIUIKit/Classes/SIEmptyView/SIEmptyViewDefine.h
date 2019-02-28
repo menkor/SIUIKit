@@ -31,7 +31,7 @@ static NSString *const kSIEmptyViewNoNetworkingAction = @"刷新";
     @(SIEmptyViewTypeNoNetWork): @{                  \
         kSIEmptyViewThemeIcon: @"ic_no_network",     \
         kSIEmptyViewThemeTitle: @"网络连接失败",     \
-        kSIEmptyViewNoNetworkingAction: @"刷新",     \
+        kSIEmptyViewThemeAction: @"刷新",            \
     },                                               \
     @(SIEmptyViewTypeNoPermission): @{               \
         kSIEmptyViewThemeIcon: @"ic_no_permissions", \
