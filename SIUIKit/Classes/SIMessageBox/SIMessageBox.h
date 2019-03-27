@@ -114,6 +114,8 @@
  */
 - (void)setCustomMessageView:(UIView *)view;
 
+@property (nonatomic, assign) BOOL hold;
+
 @property (nonatomic, strong) NSDictionary *theme;
 
 @end

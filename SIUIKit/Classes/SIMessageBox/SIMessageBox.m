@@ -168,7 +168,7 @@
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
     CGPoint touchPoint = [touch locationInView:self];
     BOOL touchInBackground = !CGRectContainsPoint(self.containerView.frame, touchPoint);
-    if (touchInBackground && !self.isWaiting) {
+    if (touchInBackground && !self.isWaiting && !self.hold) {
         if (self.allActionBlock) {
             self.allActionBlock(SIMessageBoxButtonIndexCancel);
         }
@@ -207,7 +207,7 @@
 - (void)addContainerView {
     UIVisualEffectView *containerView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleDark]];
     containerView.frame = CGRectMake(0, 0, kSIMessageBoxWidth, 0);
-    NSNumber *cornerRadius =  self.theme[@"cornerRadius"];
+    NSNumber *cornerRadius = self.theme[@"cornerRadius"];
     containerView.layer.cornerRadius = cornerRadius ? cornerRadius.floatValue : kSIMessageBoxRadius;
     containerView.layer.masksToBounds = YES;
     containerView.subviews[1].backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
@@ -370,6 +370,9 @@
             [button setTitleColor:self.lastButtonTitleColor forState:UIControlStateNormal];
         } else {
             [button setTitleColor:kSIMessageBoxFirstButtonColor forState:UIControlStateNormal];
+        }
+        if (self.theme[@(index)]) {
+            [button setTitleColor:self.theme[@(index)] forState:UIControlStateNormal];
         }
         [button setBackgroundColor:[UIColor colorWithWhite:1 alpha:0.5]];
         [button.titleLabel setFont:kSIMessageBoxLastButtonFont];
@@ -549,6 +552,9 @@
 }
 
 - (void)hide:(BOOL)animated {
+    if (self.hold) {
+        return;
+    }
     self.locked = YES;
     self.visible = NO;
     [self.backgroudView removeFromSuperview];
