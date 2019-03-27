@@ -20,11 +20,22 @@ platform :ios do
     # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."
   end
   
+  desc 'Remove tag according to pattern'
+  lane :rmtag do |options|
+    regex = options[:reg]
+    if regex
+      sh "git tag | grep #{regex} | xargs -n 1 git push --delete origin"
+      sh "git tag | grep #{regex} | xargs git tag -d"
+    else
+      sh 'echo "\033[31m No regex! Example : fastlane rmtag reg:3.3.0 \033[0m"'
+    end
+  end
+  
   def commit_podspec_file(version)
       lib_name=Dir.pwd.sub('/fastlane','').split('/').last
       sh "git add ../"
       sh "git commit -m \'version bump to #{version}\'"
-      sh "git push origin head:master"
+      sh "git push origin"
     end
     
   def add_git_tag(tag)
@@ -36,8 +47,11 @@ platform :ios do
   desc "It will auto increase version if no version is set"
   lane :version do |options|
     quick = options[:quick]
+    ruby_path = `gem env | grep '  - INSTALLATION DIRECTORY:' | sed "s/  - INSTALLATION DIRECTORY://g"`
+    ruby_path.sub!("\n", '')
+    pod_version = `pod --version`.sub("\n", '')
     if quick
-      `sed -i '' 's/  validate_podspec_files/  #validate_podspec_files/g' /usr/local/lib/ruby/gems/2.4.0/gems/cocoapods-1.5.0/lib/cocoapods/command/repo/push.rb`
+       sh "sed -i '' 's/  validate_podspec_files/  #validate_podspec_files/g' #{ruby_path}/gems/cocoapods-#{pod_version}/lib/cocoapods/command/repo/push.rb"
     end
     lib_name=Dir.pwd.sub('/fastlane','').split('/').last
     custom_version=options[:version]
@@ -62,7 +76,7 @@ platform :ios do
       sources: ['git@git.superid.cn:iOS/SISpecs.git', 'https://github.com/CocoaPods/Specs.git']
     )
     if quick
-      `sed -i '' 's/  #validate_podspec_files/  validate_podspec_files/g' /usr/local/lib/ruby/gems/2.4.0/gems/cocoapods-1.5.0/lib/cocoapods/command/repo/push.rb`
+      sh "sed -i '' 's/  #validate_podspec_files/  validate_podspec_files/g' #{ruby_path}/gems/cocoapods-#{pod_version}/lib/cocoapods/command/repo/push.rb"
     end
   end
   
