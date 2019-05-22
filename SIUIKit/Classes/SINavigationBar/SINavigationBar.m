@@ -116,8 +116,16 @@
 
 - (UIView *)item {
     if (self.position != SINavigationItemPositionError) {
-        UIView *view = self.itemDict[@(self.position)];
-        return view;
+        NSArray *itemArray = self.itemDict[@(self.position)];
+        return itemArray.firstObject;
+    }
+    return nil;
+}
+
+- (NSArray<UIView *> *)itemArray {
+    if (self.position != SINavigationItemPositionError) {
+        NSArray *itemArray = self.itemDict[@(self.position)];
+        return itemArray;
     }
     return nil;
 }
@@ -409,37 +417,85 @@
     return nil;
 }
 
-- (void)adjustPosition:(UIView *)newItem {
-    if (!newItem) {
+- (void)adjustPosition:(NSArray<UIView *> *)itemArray {
+    if (!itemArray) {
         return;
     }
-    switch (self.position) {
-        case SINavigationItemPositionLeft: {
-            [newItem mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.left.mas_equalTo(self.mas_left).inset(8);
-                make.centerY.mas_equalTo(self.mas_centerY).offset(_topBaseline / 2);
-                make.size.mas_equalTo(newItem.frame.size);
-            }];
-        } break;
+    if (itemArray.count == 1) {
+        UIView *item = itemArray.firstObject;
+        switch (self.position) {
+            case SINavigationItemPositionLeft: {
+                [item mas_remakeConstraints:^(MASConstraintMaker *make) {
+                    make.left.mas_equalTo(self.mas_left).inset(8);
+                    make.centerY.mas_equalTo(self.mas_centerY).offset(_topBaseline / 2);
+                    make.size.mas_equalTo(item.frame.size);
+                }];
+            } break;
 
-        case SINavigationItemPositionTitle: {
-            [newItem mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.centerX.mas_equalTo(self.mas_centerX);
-                make.centerY.mas_equalTo(self.mas_centerY).offset(_topBaseline / 2);
-                make.size.mas_equalTo(newItem.frame.size);
-            }];
-        } break;
+            case SINavigationItemPositionTitle: {
+                [item mas_remakeConstraints:^(MASConstraintMaker *make) {
+                    make.centerX.mas_equalTo(self.mas_centerX);
+                    make.centerY.mas_equalTo(self.mas_centerY).offset(_topBaseline / 2);
+                    make.size.mas_equalTo(item.frame.size);
+                }];
+            } break;
 
-        case SINavigationItemPositionRight: {
-            [newItem mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.right.mas_equalTo(self.mas_right).inset(8);
-                make.centerY.mas_equalTo(self.mas_centerY).offset(_topBaseline / 2);
-                make.size.mas_equalTo(newItem.frame.size);
-            }];
-        } break;
-        default:
-            NSAssert(self.position == SINavigationItemPositionError, @"请先调用left/center/right方法");
-            break;
+            case SINavigationItemPositionRight: {
+                [item mas_remakeConstraints:^(MASConstraintMaker *make) {
+                    make.right.mas_equalTo(self.mas_right).inset(8);
+                    make.centerY.mas_equalTo(self.mas_centerY).offset(_topBaseline / 2);
+                    make.size.mas_equalTo(item.frame.size);
+                }];
+            } break;
+            default:
+                NSAssert(self.position == SINavigationItemPositionError, @"请先调用left/center/right方法");
+                break;
+        }
+        return;
+    } else {
+        switch (self.position) {
+            case SINavigationItemPositionLeft: {
+                __block UIView *pre = nil;
+                [itemArray enumerateObjectsUsingBlock:^(UIView *_Nonnull item, NSUInteger idx, BOOL *_Nonnull stop) {
+                    if (idx == 0) {
+                        [item mas_makeConstraints:^(MASConstraintMaker *make) {
+                            make.left.mas_equalTo(self).inset(8);
+                            make.centerY.mas_equalTo(self.mas_centerY).offset(_topBaseline / 2);
+                            make.size.mas_equalTo(item.frame.size);
+                        }];
+                    } else {
+                        [item mas_makeConstraints:^(MASConstraintMaker *make) {
+                            make.left.mas_equalTo(pre.mas_right);
+                            make.centerY.mas_equalTo(self.mas_centerY).offset(_topBaseline / 2);
+                            make.size.mas_equalTo(item.frame.size);
+                        }];
+                    }
+                    pre = item;
+                }];
+            } break;
+            case SINavigationItemPositionRight: {
+                __block UIView *pre = nil;
+                [itemArray enumerateObjectsUsingBlock:^(UIView *_Nonnull item, NSUInteger idx, BOOL *_Nonnull stop) {
+                    if (idx == 0) {
+                        [item mas_makeConstraints:^(MASConstraintMaker *make) {
+                            make.right.mas_equalTo(self.mas_right).inset(8);
+                            make.centerY.mas_equalTo(self.mas_centerY).offset(_topBaseline / 2);
+                            make.size.mas_equalTo(item.frame.size);
+                        }];
+                    } else {
+                        [item mas_makeConstraints:^(MASConstraintMaker *make) {
+                            make.left.mas_equalTo(pre.mas_left);
+                            make.centerY.mas_equalTo(self.mas_centerY).offset(_topBaseline / 2);
+                            make.size.mas_equalTo(item.frame.size);
+                        }];
+                    }
+                    pre = item;
+                }];
+            } break;
+            default:
+                NSAssert(self.position == SINavigationItemPositionError, @"请先调用left/center/right方法");
+                break;
+        }
     }
 }
 
@@ -448,49 +504,35 @@
     if (!itemBlock) {
         return nil;
     }
-    NSArray<UIView *> *newItemArray = nil;
-    newItemArray = itemBlock();
-    if (!newItemArray) {
+    NSArray<UIView *> *itemArray = nil;
+    itemArray = itemBlock();
+    if (!itemArray) {
         return nil;
     }
-    if (newItemArray.count == 1) {
-        UIView *newItem = newItemArray.firstObject;
+    if (itemArray.count == 1) {
+        UIView *item = itemArray.firstObject;
         //add staff of new guy
         if (actionBlock) {
-            NSString *key = [NSString stringWithFormat:@"%p", newItem];
+            NSString *key = [NSString stringWithFormat:@"%p", item];
             self.actionBlockDict[key] = actionBlock;
             self.itemParamDict[key] = @(YES);
         }
-        self.itemDict[@(self.position)] = newItem;
-        [self addSubview:newItem];
-        [self adjustPosition:newItem];
+        self.itemDict[@(self.position)] = @[item];
+        [self addSubview:item];
+        [self adjustPosition:@[item]];
         self.position = SINavigationItemPositionError;
-        return newItem;
+        return item;
     } else {
-        __block UIView *pre = nil;
-        [newItemArray enumerateObjectsUsingBlock:^(UIView *_Nonnull newItem, NSUInteger idx, BOOL *_Nonnull stop) {
+        [itemArray enumerateObjectsUsingBlock:^(UIView *_Nonnull item, NSUInteger idx, BOOL *_Nonnull stop) {
             if (actionBlock) {
-                NSString *key = [NSString stringWithFormat:@"%p", newItem];
+                NSString *key = [NSString stringWithFormat:@"%p", item];
                 self.actionBlockDict[key] = actionBlock;
                 self.itemParamDict[key] = @(YES);
             }
-            [self addSubview:newItem];
-            if (idx == 0) {
-                self.itemDict[@(self.position)] = newItem;
-                [newItem mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.right.mas_equalTo(self.mas_right).inset(8);
-                    make.centerY.mas_equalTo(self.mas_centerY).offset(_topBaseline / 2);
-                    make.size.mas_equalTo(newItem.frame.size);
-                }];
-            } else {
-                [newItem mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.left.mas_equalTo(pre.mas_left);
-                    make.centerY.mas_equalTo(self.mas_centerY).offset(_topBaseline / 2);
-                    make.size.mas_equalTo(newItem.frame.size);
-                }];
-            }
-            pre = newItem;
+            [self addSubview:item];
         }];
+        self.itemDict[@(self.position)] = itemArray;
+        [self adjustPosition:itemArray];
         self.position = SINavigationItemPositionError;
     }
     return nil;

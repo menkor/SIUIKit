@@ -68,7 +68,7 @@
  self.left.item
  @endcode
  */
-- (UIView *)item;
+- (__kindof UIView *)item;
 
 #pragma mark - Position
 
