@@ -506,6 +506,9 @@
     }
     NSArray<UIView *> *itemArray = nil;
     itemArray = itemBlock();
+    if ([itemArray isKindOfClass:[UIView class]]) {
+        itemArray = @[(UIView *)itemArray];
+    }
     if (!itemArray) {
         return nil;
     }

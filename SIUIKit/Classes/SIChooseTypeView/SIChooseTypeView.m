@@ -33,14 +33,16 @@
 }
 
 - (void)reloadData {
-    if (self.dataArray.count <= 1) {
-        return;
-    }
     _collection.flowLayout.itemSize = CGSizeMake(80, 92);
     NSUInteger count = MIN(3, self.dataArray.count);
-    CGFloat margin = count == 2 ? 120 : 60;
-    _collection.flowLayout.sectionInset = UIEdgeInsetsMake(0, margin / 2, 0, margin / 2);
-    _collection.flowLayout.minimumInteritemSpacing = (ScreenWidth - margin - 80 * count) / (count - 1);
+    if (count == 1) {
+        _collection.flowLayout.sectionInset = UIEdgeInsetsMake(0, (ScreenWidth - 80) / 2, 0, 0);
+        _collection.flowLayout.minimumInteritemSpacing = 0;
+    } else {
+        CGFloat margin = count == 2 ? 120 : 60;
+        _collection.flowLayout.sectionInset = UIEdgeInsetsMake(0, margin / 2, 0, margin / 2);
+        _collection.flowLayout.minimumInteritemSpacing = (ScreenWidth - margin - 80 * count) / (count - 1);
+    }
     self.collection.dataSource[YCCollectionViewSingleSectionKey] = self.dataArray;
     [self.collection reloadData];
 }

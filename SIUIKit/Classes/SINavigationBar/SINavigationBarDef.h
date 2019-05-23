@@ -78,7 +78,12 @@ typedef NS_ENUM(NSUInteger, SINavigationTheme) {
 
 typedef void (^SINavigationBarActionBlock)(UIButton *sender);
 
-typedef NSArray<UIView *> * (^SINavigationBarAddItem)(void);
+/**
+ add some item(s)
+
+ @return `NSArray<UIView *> *` or `UIView *`
+ */
+typedef id (^SINavigationBarAddItem)(void);
 
 #pragma mark - UI
 
