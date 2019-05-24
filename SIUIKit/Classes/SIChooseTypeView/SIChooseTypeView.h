@@ -17,6 +17,8 @@
 
 @property (nonatomic, readonly) UIButton *bottomButton;
 
+@property (nonatomic, copy) void (^bottomBlock)(void);
+
 - (void)popFromView:(UIView *)view;
 
 - (void)reloadData;

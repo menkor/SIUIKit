@@ -63,11 +63,21 @@
         make.top.mas_equalTo(self).offset(114);
         make.height.mas_equalTo(0);
     }];
+
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss)];
+    [self addGestureRecognizer:tap];
 }
 
-- (void)cancel {
+- (void)dismiss {
     [self removeFromSuperview];
     [self.effectView removeFromSuperview];
+}
+
+- (void)bottomAction {
+    if (self.bottomBlock) {
+        self.bottomBlock();
+    }
+    [self dismiss];
 }
 
 - (void)popFromView:(UIView *)view {
@@ -95,7 +105,7 @@
 }
 
 - (void)collectionView:(YCCollectionView *)collectionView action:(id)action atIndexPath:(NSIndexPath *)indexPath {
-    [self cancel];
+    [self dismiss];
     if (self.actionBlock) {
         self.actionBlock([collectionView objectAtIndexPath:indexPath]);
     }
@@ -106,13 +116,14 @@
 - (UIButton *)bottomButton {
     if (!_bottomButton) {
         _bottomButton = [[UIButton alloc] init];
-        _bottomButton.backgroundColor = [SIColor colorWithHex:0xf7f7f7];
+        _bottomButton.backgroundColor = [SIColor clearColor];
         _bottomButton.titleLabel.font = [SIFont systemFontOfSize:16];
         _bottomButton.titleLabel.textAlignment = NSTextAlignmentCenter;
-        [_bottomButton setTitle:@"取消" forState:UIControlStateNormal];
-        [_bottomButton setTitleColor:[SIColor colorWithHex:0x926dea] forState:UIControlStateNormal];
-        [_bottomButton addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
+        [_bottomButton setTitle:@"" forState:UIControlStateNormal];
+        [_bottomButton setTitleColor:[SIColor colorWithHex:0x4A4A4A] forState:UIControlStateNormal];
+        [_bottomButton addTarget:self action:@selector(bottomAction) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_bottomButton];
+        _bottomButton.hidden = YES;
     }
     return _bottomButton;
 }
@@ -121,10 +132,10 @@
     if (!_collection) {
         _collection = [[YCCollectionView alloc] initWithFrame:CGRectZero];
         UICollectionViewLeftAlignedLayout *layout = [[UICollectionViewLeftAlignedLayout alloc] init];
-        [_collectionView setValue:layout forKey:@"flowLayout"];
+        [_collection setValue:layout forKey:@"flowLayout"];
         _collection.cellClass = [SIChooseTypeViewCell class];
         _collection.flowLayout.minimumLineSpacing = 28;
-        _collection.flowLayout.minimumInteritemSpacing = 10;
+        _collection.flowLayout.minimumInteritemSpacing = (ScreenWidth - 40) / 3 - 80;
         _collection.flowLayout.sectionInset = UIEdgeInsetsMake(0, 30, 0, 30);
         _collection.delegate = self;
         _collection.collectionView.scrollEnabled = NO;
