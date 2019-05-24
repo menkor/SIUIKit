@@ -15,6 +15,8 @@
 
 @property (nonatomic, copy) NSArray<id<SIFormItemProtocol>> *dataArray;
 
+@property (nonatomic, readonly) UIButton *bottomButton;
+
 - (void)popFromView:(UIView *)view;
 
 - (void)reloadData;
