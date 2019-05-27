@@ -12,6 +12,7 @@ typedef NS_ENUM(NSUInteger, SIAffairNaviRightActionType) {
     SIAffairNaviRightActionTypeRole,
 };
 
+@class SIAffairInfo;
 @class SIAffairNaviRightView;
 @protocol SIAffairNaviRightActionDelegate <NSObject>
 
@@ -19,18 +20,30 @@ typedef NS_ENUM(NSUInteger, SIAffairNaviRightActionType) {
 
 @end
 
-@class SIFormItem;
+@interface SIAffairNaviRightItem : NSObject
+
+@property (nonatomic, assign) BOOL white;
+
+@property (nonatomic, assign) BOOL showRight;
+
+@property (nonatomic, copy) NSString *rightIcon;
+
+@property (nonatomic, strong) SIAffairInfo *affair;
+
+@property (nonatomic, strong) NSArray<UIButton *> *extra;
+
+@end
+
 @interface SIAffairNaviRightView : UIView
 
 @property (nonatomic, weak) id<SIAffairNaviRightActionDelegate> delegate;
 
 - (void)reloadData;
 
-@property (nonatomic, strong, readonly) SIFormItem *item;
+@property (nonatomic, strong, readonly) SIAffairNaviRightItem *item;
 
 @end
 
-@class SIAffairInfo;
 /*
  SIAffairDefineImp.m
  */
