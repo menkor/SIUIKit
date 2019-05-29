@@ -8,7 +8,6 @@
 
 #import "SIChooseTypeView.h"
 #import "SIChooseTypeViewCell.h"
-#import "UICollectionViewLeftAlignedLayout.h"
 #import <Masonry/Masonry.h>
 #import <SIDefine/SIDefine.h>
 #import <SITheme/SIColor.h>
@@ -35,15 +34,17 @@
 
 - (void)reloadData {
     _collection.flowLayout.itemSize = CGSizeMake(80, 92);
+    _collection.flowLayout.minimumInteritemSpacing = (ScreenWidth - 60) / 3 - 80;
+    _collection.flowLayout.sectionInset = UIEdgeInsetsMake(0, 30, 0, 30);
     NSUInteger count = MIN(3, self.dataArray.count);
     if (count == 1) {
         _collection.flowLayout.sectionInset = UIEdgeInsetsMake(0, (ScreenWidth - 80) / 2, 0, 0);
     } else {
-        CGFloat margin = count == 2 ? 120 : 60;
-        _collection.flowLayout.sectionInset = UIEdgeInsetsMake(0, margin / 2, 0, margin / 2);
+        CGFloat margin = (ScreenWidth - 80 * count) / (count + 1);
+        _collection.flowLayout.sectionInset = UIEdgeInsetsMake(0, floor(margin), 0, floor(margin));
     }
     [self.collection mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(110 * MAX(1, self.dataArray.count / 3));
+        make.height.mas_equalTo(120 * (self.dataArray.count / 3 + 1));
     }];
     self.collection.dataSource[YCCollectionViewSingleSectionKey] = self.dataArray;
     [self.collection reloadData];
@@ -131,8 +132,6 @@
 - (YCCollectionView *)collection {
     if (!_collection) {
         _collection = [[YCCollectionView alloc] initWithFrame:CGRectZero];
-        UICollectionViewLeftAlignedLayout *layout = [[UICollectionViewLeftAlignedLayout alloc] init];
-        [_collection setValue:layout forKey:@"flowLayout"];
         _collection.cellClass = [SIChooseTypeViewCell class];
         _collection.flowLayout.minimumLineSpacing = 28;
         _collection.flowLayout.minimumInteritemSpacing = (ScreenWidth - 40) / 3 - 80;
