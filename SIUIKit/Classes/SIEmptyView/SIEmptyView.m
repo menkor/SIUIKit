@@ -32,6 +32,7 @@
 }
 
 - (void)initUI {
+    self.backgroundColor = [SIColor colorWithHex:0xf7f7f7];
     [self.icon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(0, 0));
         make.centerX.mas_equalTo(self);

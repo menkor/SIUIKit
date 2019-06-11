@@ -12,6 +12,10 @@
 #import <SITheme/SIColor.h>
 #import <SITheme/SIFont.h>
 #import <SIUtils/UIImageView+SIKit.h>
+#import <SIRequestKit/SIAffairInfo.h>
+#import <SIDefine/SITypeDefine.h>
+#import <SIUtils/UIView+SIAutoSize.h>
+#import <SIDefine/SIGlobalMacro.h>
 
 @interface SIAffairInfoView ()
 
@@ -20,6 +24,8 @@
 @property (nonatomic, strong) UILabel *title;
 
 @property (nonatomic, strong) UILabel *content;
+
+@property (nonatomic, strong) UIImageView *autherized;
 
 @end
 
@@ -46,7 +52,13 @@
         make.left.mas_equalTo(self.avatar.mas_right).inset(10);
         make.top.mas_equalTo(self.avatar).offset(-2);
         make.height.mas_equalTo(21);
-        make.right.mas_equalTo(self.contentView);
+        make.width.mas_equalTo(0);
+    }];
+    
+    [self.autherized mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(16, 16));
+        make.left.mas_equalTo(self.title.mas_right).offset(4);
+        make.centerY.mas_equalTo(self.title);
     }];
 
     [self.content mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -71,6 +83,15 @@
         [self.title mas_updateConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(21);
         }];
+    }
+    [self.title si_widthToFitMax:ScreenWidth - 210];
+    if ([model.data isKindOfClass:[SIAffairInfo class]]) {
+        SIAffairInfo *affair = model.data;
+        self.autherized.hidden = ![affair.authStatus isEqualToNumber:@(SIUserAuthStatusSuccess)];
+        if (!self.autherized.hidden) {
+            NSString *autherizedIcon = affair.allianceType.integerValue == 0 ? @"ic_renzheng" : @"ic_qiyerenzheng";
+            self.autherized.image = [UIImage imageNamed:autherizedIcon];
+        }
     }
 }
 
@@ -111,6 +132,17 @@
         [self.contentView addSubview:_content];
     }
     return _content;
+}
+
+- (UIImageView *)autherized {
+    if (!_autherized) {
+        _autherized = [[UIImageView alloc] init];
+        _autherized.hidden = YES;
+        _autherized.image = [UIImage imageNamed:@"ic_renzheng"];
+        _autherized.contentMode = UIViewContentModeScaleAspectFit;
+        [self.contentView addSubview:_autherized];
+    }
+    return _autherized;
 }
 
 @end
