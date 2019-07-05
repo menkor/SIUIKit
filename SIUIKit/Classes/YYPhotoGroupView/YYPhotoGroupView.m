@@ -6,6 +6,10 @@
 //
 
 #import "YYPhotoGroupView.h"
+#import <Masonry/Masonry.h>
+#import <SIDefine/SIGlobalMacro.h>
+#import <SIUIKit/SIMessageBox.h>
+#import <SIUtils/UIImage+SIUtils.h>
 #import <YYKit/YYKit.h>
 
 #define kPadding 20
@@ -155,6 +159,7 @@
             self.progressLayer.hidden = YES;
             if (stage == YYWebImageStageFinished) {
                 self.maximumZoomScale = 3;
+                self.item.image = image;
                 if (image) {
                     self->_itemDidLoad = YES;
 
@@ -332,7 +337,30 @@
     return self;
 }
 
+- (void)setWithoutPageControl:(BOOL)withoutPageControl {
+    _withoutSaveButton = withoutPageControl;
+    if (withoutPageControl) {
+        [_pager removeFromSuperview];
+    }
+}
+
+- (void)save {
+    [SIMessageBox showWaiting:nil];
+    YYPhotoGroupCell *tile = [self cellForPage:self.currentPage];
+    [UIImage save:tile.imageView.image];
+}
+
 - (void)addGesture {
+    UIButton *some = [UIButton buttonWithType:UIButtonTypeCustom];
+    [some setImage:[UIImage imageNamed:@"ic_shouye_xiazai"] forState:UIControlStateNormal];
+    [self addSubview:some];
+    [some addTarget:self action:@selector(save) forControlEvents:UIControlEventTouchUpInside];
+    [some mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(self).inset(kBottomHeight + 20);
+        make.right.mas_equalTo(self).inset(16);
+        make.height.width.mas_equalTo(24);
+    }];
+
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss)];
     tap.delegate = self;
     [self addGestureRecognizer:tap];
@@ -389,7 +417,7 @@
         _blurBackground.image = [UIImage imageWithColor:[UIColor blackColor]];
     }
 
-    self.size = _toContainerView.size;
+    self.size = [UIScreen mainScreen].bounds.size;
     self.blurBackground.alpha = 0;
     self.pager.alpha = 0;
     self.pager.numberOfPages = self.groupItems.count;
@@ -502,6 +530,11 @@
     }
 }
 
+- (UIImageView *)currentImageView {
+    YYPhotoGroupCell *cell = [self cellForPage:self.currentPage];
+    return cell.imageView;
+}
+
 - (void)dismissAnimated:(BOOL)animated completion:(void (^)(void))completion {
     [UIView setAnimationsEnabled:YES];
 
@@ -546,6 +579,9 @@
             completion:^(BOOL finished) {
                 self.scrollView.layer.transformScale = 1;
                 [self removeFromSuperview];
+                if (self.dismissBlock) {
+                    self.dismissBlock();
+                }
                 [self cancelAllImageLoad];
                 if (completion)
                     completion();
@@ -598,6 +634,9 @@
                 completion:^(BOOL finished) {
                     cell.imageContainerView.layer.anchorPoint = CGPointMake(0.5, 0.5);
                     [self removeFromSuperview];
+                    if (self.dismissBlock) {
+                        self.dismissBlock();
+                    }
                     if (completion)
                         completion();
                 }];
@@ -882,6 +921,9 @@
                     }
                     completion:^(BOOL finished) {
                         [self removeFromSuperview];
+                        if (self.dismissBlock) {
+                            self.dismissBlock();
+                        }
                     }];
 
                 _background.image = _snapshotImage;

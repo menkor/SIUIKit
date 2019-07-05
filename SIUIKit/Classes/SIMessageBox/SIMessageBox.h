@@ -33,6 +33,8 @@
  */
 + (void)showWaiting:(NSString *)waiting;
 
++ (void)showWaiting:(NSString *)waiting hideAfterDelay:(CGFloat)delay;
+
 + (void)hideWaiting;
 
 /*!

@@ -75,19 +75,20 @@
     return self;
 }
 
-- (void)enqueue:(SIMessageBox *)box {
+- (BOOL)enqueue:(SIMessageBox *)box {
     Lock();
     for (SIMessageBox *some in [_queue copy]) {
         if (box.isWaiting && some.isWaiting) {
             [box hide];
             Unlock();
-            return;
+            return NO;
         }
         [some hide];
         [_queue removeObject:some];
     }
     [_queue addObject:box];
     Unlock();
+    return YES;
 }
 
 - (void)dequeue {
@@ -116,8 +117,16 @@
 }
 
 + (void)showWaiting:(NSString *)waiting {
+    [self showWaiting:waiting hideAfterDelay:-1];
+}
+
++ (void)showWaiting:(NSString *)waiting hideAfterDelay:(CGFloat)delay {
     SIMessageBox *box = [SIMessageBox boxWithType:SIMessageBoxStatusWaiting title:waiting message:nil];
-    [box show];
+    if (delay > 0) {
+        [box hideAfterDelay:delay];
+    } else {
+        [box show];
+    }
 }
 
 + (void)hideWaiting {
@@ -150,8 +159,10 @@
     }
     box.buildin = YES;
     [box setAllActionBlock:actionBlock];
-    [[_SIMessageBoxQueue queue] enqueue:box];
-    return box;
+    if ([[_SIMessageBoxQueue queue] enqueue:box]) {
+        return box;
+    }
+    return nil;
 }
 
 - (void)setAllButtonActionBlock:(SIMessageBoxActionBlock)actionBlock {
@@ -515,24 +526,20 @@
 }
 
 - (void)show:(BOOL)animated {
-    __weak typeof(self) weakSelf = self;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        __strong typeof(weakSelf) self = weakSelf;
-        if (!self || self.locked) {
-            return;
-        }
-        self.visible = YES;
-        [self initSubviews];
-        if (animated) {
-            [self animation];
-        }
-        UIWindow *window = [UIApplication sharedApplication].keyWindow;
-        self.backgroudView = [[UIScrollView alloc] initWithFrame:window.bounds];
-        [self.backgroudView addSubview:self];
-        self.backgroudView.contentSize = window.bounds.size;
-        [window addSubview:self.backgroudView];
-        [window bringSubviewToFront:self.backgroudView];
-    });
+    if (!self || self.locked) {
+        return;
+    }
+    self.visible = YES;
+    [self initSubviews];
+    if (animated) {
+        [self animation];
+    }
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    self.backgroudView = [[UIScrollView alloc] initWithFrame:window.bounds];
+    [self.backgroudView addSubview:self];
+    self.backgroudView.contentSize = window.bounds.size;
+    [window addSubview:self.backgroudView];
+    [window bringSubviewToFront:self.backgroudView];
 }
 
 - (void)hideAfterDelay:(CFTimeInterval)delay {

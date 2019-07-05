@@ -9,13 +9,13 @@
 #import "SIAffairInfoView.h"
 #import <Masonry/Masonry.h>
 #import <SIBase/SIFormItem.h>
+#import <SIDefine/SIGlobalMacro.h>
+#import <SIDefine/SITypeDefine.h>
+#import <SIRequestKit/SIAffairInfo.h>
 #import <SITheme/SIColor.h>
 #import <SITheme/SIFont.h>
 #import <SIUtils/UIImageView+SIKit.h>
-#import <SIRequestKit/SIAffairInfo.h>
-#import <SIDefine/SITypeDefine.h>
 #import <SIUtils/UIView+SIAutoSize.h>
-#import <SIDefine/SIGlobalMacro.h>
 
 @interface SIAffairInfoView ()
 
@@ -54,7 +54,7 @@
         make.height.mas_equalTo(21);
         make.width.mas_equalTo(0);
     }];
-    
+
     [self.autherized mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(16, 16));
         make.left.mas_equalTo(self.title.mas_right).offset(4);
@@ -84,6 +84,7 @@
             make.height.mas_equalTo(21);
         }];
     }
+    self.autherized.hidden = YES;
     [self.title si_widthToFitMax:ScreenWidth - 210];
     if ([model.data isKindOfClass:[SIAffairInfo class]]) {
         SIAffairInfo *affair = model.data;

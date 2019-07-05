@@ -12,6 +12,7 @@
 @property (nonatomic, strong) UIView *thumbView; ///< thumb image, used for animation position calculation
 @property (nonatomic, assign) CGSize largeImageSize;
 @property (nonatomic, strong) NSURL *largeImageURL;
+@property (nonatomic, strong) UIImage *image;
 @end
 
 /// Used to show a group of images.
@@ -19,13 +20,17 @@
 @interface YYPhotoGroupView : UIView
 @property (nonatomic, readonly) NSArray *groupItems; ///< Array<YYPhotoGroupItem>
 @property (nonatomic, readonly) NSInteger currentPage;
+@property (nonatomic, readonly) UIImageView *currentImageView;
 @property (nonatomic, assign) BOOL blurEffectBackground; ///< Default is YES
+@property (nonatomic, assign) BOOL withoutSaveButton;    ///< Default is NO
+@property (nonatomic, assign) BOOL withoutPageControl;   ///< Default is NO
 
 - (instancetype)init UNAVAILABLE_ATTRIBUTE;
 - (instancetype)initWithFrame:(CGRect)frame UNAVAILABLE_ATTRIBUTE;
 + (instancetype) new UNAVAILABLE_ATTRIBUTE;
 - (instancetype)initWithGroupItems:(NSArray *)groupItems;
 @property (nonatomic, copy) void (^_Nonnull longPressBlock)(UILongPressGestureRecognizer *_Nonnull recognizer);
+@property (nonatomic, copy) void (^_Nonnull dismissBlock)();
 
 - (void)presentFromImageView:(UIView *)fromView
                  toContainer:(UIView *)container
