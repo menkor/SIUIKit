@@ -358,7 +358,7 @@
     [some mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(self).inset(kBottomHeight + 20);
         make.right.mas_equalTo(self).inset(16);
-        make.height.width.mas_equalTo(24);
+        make.height.width.mas_equalTo(44);
     }];
 
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss)];
