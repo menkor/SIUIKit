@@ -21,6 +21,8 @@
 
 @property (nonatomic, strong) UIView *line;
 
+@property (nonatomic, weak) SIAlertAction<SIAlertActionProtocol> *model;
+
 @end
 
 @implementation SIAlertViewCell
@@ -43,17 +45,17 @@
     }];
 }
 
-- (void)reloadWithData:(SIAlertAction<SIAlertActionProtocol> *)model {
-    self.title.text = model.title;
-    self.title.textColor = model.tintColor;
-    self.title.textAlignment = model.textAlignment;
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    SIAlertAction<SIAlertActionProtocol> *model = self.model;
     [self.cornerLayer removeFromSuperlayer];
     self.cornerLayer = [SIRectCornerLayer layer];
     self.cornerLayer.cornerRadius = 12;
+    CGFloat width = CGRectGetWidth(self.contentView.frame);
     if (model.style == SIAlertActionStyleCancel) {
-        self.cornerLayer.frame = CGRectMake(10, 9, [UIScreen mainScreen].bounds.size.width - 20, model.menuHeight - 18);
+        self.cornerLayer.frame = CGRectMake(10, 9, width - 20, model.menuHeight - 18);
     } else {
-        self.cornerLayer.frame = CGRectMake(10, 0, [UIScreen mainScreen].bounds.size.width - 20, model.menuHeight);
+        self.cornerLayer.frame = CGRectMake(10, 0, width - 20, model.menuHeight);
     }
     if (model.style == SIAlertActionStyleTitle || model.style == SIAlertActionStyleMessage) {
         self.title.font = model.font ?: [SIFont systemFontOfSize:16];
@@ -71,6 +73,13 @@
     }
     self.cornerLayer.cornerStyle = style;
     [self.contentView.layer insertSublayer:self.cornerLayer atIndex:0];
+}
+
+- (void)reloadWithData:(SIAlertAction<SIAlertActionProtocol> *)model {
+    self.model = model;
+    self.title.text = model.title;
+    self.title.textColor = model.tintColor;
+    self.title.textAlignment = model.textAlignment;
 }
 
 #pragma mark - Lazy Load
