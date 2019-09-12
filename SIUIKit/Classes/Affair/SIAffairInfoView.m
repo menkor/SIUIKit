@@ -93,6 +93,7 @@
             NSString *autherizedIcon = affair.allianceType.integerValue == 0 ? @"ic_renzheng" : @"ic_qiyerenzheng";
             self.autherized.image = [UIImage imageNamed:autherizedIcon];
         }
+        self.avatar.layer.cornerRadius = affair.allianceType.integerValue == 0/*个人盟*/ ? 15 : 5;
     }
 }
 
