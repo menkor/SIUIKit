@@ -350,6 +350,20 @@
     [UIImage save:tile.imageView.image];
 }
 
+- (void)insertGroupItems:(NSArray *)groupItems {
+    YYPhotoGroupItem *current = self.groupItems[self.pager.currentPage];
+    _groupItems = groupItems;
+    [groupItems enumerateObjectsUsingBlock:^(YYPhotoGroupItem *item, NSUInteger idx, BOOL *_Nonnull stop) {
+        if ([item.uuid isEqualToString:current.uuid]) {
+            self.pager.numberOfPages = self.groupItems.count;
+            self.pager.currentPage = idx;
+            *stop = YES;
+        }
+    }];
+    _scrollView.contentSize = CGSizeMake(_scrollView.width * self.groupItems.count, _scrollView.height);
+    [_scrollView scrollRectToVisible:CGRectMake(_scrollView.width * _pager.currentPage, 0, _scrollView.width, _scrollView.height) animated:NO];
+}
+
 - (void)addGesture {
     UIButton *some = [UIButton buttonWithType:UIButtonTypeCustom];
     [some setImage:[UIImage imageNamed:@"ic_shouye_xiazai"] forState:UIControlStateNormal];

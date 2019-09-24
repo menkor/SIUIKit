@@ -38,6 +38,8 @@
 
 @property (nonatomic, assign) BOOL locked;
 
+@property (nonatomic, weak) UIView *fromView;
+
 - (BOOL)isWaiting;
 
 @end
@@ -217,11 +219,12 @@
 
 - (void)addContainerView {
     UIVisualEffectView *containerView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleDark]];
-    containerView.frame = CGRectMake(0, 0, kSIMessageBoxWidth, 0);
+    NSNumber *boxWidth = self.theme[@"boxWidth"];
+    containerView.frame = CGRectMake(0, 0, boxWidth ? boxWidth.floatValue : kSIMessageBoxWidth, 0);
     NSNumber *cornerRadius = self.theme[@"cornerRadius"];
     containerView.layer.cornerRadius = cornerRadius ? cornerRadius.floatValue : kSIMessageBoxRadius;
     containerView.layer.masksToBounds = YES;
-    containerView.subviews[1].backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
+    containerView.subviews[1].backgroundColor = self.theme[@"containerColor"] ?: [UIColor colorWithWhite:0 alpha:0.5];
     self.containerView = containerView;
     [self addSubview:containerView];
 }
@@ -271,23 +274,30 @@
 - (void)addTitleView {
     if (self.title) {
         CGRect frame = self.containerView.frame;
+        UIFont *titleFont = self.theme[@"titleFont"] ?: kSIMessageBoxTitleFont;
         CGFloat titleWidth = frame.size.width - kSIMessageBoxMessageXOffset * 2;
-        CGSize titleSize = [self content:self.title font:kSIMessageBoxTitleFont fitWidth:titleWidth];
-        CGFloat titleHeight = titleSize.height + kSIMessageBoxTitleYOffset;
+        CGSize titleSize = [self content:self.title font:titleFont fitWidth:titleWidth];
+        CGFloat titleYOffset = [self.theme[@"titleYOffset"] floatValue];
+        UIEdgeInsets insets = [self.theme[@"insets"] UIEdgeInsetsValue];
+        if (titleYOffset < 1) {
+            titleYOffset = kSIMessageBoxTitleYOffset;
+        }
+        CGFloat titleHeight = titleSize.height + titleYOffset;
         frame.size.height += titleHeight;
+        frame.size.height += insets.top;
         self.containerView.frame = frame;
         UILabel *titleLabel = [[UILabel alloc] init];
         titleLabel.numberOfLines = 0;
 
         titleLabel.text = self.title;
         if ((self.type & SIMessageBoxTypeMask) == SIMessageBoxTypeNone) {
-            titleLabel.textColor = kSIMessageBoxMessageTextColor;
+            titleLabel.textColor = self.theme[@"titleColor"] ?: kSIMessageBoxMessageTextColor;
             titleLabel.frame = CGRectMake(kSIMessageBoxMessageXOffset,
                                           frame.size.height - titleHeight,
                                           titleWidth,
                                           titleHeight);
         } else {
-            titleLabel.textColor = kSIMessageBoxMessageTextBlackColor;
+            titleLabel.textColor = self.theme[@"titleColor"] ?: kSIMessageBoxMessageTextBlackColor;
             titleLabel.frame = CGRectMake(kSIMessageBoxMessageXOffset,
                                           frame.size.height - titleHeight + kSIMessageBoxTitleYOffset / 2,
                                           titleWidth,
@@ -295,38 +305,43 @@
         }
         [self.contentView addSubview:titleLabel];
         titleLabel.textAlignment = NSTextAlignmentCenter;
-        titleLabel.font = kSIMessageBoxTitleFont;
+        titleLabel.font = titleFont;
     }
 }
 
 - (void)addMessageLabelView {
     if (self.message) {
         CGRect frame = self.containerView.frame;
+        UIFont *messageFont = self.theme[@"messageFont"] ?: kSIMessageBoxMessageFont;
         CGFloat messageWidth = frame.size.width - kSIMessageBoxMessageXOffset * 2;
-        CGSize messageSize = [self content:self.message font:kSIMessageBoxMessageFont fitWidth:messageWidth];
+        CGSize messageSize = [self content:self.message font:messageFont fitWidth:messageWidth];
         CGFloat messageHeight = messageSize.height;
         if (!self.title) {
             messageHeight += 50;
         }
-        frame.size.height += messageHeight + kSIMessageBoxMessageYOffset + kSIMessageBoxMessageBottomOffset;
+        CGFloat messageYOffset = self.theme[@"messageYOffset"] ? [self.theme[@"messageYOffset"] floatValue] : kSIMessageBoxMessageYOffset;
+        CGFloat offsetY = frame.size.height + messageYOffset;
+        frame.size.height += messageHeight + messageYOffset + kSIMessageBoxMessageBottomOffset;
+        UIEdgeInsets insets = [self.theme[@"insets"] UIEdgeInsetsValue];
+        frame.size.height += insets.bottom;
         self.containerView.frame = frame;
 
         UILabel *messageLabel = [[UILabel alloc] init];
         messageLabel.frame = CGRectMake(kSIMessageBoxMessageXOffset,
-                                        frame.size.height - messageHeight - kSIMessageBoxMessageBottomOffset,
+                                        offsetY,
                                         messageWidth,
                                         messageHeight);
         messageLabel.text = self.message;
         messageLabel.numberOfLines = 0;
         messageLabel.lineBreakMode = NSLineBreakByCharWrapping;
         if ((self.type & SIMessageBoxTypeMask) == SIMessageBoxTypeNone) {
-            messageLabel.textColor = kSIMessageBoxMessageTextColor;
+            messageLabel.textColor = self.theme[@"messageColor"] ?: kSIMessageBoxMessageTextColor;
         } else {
-            messageLabel.textColor = kSIMessageBoxMessageTextBlackColor;
+            messageLabel.textColor = self.theme[@"messageColor"] ?: kSIMessageBoxMessageTextBlackColor;
         }
 
         [self.contentView addSubview:messageLabel];
-        messageLabel.font = kSIMessageBoxMessageFont;
+        messageLabel.font = messageFont;
         messageLabel.textAlignment = _messageAlignment;
     }
 }
@@ -507,6 +522,9 @@
                      animations:^{
                          if (self.visible) {
                              self.backgroundColor = self.coverColor;
+                             if (self.onShowup) {
+                                 self.onShowup(self.containerView);
+                             }
                          } else {
                              self.backgroundColor = [SIColor clearColor];
                          }
@@ -521,6 +539,11 @@
 
 #pragma mark - Visible
 
+- (void)showFrom:(UIView *)view {
+    self.fromView = view;
+    [self show:self.animated];
+}
+
 - (void)show {
     [self show:self.animated];
 }
@@ -534,12 +557,12 @@
     if (animated) {
         [self animation];
     }
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    self.backgroudView = [[UIScrollView alloc] initWithFrame:window.bounds];
+    UIView *superView = self.fromView ?: [UIApplication sharedApplication].keyWindow;
+    self.backgroudView = [[UIScrollView alloc] initWithFrame:superView.bounds];
     [self.backgroudView addSubview:self];
-    self.backgroudView.contentSize = window.bounds.size;
-    [window addSubview:self.backgroudView];
-    [window bringSubviewToFront:self.backgroudView];
+    self.backgroudView.contentSize = superView.bounds.size;
+    [superView addSubview:self.backgroudView];
+    [superView bringSubviewToFront:self.backgroudView];
 }
 
 - (void)hideAfterDelay:(CFTimeInterval)delay {

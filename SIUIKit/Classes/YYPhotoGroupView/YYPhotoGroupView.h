@@ -12,6 +12,7 @@
 @property (nonatomic, strong) UIView *thumbView; ///< thumb image, used for animation position calculation
 @property (nonatomic, assign) CGSize largeImageSize;
 @property (nonatomic, strong) NSURL *largeImageURL;
+@property (nonatomic, copy) NSString *uuid;
 @property (nonatomic, strong) UIImage *image;
 @end
 
@@ -39,4 +40,5 @@
 
 - (void)dismissAnimated:(BOOL)animated completion:(void (^)(void))completion;
 - (void)dismiss;
+- (void)insertGroupItems:(NSArray *)groupItems;
 @end

@@ -96,6 +96,8 @@
  */
 - (void)hideAfterDelay:(CFTimeInterval)delay;
 
+- (void)showFrom:(UIView *)view;
+
 #pragma mark - Animation
 
 /*!
@@ -115,6 +117,10 @@
  @endcode
  */
 - (void)setCustomMessageView:(UIView *)view;
+
+#pragma mark - Event
+
+@property (nonatomic, copy) void (^onShowup)(UIView *contentView);
 
 @property (nonatomic, assign) BOOL hold;
 

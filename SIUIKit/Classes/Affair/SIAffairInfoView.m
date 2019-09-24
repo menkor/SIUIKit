@@ -70,7 +70,24 @@
 }
 
 - (void)reloadWithData:(SIFormItem *)model {
-    [self.avatar si_setImageWithURL:model.avatar placeholderImage:[UIImage imageNamed:@"affair_default_avatar"]];
+    if (model.avatar.length > 0) {
+        [self.avatar si_setImageWithURL:model.avatar completed:^(UIImage * _Nullable image, NSError * _Nullable error, NSInteger cacheType, NSURL * _Nullable imageURL) {
+            if (error) {
+                self.avatar.backgroundColor = [SIColor colorWithHex:0xf4f5f6];
+            } else {
+                self.avatar.backgroundColor = UIColor.clearColor;
+            }
+        }];
+    } else {
+        NSString *placeholderImage = @"ic_default";
+        if ([model.data isKindOfClass:[SIAffairInfo class]]) {
+            SIAffairInfo *affair = model.data;
+            if (affair.mainAffair.boolValue) {
+                placeholderImage = @"ic_avatar_default";
+            }
+        }
+        self.avatar.image = [UIImage imageNamed:placeholderImage];
+    }
     if (model.title.length == 0) {
         self.title.text = model.content;
         self.content.text = nil;
@@ -106,7 +123,7 @@
 - (UIImageView *)avatar {
     if (!_avatar) {
         _avatar = [UIImageView new];
-        _avatar.backgroundColor = [SIColor whiteColor];
+        _avatar.backgroundColor = [SIColor colorWithHex:0xf4f5f6];
         _avatar.layer.cornerRadius = 5;
         _avatar.layer.masksToBounds = YES;
         [self.contentView addSubview:_avatar];
