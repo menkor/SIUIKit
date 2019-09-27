@@ -352,15 +352,19 @@
 
 - (void)insertGroupItems:(NSArray *)groupItems {
     YYPhotoGroupItem *current = self.groupItems[self.pager.currentPage];
-    _groupItems = groupItems;
-    [groupItems enumerateObjectsUsingBlock:^(YYPhotoGroupItem *item, NSUInteger idx, BOOL *_Nonnull stop) {
+    NSMutableArray *some = groupItems.mutableCopy;
+    __block NSInteger oldIndex = groupItems.count - 1;
+    [groupItems enumerateObjectsWithOptions:(NSEnumerationReverse)usingBlock:^(YYPhotoGroupItem *item, NSUInteger idx, BOOL *_Nonnull stop) {
         if ([item.uuid isEqualToString:current.uuid]) {
-            self.pager.numberOfPages = self.groupItems.count;
-            self.pager.currentPage = idx;
+            oldIndex = idx;
             *stop = YES;
         }
     }];
-    _scrollView.contentSize = CGSizeMake(_scrollView.width * self.groupItems.count, _scrollView.height);
+    [some replaceObjectAtIndex:oldIndex withObject:current];
+    _groupItems = some;
+    self.pager.numberOfPages = _groupItems.count;
+    self.pager.currentPage = oldIndex;
+    _scrollView.contentSize = CGSizeMake(_scrollView.width * _groupItems.count, _scrollView.height);
     [_scrollView scrollRectToVisible:CGRectMake(_scrollView.width * _pager.currentPage, 0, _scrollView.width, _scrollView.height) animated:NO];
 }
 
