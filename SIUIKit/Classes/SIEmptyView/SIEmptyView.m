@@ -55,7 +55,9 @@
         self.button.hidden = NO;
         [self.button setTitle:theme[kSIEmptyViewThemeAction] forState:UIControlStateNormal];
     }
+    CGFloat topOffset = [theme[kSIEmptyViewThemeTopOffset] floatValue];
     [self.icon mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(self).offset(-30 + topOffset / 2);
         make.size.mas_equalTo(self.icon.image.size);
     }];
 }

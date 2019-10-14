@@ -19,6 +19,8 @@ static NSString *const kSIEmptyViewThemeIcon = @"icon";
 
 static NSString *const kSIEmptyViewThemeTitle = @"title";
 
+static NSString *const kSIEmptyViewThemeTopOffset = @"topOffset";
+
 static NSString *const kSIEmptyViewThemeAction = @"action";
 
 static NSString *const kSIEmptyViewNoNetworkingIcon = @"ic_no_network";
