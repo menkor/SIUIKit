@@ -23,7 +23,7 @@ typedef NS_ENUM(NSUInteger, SIRefreshHeaderStyle) {
 }
 
 #define kSIRefreshHeaderColorDict @{                                         \
-    @(SIRefreshHeaderStyleRed): [SIColor colorWithHex:0x926dea],             \
+    @(SIRefreshHeaderStyleRed): SIColor.primaryColor,                        \
     @(SIRefreshHeaderStyleWhite): [SIColor colorWithHex:0xffffff alpha:0.6], \
     @(SIRefreshHeaderStyleGray): [SIColor colorWithHex:0x96a7b4 alpha:0.6],  \
 }
