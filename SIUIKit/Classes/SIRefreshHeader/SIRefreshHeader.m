@@ -61,7 +61,7 @@
     [super prepare];
     // 设置控件的高度
     self.mj_h = 80;
-    self.timeout = 3;
+    self.timeout = 20;
     UILabel *label = [[UILabel alloc] init];
     label.font = [SIFont systemFontOfSize:10];
     label.textAlignment = NSTextAlignmentCenter;

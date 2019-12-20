@@ -10,10 +10,13 @@
 #define SIEmptyViewDefine_h
 
 typedef NS_ENUM(NSUInteger, SIEmptyViewType) {
+    SIEmptyViewTypeNone,
     SIEmptyViewTypeNoData,
     SIEmptyViewTypeNoNetWork,
     SIEmptyViewTypeNoPermission,
 };
+
+static NSString *const kSIEmptyViewThemeLoading = @"loading";
 
 static NSString *const kSIEmptyViewThemeIcon = @"icon";
 
