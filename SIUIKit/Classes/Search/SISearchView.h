@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol SIChatRecordSearchViewDelegate;
+@protocol SISearchViewDelegate;
 
 @interface SISearchView : UIView
 
-@property (nonatomic, weak) id<SIChatRecordSearchViewDelegate> delegate;
+@property (nonatomic, weak) id<SISearchViewDelegate> delegate;
 
 @property (nonatomic, assign) BOOL hasBackButton;
 
@@ -26,7 +26,7 @@
 
 @end
 
-@protocol SIChatRecordSearchViewDelegate <NSObject>
+@protocol SISearchViewDelegate <NSObject>
 
 @optional
 
