@@ -8,6 +8,7 @@
 
 #import "SINavigationBar.h"
 #import <Masonry/Masonry.h>
+#import <SIDefine/SIGlobalMacro.h>
 #import <SITheme/SIColor.h>
 #import <SITheme/SIFont.h>
 
@@ -28,6 +29,8 @@
 
 @property (nonatomic, strong) UIView *bottomLine;
 
+@property (nonatomic, strong) UIView *contentView;
+
 @property (nonatomic, strong) UIColor *themeColor;
 
 @property (nonatomic, strong) UIColor *textColor;
@@ -39,7 +42,7 @@
 #pragma mark - Life Cycle
 
 + (instancetype)create {
-    SINavigationBar *bar = [[self alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 64)];
+    SINavigationBar *bar = [[self alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, kTopHeight)];
     return bar;
 }
 
@@ -48,8 +51,8 @@
     if (self) {
         _visible = YES;
         [self setTheme:SINavigationThemeWhite];
-        _topBaseline = kSINavigationItemYOffset;
         self.hideNavigationBarLine = NO;
+        [self sendSubviewToBack:self.contentView];
     }
     return self;
 }
@@ -60,6 +63,18 @@
 }
 
 #pragma mark - Lazy Load
+
+- (UIView *)contentView {
+    if (!_contentView) {
+        _contentView = [UIView new];
+        [self addSubview:_contentView];
+        [_contentView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.bottom.mas_equalTo(self);
+            make.height.mas_equalTo(kSINavigationItemHeight);
+        }];
+    }
+    return _contentView;
+}
 
 - (NSMutableDictionary *)itemDict {
     if (!_itemDict) {
@@ -396,18 +411,6 @@
     return title;
 }
 
-- (void)setTopBaseline:(CGFloat)topBaseline {
-    if (topBaseline == _topBaseline) {
-        return;
-    }
-    _topBaseline = topBaseline;
-    [self.itemDict enumerateKeysAndObjectsUsingBlock:^(NSNumber *_Nonnull key, UIView *_Nonnull obj, BOOL *_Nonnull stop) {
-        self.position = key.integerValue;
-        [self adjustPosition:obj];
-    }];
-    self.position = SINavigationItemPositionError;
-}
-
 #pragma mark - Custom UI
 
 - (UIView *)addItem:(SINavigationBarAddItem)itemBlock {
@@ -427,7 +430,7 @@
             case SINavigationItemPositionLeft: {
                 [item mas_remakeConstraints:^(MASConstraintMaker *make) {
                     make.left.mas_equalTo(self.mas_left).inset(8);
-                    make.centerY.mas_equalTo(self.mas_centerY).offset(_topBaseline / 2);
+                    make.centerY.mas_equalTo(self.contentView.mas_centerY);
                     make.size.mas_equalTo(item.frame.size);
                 }];
             } break;
@@ -435,7 +438,7 @@
             case SINavigationItemPositionTitle: {
                 [item mas_remakeConstraints:^(MASConstraintMaker *make) {
                     make.centerX.mas_equalTo(self.mas_centerX);
-                    make.centerY.mas_equalTo(self.mas_centerY).offset(_topBaseline / 2);
+                    make.centerY.mas_equalTo(self.contentView.mas_centerY);
                     make.size.mas_equalTo(item.frame.size);
                 }];
             } break;
@@ -443,7 +446,7 @@
             case SINavigationItemPositionRight: {
                 [item mas_remakeConstraints:^(MASConstraintMaker *make) {
                     make.right.mas_equalTo(self.mas_right).inset(8);
-                    make.centerY.mas_equalTo(self.mas_centerY).offset(_topBaseline / 2);
+                    make.centerY.mas_equalTo(self.contentView.mas_centerY);
                     make.size.mas_equalTo(item.frame.size);
                 }];
             } break;
@@ -460,13 +463,13 @@
                     if (idx == 0) {
                         [item mas_makeConstraints:^(MASConstraintMaker *make) {
                             make.left.mas_equalTo(self).inset(8);
-                            make.centerY.mas_equalTo(self.mas_centerY).offset(_topBaseline / 2);
+                            make.centerY.mas_equalTo(self.contentView.mas_centerY);
                             make.size.mas_equalTo(item.frame.size);
                         }];
                     } else {
                         [item mas_makeConstraints:^(MASConstraintMaker *make) {
                             make.left.mas_equalTo(pre.mas_right);
-                            make.centerY.mas_equalTo(self.mas_centerY).offset(_topBaseline / 2);
+                            make.centerY.mas_equalTo(self.contentView.mas_centerY);
                             make.size.mas_equalTo(item.frame.size);
                         }];
                     }
@@ -479,13 +482,13 @@
                     if (idx == 0) {
                         [item mas_makeConstraints:^(MASConstraintMaker *make) {
                             make.right.mas_equalTo(self.mas_right).inset(8);
-                            make.centerY.mas_equalTo(self.mas_centerY).offset(_topBaseline / 2);
+                            make.centerY.mas_equalTo(self.contentView.mas_centerY);
                             make.size.mas_equalTo(item.frame.size);
                         }];
                     } else {
                         [item mas_makeConstraints:^(MASConstraintMaker *make) {
                             make.left.mas_equalTo(pre.mas_left);
-                            make.centerY.mas_equalTo(self.mas_centerY).offset(_topBaseline / 2);
+                            make.centerY.mas_equalTo(self.contentView.mas_centerY);
                             make.size.mas_equalTo(item.frame.size);
                         }];
                     }
@@ -521,7 +524,7 @@
             self.itemParamDict[key] = @(YES);
         }
         self.itemDict[@(self.position)] = @[item];
-        [self addSubview:item];
+        [self.contentView addSubview:item];
         [self adjustPosition:@[item]];
         self.position = SINavigationItemPositionError;
         return item;
@@ -532,7 +535,7 @@
                 self.actionBlockDict[key] = actionBlock;
                 self.itemParamDict[key] = @(YES);
             }
-            [self addSubview:item];
+            [self.contentView addSubview:item];
         }];
         self.itemDict[@(self.position)] = itemArray;
         [self adjustPosition:itemArray];

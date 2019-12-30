@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SIUIKit'
-  s.version          = '0.1.77'
+  s.version          = '0.1.78'
   s.summary          = 'SIUIKit.'
 
 # This description is used to generate tags and improve search results.
