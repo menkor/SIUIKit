@@ -414,10 +414,9 @@
 #pragma mark - Custom UI
 
 - (UIView *)addItem:(SINavigationBarAddItem)itemBlock {
-    if (self.operation == SINavigationItemPositionAdd) {
-        return [self addItem:itemBlock action:nil];
-    }
-    return nil;
+    self.operation = SINavigationItemPositionAdd;
+    return [self addItem:itemBlock action:nil];
+    ;
 }
 
 - (void)adjustPosition:(NSArray<UIView *> *)itemArray {
