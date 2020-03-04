@@ -8,6 +8,7 @@
 
 #import "SIEmptyView.h"
 #import <Masonry/Masonry.h>
+#import <SIDefine/SIGlobalMacro.h>
 #import <SITheme/SIColor.h>
 #import <SITheme/SIFont.h>
 #import <SIUtils/NSString+SIKit.h>
@@ -59,7 +60,13 @@
     NSDictionary *theme = kSIEmptyViewThemeDict[model] ?: self.theme;
     self.indicatorView.hidden = YES;
     self.title.text = theme[kSIEmptyViewThemeTitle];
-    CGFloat titleWidth = [self.title.text si_sizeFitWidth:CGFLOAT_MAX font:self.title.font].width;
+    if (theme[kSIEmptyViewThemeBackgroundColor]) {
+        self.backgroundColor = theme[kSIEmptyViewThemeBackgroundColor];
+    } else {
+        self.backgroundColor = [SIColor colorWithHex:0xf7f7f7];
+    }
+    CGSize titleSize = [self.title.text si_sizeFitWidth:ScreenWidth - 120 font:self.title.font];
+    CGFloat titleWidth = titleSize.width;
     _button.hidden = YES;
     if (theme[kSIEmptyViewThemeAction]) {
         self.button.hidden = NO;
@@ -80,6 +87,7 @@
         [self.title mas_updateConstraints:^(MASConstraintMaker *make) {
             make.centerX.mas_equalTo(self);
             make.width.mas_equalTo(titleWidth);
+            make.height.mas_equalTo(titleSize.height);
         }];
     }
 
@@ -112,6 +120,7 @@
         _title.textColor = [SIColor colorWithHex:0x9b9b9b];
         _title.textAlignment = NSTextAlignmentCenter;
         _title.font = [SIFont lightSystemFontOfSize:12];
+        _title.numberOfLines = 0;
         [self addSubview:_title];
     }
     return _title;
@@ -152,6 +161,82 @@
         [self addSubview:_indicatorView];
     }
     return _indicatorView;
+}
+
+@end
+
+@interface SIAutoRefreshFooter ()
+
+@property (nonatomic, strong) UIActivityIndicatorView *indicatorView;
+
+@property (nonatomic, strong) UILabel *content;
+
+@end
+
+@implementation SIAutoRefreshFooter
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (!self) {
+        return nil;
+    }
+    [self initUI];
+    return self;
+}
+
+- (void)initUI {
+    [self.indicatorView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self);
+        make.right.mas_equalTo(self.content.mas_left).inset(5);
+        make.width.mas_equalTo(24);
+        make.height.mas_equalTo(44);
+    }];
+
+    [self.content mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self);
+        make.height.mas_equalTo(44);
+        make.centerX.mas_equalTo(self).inset(15);
+        make.width.mas_equalTo(80);
+    }];
+    self.content.text = @"正在加载...";
+    [self.indicatorView startAnimating];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(action:)];
+    [self addGestureRecognizer:tap];
+}
+
+- (void)reloadWithData:(NSString *)model {
+    self.content.text = model ?: @"正在加载...";
+}
+
+- (void)action:(id)sender {
+    if (self.actionBlock) {
+        self.actionBlock(nil);
+    }
+}
+
+#pragma mark - Lazy Load
+
+- (UIView *)contentView {
+    return self;
+}
+
+- (UIActivityIndicatorView *)indicatorView {
+    if (!_indicatorView) {
+        _indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:(UIActivityIndicatorViewStyleGray)];
+        [self.contentView addSubview:_indicatorView];
+    }
+    return _indicatorView;
+}
+
+- (UILabel *)content {
+    if (!_content) {
+        _content = [[UILabel alloc] init];
+        _content.textColor = [SIColor colorWithHex:0x9b9b9b];
+        _content.textAlignment = NSTextAlignmentRight;
+        _content.font = [SIFont systemFontOfSize:14];
+        [self.contentView addSubview:_content];
+    }
+    return _content;
 }
 
 @end

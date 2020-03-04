@@ -28,6 +28,20 @@
 + (void)showError:(NSString *)error;
 
 /**
+ auto dismiss after 1.5s
+
+ @param @info it's an info
+ */
++ (void)showInfo:(NSString *)info;
+
+/**
+ auto dismiss after 1.5s
+
+ @param @warning it's a warning
+ */
++ (void)showWarning:(NSString *)warning;
+
+/**
  
  @param @waiting just what you wanna tell users
  */

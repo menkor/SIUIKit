@@ -113,13 +113,23 @@
     [box hideAfterDelay:1.5];
 }
 
++ (void)showInfo:(NSString *)info {
+    SIMessageBox *box = [SIMessageBox boxWithType:SIMessageBoxStatusInfo title:info message:nil];
+    [box hideAfterDelay:1.5];
+}
+
 + (void)showError:(NSString *)error {
     SIMessageBox *box = [SIMessageBox boxWithType:SIMessageBoxStatusError title:error message:nil];
     [box hideAfterDelay:1.5];
 }
 
++ (void)showWarning:(NSString *)warning {
+    SIMessageBox *box = [SIMessageBox boxWithType:SIMessageBoxStatusWarning title:warning message:nil];
+    [box hideAfterDelay:1.5];
+}
+
 + (void)showWaiting:(NSString *)waiting {
-    [self showWaiting:waiting hideAfterDelay:-1];
+    [self showWaiting:waiting hideAfterDelay:20];
 }
 
 + (void)showWaiting:(NSString *)waiting hideAfterDelay:(CGFloat)delay {
@@ -207,7 +217,7 @@
     alertView.backgroundColor = [UIColor clearColor];
     alertView.title = title.length > 0 ? title : nil;
     alertView.message = message.length > 0 ? message : nil;
-    alertView.animated = YES;
+    alertView.animated = NO;
     return alertView;
 }
 
@@ -231,7 +241,7 @@
 
 - (void)addIconView {
     SIMessageBoxType status = self.type & SIMessageBoxStatusMask;
-    if (status == SIMessageBoxStatusNone) {
+    if (status == SIMessageBoxStatusNone || status == SIMessageBoxStatusInfo) {
         return;
     }
     CGRect frame = self.containerView.frame;
@@ -251,14 +261,22 @@
         return;
     }
     self.containerView.frame = frame;
+    CGSize iconSize = CGSizeMake(40, 40);
+    CGFloat topOffset = kSIMessageBoxIconTop;
     UIImageView *icon = [[UIImageView alloc] init];
     if (status == SIMessageBoxStatusError) {
         icon.image = kSIMessageErrorIcon;
     } else if (status == SIMessageBoxStatusSuccess) {
         icon.image = kSIMessageSuccessIcon;
+    } else if (status == SIMessageBoxStatusWarning) {
+        icon.image = kSIMessageWarningIcon;
+        frame.size.width = 130;
+        topOffset = 30;
+        self.containerView.frame = frame;
     }
     [self.contentView addSubview:icon];
-    icon.frame = CGRectMake((frame.size.width - 40) / 2, kSIMessageBoxIconTop, 40, 40);
+
+    icon.frame = CGRectMake((frame.size.width - iconSize.width) / 2, topOffset, iconSize.width, iconSize.height);
 }
 
 - (CGSize)content:(NSString *)content font:(UIFont *)font fitWidth:(CGFloat)width {
@@ -275,7 +293,12 @@
     if (self.title) {
         CGRect frame = self.containerView.frame;
         UIFont *titleFont = self.theme[@"titleFont"] ?: kSIMessageBoxTitleFont;
-        CGFloat titleWidth = frame.size.width - kSIMessageBoxMessageXOffset * 2;
+        CGFloat xOffset = kSIMessageBoxMessageXOffset;
+        if (self.type == SIMessageBoxStatusWarning) {
+            titleFont = [SIFont systemFontOfSize:12];
+            xOffset = 12;
+        }
+        CGFloat titleWidth = frame.size.width - xOffset * 2;
         CGSize titleSize = [self content:self.title font:titleFont fitWidth:titleWidth];
         CGFloat titleYOffset = [self.theme[@"titleYOffset"] floatValue];
         UIEdgeInsets insets = [self.theme[@"insets"] UIEdgeInsetsValue];
@@ -285,6 +308,13 @@
         CGFloat titleHeight = titleSize.height + titleYOffset;
         frame.size.height += titleHeight;
         frame.size.height += insets.top;
+        if (self.type == SIMessageBoxStatusInfo) {
+            frame.size.width = MIN(titleSize.width + xOffset * 2, kSIMessageBoxWidth);
+            titleWidth = frame.size.width - xOffset * 2;
+        }
+        if (self.type == SIMessageBoxStatusWarning) {
+            frame.size.height = 130;
+        }
         self.containerView.frame = frame;
         UILabel *titleLabel = [[UILabel alloc] init];
         titleLabel.numberOfLines = 0;
@@ -292,14 +322,14 @@
         titleLabel.text = self.title;
         if ((self.type & SIMessageBoxTypeMask) == SIMessageBoxTypeNone) {
             titleLabel.textColor = self.theme[@"titleColor"] ?: kSIMessageBoxMessageTextColor;
-            titleLabel.frame = CGRectMake(kSIMessageBoxMessageXOffset,
+            titleLabel.frame = CGRectMake(xOffset,
                                           frame.size.height - titleHeight,
                                           titleWidth,
                                           titleHeight);
         } else {
             titleLabel.textColor = self.theme[@"titleColor"] ?: kSIMessageBoxMessageTextBlackColor;
-            titleLabel.frame = CGRectMake(kSIMessageBoxMessageXOffset,
-                                          frame.size.height - titleHeight + kSIMessageBoxTitleYOffset / 2,
+            titleLabel.frame = CGRectMake(xOffset,
+                                          frame.size.height - titleHeight + titleYOffset / 2,
                                           titleWidth,
                                           titleHeight);
         }
@@ -556,6 +586,11 @@
     [self initSubviews];
     if (animated) {
         [self animation];
+    } else {
+        self.backgroundColor = self.coverColor;
+        if (self.onShowup) {
+            self.onShowup(self.containerView);
+        }
     }
     UIView *superView = self.fromView ?: [UIApplication sharedApplication].keyWindow;
     self.backgroudView = [[UIScrollView alloc] initWithFrame:superView.bounds];

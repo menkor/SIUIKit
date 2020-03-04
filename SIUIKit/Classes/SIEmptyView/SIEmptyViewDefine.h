@@ -26,6 +26,8 @@ static NSString *const kSIEmptyViewThemeTopOffset = @"topOffset";
 
 static NSString *const kSIEmptyViewThemeAction = @"action";
 
+static NSString *const kSIEmptyViewThemeBackgroundColor = @"backgroundColor";
+
 static NSString *const kSIEmptyViewNoNetworkingIcon = @"ic_no_network";
 
 static NSString *const kSIEmptyViewNoNetworkingTitle = @"网络连接失败";

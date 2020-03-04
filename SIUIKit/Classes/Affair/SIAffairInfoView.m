@@ -9,11 +9,14 @@
 #import "SIAffairInfoView.h"
 #import <Masonry/Masonry.h>
 #import <SIBase/SIFormItem.h>
+#import <SIDefine/SIAffairDefine.h>
 #import <SIDefine/SIGlobalMacro.h>
 #import <SIDefine/SITypeDefine.h>
 #import <SIRequestKit/SIAffairInfo.h>
 #import <SITheme/SIColor.h>
 #import <SITheme/SIFont.h>
+#import <SIUtils/NSString+SIKit.h>
+#import <SIUtils/UIImage+SIUtils.h>
 #import <SIUtils/UIImageView+SIKit.h>
 #import <SIUtils/UIView+SIAutoSize.h>
 
@@ -71,13 +74,7 @@
 
 - (void)reloadWithData:(SIFormItem *)model {
     if (model.avatar.length > 0) {
-        [self.avatar si_setImageWithURL:model.avatar completed:^(UIImage * _Nullable image, NSError * _Nullable error, NSInteger cacheType, NSURL * _Nullable imageURL) {
-            if (error) {
-                self.avatar.backgroundColor = [SIColor colorWithHex:0xf4f5f6];
-            } else {
-                self.avatar.backgroundColor = UIColor.clearColor;
-            }
-        }];
+        [self.avatar si_setImageWithURL:model.avatar placeholderImage:[UIImage imageWithColor:[SIColor colorWithHex:0xf4f5f6]]];
     } else {
         NSString *placeholderImage = @"ic_default";
         if ([model.data isKindOfClass:[SIAffairInfo class]]) {
@@ -97,12 +94,17 @@
     } else {
         self.title.text = model.title;
         self.content.text = model.content;
-        [self.title mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo(21);
-        }];
+        if (model.width == 0) {
+            [self.title mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.height.mas_equalTo(21);
+            }];
+        }
     }
     self.autherized.hidden = YES;
-    [self.title si_widthToFitMax:ScreenWidth - 210];
+    CGFloat avatarWidth = 30;
+    if (model.width > 0) {
+        avatarWidth = model.width;
+    }
     if ([model.data isKindOfClass:[SIAffairInfo class]]) {
         SIAffairInfo *affair = model.data;
         self.autherized.hidden = ![affair.authStatus isEqualToNumber:@(SIUserAuthStatusSuccess)];
@@ -110,8 +112,28 @@
             NSString *autherizedIcon = affair.allianceType.integerValue == 0 ? @"ic_renzheng" : @"ic_qiyerenzheng";
             self.autherized.image = [UIImage imageNamed:autherizedIcon];
         }
-        self.avatar.layer.cornerRadius = affair.allianceType.integerValue == 0/*个人盟*/ ? 15 : 5;
+        self.avatar.layer.cornerRadius = affair.allianceType.integerValue == SIAffairAllianceTypeRoot /*个人盟*/ ? (avatarWidth / 2) : 5;
     }
+    if (model.width > 0) {
+        self.title.font = [SIFont systemFontOfSize:16];
+        CGFloat width = [model.title si_widthWithFont:self.title.font];
+        width = MIN(width, ScreenWidth - 120 - model.width - 8);
+        [self.title mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.mas_equalTo(self).offset(model.width / 2 + 8);
+            make.centerY.mas_equalTo(self.avatar);
+            make.height.mas_equalTo(self.avatar);
+            make.width.mas_equalTo(width);
+        }];
+        [self.avatar mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.right.mas_equalTo(self.title.mas_left).inset(8);
+            make.centerY.mas_equalTo(self.contentView);
+            make.width.height.mas_equalTo(avatarWidth);
+        }];
+        self.title.textColor = [SIColor colorWithHex:0x4A4A4A];
+        return;
+    }
+
+    [self.title si_widthToFitMax:ScreenWidth - 210];
 }
 
 #pragma mark - Lazy Load

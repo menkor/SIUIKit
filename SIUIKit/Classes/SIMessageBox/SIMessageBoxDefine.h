@@ -9,6 +9,8 @@
 #ifndef SIMessageBoxDefine_h
 #define SIMessageBoxDefine_h
 
+#import <UIKit/UIKit.h>
+
 typedef NS_OPTIONS(NSUInteger, SIMessageBoxType) {
     SIMessageBoxTypeNone = 0x00,
     SIMessageBoxTypeOK = 0x01,
@@ -20,6 +22,8 @@ typedef NS_OPTIONS(NSUInteger, SIMessageBoxType) {
     SIMessageBoxStatusError = 0x10,
     SIMessageBoxStatusSuccess = 0x20,
     SIMessageBoxStatusWaiting = 0x30,
+    SIMessageBoxStatusInfo = 0x40,
+    SIMessageBoxStatusWarning = 0x50,
     SIMessageBoxStatusMask = 0xF0,
 };
 
@@ -49,6 +53,8 @@ typedef void (^SIMessageBoxActionBlock)(NSInteger index);
 #define kSIMessageErrorIcon [UIImage imageNamed:@"ic_message_error"]
 
 #define kSIMessageSuccessIcon [UIImage imageNamed:@"ic_message_success"]
+
+#define kSIMessageWarningIcon [UIImage imageNamed:@"ic_message_warning"]
 
 static const CGFloat kSIMessageBoxRadius = 8.0f;
 static const CGFloat kSIMessageBoxWidth = 270.0f;

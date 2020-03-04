@@ -7,6 +7,7 @@
 //
 
 #import "SIEmptyViewDefine.h"
+#import <SIDefine/SIDataBindDefine.h>
 #import <UIKit/UIKit.h>
 
 @interface SIEmptyView : UIView
@@ -16,5 +17,11 @@
 - (void)reloadWithData:(id)model;
 
 @property (nonatomic, copy) void (^actionBlock)(id data);
+
+@end
+
+@interface SIAutoRefreshFooter : UIView <SIDataBindProtocol>
+
+@property (nonatomic, copy) SIBindActionBlock actionBlock;
 
 @end
