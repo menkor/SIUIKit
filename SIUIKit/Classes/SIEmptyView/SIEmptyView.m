@@ -165,6 +165,60 @@
 
 @end
 
+@interface SIAutoRefreshHeader ()
+
+@property (nonatomic, strong) UIActivityIndicatorView *indicatorView;
+
+@end
+
+@implementation SIAutoRefreshHeader
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (!self) {
+        return nil;
+    }
+    [self initUI];
+    return self;
+}
+
+- (void)initUI {
+    [self.indicatorView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self);
+        make.centerX.mas_equalTo(self);
+        make.width.mas_equalTo(24);
+        make.height.mas_equalTo(44);
+    }];
+    [self.indicatorView startAnimating];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(action:)];
+    [self addGestureRecognizer:tap];
+}
+
+- (void)reloadWithData:(NSString *)model {
+}
+
+- (void)action:(id)sender {
+    if (self.actionBlock) {
+        self.actionBlock(nil);
+    }
+}
+
+#pragma mark - Lazy Load
+
+- (UIView *)contentView {
+    return self;
+}
+
+- (UIActivityIndicatorView *)indicatorView {
+    if (!_indicatorView) {
+        _indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:(UIActivityIndicatorViewStyleGray)];
+        [self.contentView addSubview:_indicatorView];
+    }
+    return _indicatorView;
+}
+
+@end
+
 @interface SIAutoRefreshFooter ()
 
 @property (nonatomic, strong) UIActivityIndicatorView *indicatorView;

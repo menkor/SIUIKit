@@ -20,6 +20,12 @@
 
 @end
 
+@interface SIAutoRefreshHeader : UIView <SIDataBindProtocol>
+
+@property (nonatomic, copy) SIBindActionBlock actionBlock;
+
+@end
+
 @interface SIAutoRefreshFooter : UIView <SIDataBindProtocol>
 
 @property (nonatomic, copy) SIBindActionBlock actionBlock;

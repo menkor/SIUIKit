@@ -121,6 +121,13 @@
 #pragma mark 输入改变通知
 
 - (void)editingChanged:(UITextField *)textField {
+    UITextRange *selectedRange = [textField markedTextRange];
+    //获取高亮部分
+    UITextPosition *position = [textField positionFromPosition:selectedRange.start offset:0];
+    // 有高亮选择的字，说明不是拼音输入
+    if (position) {
+        return;
+    }
     NSString *searchString = self.textField.text;
     if (self.keyText && ![@"" isEqualToString:searchString]) {
         searchString = [searchString substringFromIndex:self.keyText.length + 1];
