@@ -68,7 +68,7 @@
     [self addSubview:label];
     self.statusLabel = label;
     [label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.mas_top).offset(9);
+        make.top.mas_equalTo(self.mas_top).offset(15);
         make.height.mas_equalTo(12);
         make.right.left.mas_equalTo(self);
     }];
@@ -101,23 +101,35 @@
     if (self.state == MJRefreshStateIdle) {
         return;
     }
+    if (self.resultState == SIRefreshResultStateSuccess) {
+        return;
+    }
     NSTimeInterval timeInterval = kSIRefreshMinPullingTimeInterval - self.minPullingTimeInterval;
     if (timeInterval > 0) {
         [self.minPullingTimer invalidate];
         self.minPullingTimer = nil;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(timeInterval * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             self.resultState = SIRefreshResultStateSuccess;
-            [self resetState];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self resetState];
+            });
         });
     } else {
         self.resultState = SIRefreshResultStateSuccess;
-        [self resetState];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self resetState];
+        });
     }
 }
 
 - (void)fail {
+    if (self.resultState == SIRefreshResultStateError) {
+        return;
+    }
     self.resultState = SIRefreshResultStateError;
-    [self resetState];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self resetState];
+    });
 }
 
 #pragma mark -Timer
@@ -173,9 +185,11 @@
     switch (self.resultState) {
         case SIRefreshResultStateError:
             self.statusLabel.text = [self stateText:kSIRefreshHeaderTitleError];
+            [self stopAnimation];
             break;
         case SIRefreshResultStateSuccess:
             self.statusLabel.text = [self stateText:kSIRefreshHeaderTitleSuccess];
+            [self stopAnimation];
             break;
         default:
             break;

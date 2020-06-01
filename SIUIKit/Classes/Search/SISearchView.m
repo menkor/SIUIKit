@@ -172,7 +172,8 @@
         _textField.layer.cornerRadius = 5;
         _textField.layer.masksToBounds = YES;
         _textField.placeholder = @"搜索";
-        _textField.font = [SIFont systemFontOfSize:12];
+        _textField.font = [SIFont systemFontOfSize:14];
+        _textField.textColor = [SIColor colorWithHex:0x4A4A4A];
         _textField.clearButtonMode = UITextFieldViewModeWhileEditing;
         _textField.leftViewMode = UITextFieldViewModeAlways;
         _textField.returnKeyType = UIReturnKeySearch;
@@ -198,8 +199,8 @@
         self.textField.text = @"";
         return;
     }
-    NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc] initWithString:self.keyText attributes:@{NSFontAttributeName: [SIFont systemFontOfSize:12], NSForegroundColorAttributeName: SIColor.primaryColor}];
-    [attributeString appendAttributedString:[[NSAttributedString alloc] initWithString:@" " attributes:@{NSFontAttributeName: [SIFont systemFontOfSize:12], NSForegroundColorAttributeName: [SIColor colorWithHex:0x4a4a4a]}]];
+    NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc] initWithString:self.keyText attributes:@{NSFontAttributeName: [SIFont systemFontOfSize:14], NSForegroundColorAttributeName: SIColor.primaryColor}];
+    [attributeString appendAttributedString:[[NSAttributedString alloc] initWithString:@" " attributes:@{NSFontAttributeName: [SIFont systemFontOfSize:14], NSForegroundColorAttributeName: [SIColor colorWithHex:0x4a4a4a]}]];
     self.textField.attributedText = attributeString;
 }
 

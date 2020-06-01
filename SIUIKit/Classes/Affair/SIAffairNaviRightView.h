@@ -26,6 +26,8 @@ typedef NS_ENUM(NSUInteger, SIAffairNaviRightActionType) {
 
 @property (nonatomic, assign) BOOL showRight;
 
+@property (nonatomic, assign) BOOL hideRole;
+
 @property (nonatomic, copy) NSString *rightIcon;
 
 @property (nonatomic, strong) SIAffairInfo *affair;

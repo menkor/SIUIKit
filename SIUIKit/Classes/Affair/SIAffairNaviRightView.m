@@ -73,6 +73,11 @@
     if (self.item.rightIcon && self.item.showRight) {
         [self.more setImage:[UIImage imageNamed:self.item.rightIcon] forState:UIControlStateNormal];
     }
+    if (self.item.hideRole) {
+        self.role.hidden = YES;
+    } else {
+        self.role.hidden = NO;
+    }
     [self.extraArea.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     if (self.item.extra.count > 0) {
         __block UIView *pre = nil;

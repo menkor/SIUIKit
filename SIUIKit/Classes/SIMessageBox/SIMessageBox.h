@@ -18,36 +18,36 @@
 
  @param @message just what you wanna tell users
  */
-+ (void)showMessage:(NSString *)message;
++ (instancetype)showMessage:(NSString *)message;
 
 /**
  auto dismiss after 1.5s
 
  @param @error it's an error
  */
-+ (void)showError:(NSString *)error;
++ (instancetype)showError:(NSString *)error;
 
 /**
  auto dismiss after 1.5s
 
  @param @info it's an info
  */
-+ (void)showInfo:(NSString *)info;
++ (instancetype)showInfo:(NSString *)info;
 
 /**
  auto dismiss after 1.5s
 
  @param @warning it's a warning
  */
-+ (void)showWarning:(NSString *)warning;
++ (instancetype)showWarning:(NSString *)warning;
 
 /**
  
  @param @waiting just what you wanna tell users
  */
-+ (void)showWaiting:(NSString *)waiting;
++ (instancetype)showWaiting:(NSString *)waiting;
 
-+ (void)showWaiting:(NSString *)waiting hideAfterDelay:(CGFloat)delay;
++ (instancetype)showWaiting:(NSString *)waiting hideAfterDelay:(CGFloat)delay;
 
 + (void)hideWaiting;
 
@@ -133,6 +133,8 @@
 - (void)setCustomMessageView:(UIView *)view;
 
 #pragma mark - Event
+
+@property (nonatomic, copy) BOOL (^touchInBackground)(CGPoint point);
 
 @property (nonatomic, copy) void (^onShowup)(UIView *contentView);
 

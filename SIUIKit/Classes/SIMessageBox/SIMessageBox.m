@@ -108,37 +108,42 @@
 
 #pragma mark - Default Builder
 
-+ (void)showMessage:(NSString *)message {
++ (instancetype)showMessage:(NSString *)message {
     SIMessageBox *box = [SIMessageBox boxWithType:SIMessageBoxStatusSuccess title:message message:nil];
     [box hideAfterDelay:1.5];
+    return box;
 }
 
-+ (void)showInfo:(NSString *)info {
++ (instancetype)showInfo:(NSString *)info {
     SIMessageBox *box = [SIMessageBox boxWithType:SIMessageBoxStatusInfo title:info message:nil];
     [box hideAfterDelay:1.5];
+    return box;
 }
 
-+ (void)showError:(NSString *)error {
++ (instancetype)showError:(NSString *)error {
     SIMessageBox *box = [SIMessageBox boxWithType:SIMessageBoxStatusError title:error message:nil];
     [box hideAfterDelay:1.5];
+    return box;
 }
 
-+ (void)showWarning:(NSString *)warning {
++ (instancetype)showWarning:(NSString *)warning {
     SIMessageBox *box = [SIMessageBox boxWithType:SIMessageBoxStatusWarning title:warning message:nil];
     [box hideAfterDelay:1.5];
+    return box;
 }
 
-+ (void)showWaiting:(NSString *)waiting {
-    [self showWaiting:waiting hideAfterDelay:20];
++ (instancetype)showWaiting:(NSString *)waiting {
+    return [self showWaiting:waiting hideAfterDelay:20];
 }
 
-+ (void)showWaiting:(NSString *)waiting hideAfterDelay:(CGFloat)delay {
++ (instancetype)showWaiting:(NSString *)waiting hideAfterDelay:(CGFloat)delay {
     SIMessageBox *box = [SIMessageBox boxWithType:SIMessageBoxStatusWaiting title:waiting message:nil];
     if (delay > 0) {
         [box hideAfterDelay:delay];
     } else {
         [box show];
     }
+    return box;
 }
 
 + (void)hideWaiting {
@@ -191,6 +196,9 @@
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
     CGPoint touchPoint = [touch locationInView:self];
     BOOL touchInBackground = !CGRectContainsPoint(self.containerView.frame, touchPoint);
+    if (self.touchInBackground && self.touchInBackground(touchPoint)) {
+        return NO;
+    }
     if (touchInBackground && !self.isWaiting && !self.hold) {
         if (self.allActionBlock) {
             self.allActionBlock(SIMessageBoxButtonIndexCancel);

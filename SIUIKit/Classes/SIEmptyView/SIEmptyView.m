@@ -94,7 +94,7 @@
     CGFloat topOffset = [theme[kSIEmptyViewThemeTopOffset] floatValue];
     CGSize size = self.icon.image.size;
     [self.icon mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(self).offset(-30 + topOffset / 2);
+        make.centerY.mas_equalTo(self).offset(topOffset / 2);
         make.size.mas_equalTo(size);
     }];
 }
