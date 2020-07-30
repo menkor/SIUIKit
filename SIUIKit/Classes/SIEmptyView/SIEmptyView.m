@@ -12,12 +12,14 @@
 #import <SITheme/SIColor.h>
 #import <SITheme/SIFont.h>
 #import <SIUtils/NSString+SIKit.h>
+#import <YYKit/YYAnimatedImageView.h>
+#import <YYKit/YYImage.h>
 
 @interface SIEmptyView ()
 
 @property (nonatomic, strong) UIActivityIndicatorView *indicatorView;
 
-@property (nonatomic, strong) UIImageView *icon;
+@property (nonatomic, strong) YYAnimatedImageView *icon;
 
 @property (nonatomic, strong) UILabel *title;
 
@@ -45,8 +47,8 @@
 
     [self.indicatorView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(44, 44));
-        make.centerY.mas_equalTo(self.title);
-        make.right.mas_equalTo(self.title.mas_left);
+        make.centerY.mas_equalTo(self);
+        make.centerX.mas_equalTo(self);
     }];
 
     [self.title mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -59,6 +61,7 @@
 - (void)reloadWithData:(NSNumber *)model {
     NSDictionary *theme = kSIEmptyViewThemeDict[model] ?: self.theme;
     self.indicatorView.hidden = YES;
+    [self.indicatorView stopAnimating];
     self.title.text = theme[kSIEmptyViewThemeTitle];
     if (theme[kSIEmptyViewThemeBackgroundColor]) {
         self.backgroundColor = theme[kSIEmptyViewThemeBackgroundColor];
@@ -72,31 +75,36 @@
         self.button.hidden = NO;
         [self.button setTitle:theme[kSIEmptyViewThemeAction] forState:UIControlStateNormal];
     }
-
-    if ([theme[kSIEmptyViewThemeLoading] boolValue]) {
+    if ([theme[kSIEmptyViewThemeNoNetWork] boolValue]) {
+        self.icon.image = [YYImage imageNamed:@"熊猫星球.gif"];
+        CGFloat topOffset = [theme[kSIEmptyViewThemeTopOffset] floatValue];
+        [self.icon mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.centerY.mas_equalTo(self).offset(topOffset / 2);
+            make.size.mas_equalTo(CGSizeMake(120, 120));
+        }];
+    } else if ([theme[kSIEmptyViewThemeLoading] boolValue]) {
+        self.icon.image = nil;
         self.indicatorView.hidden = NO;
         [self.indicatorView startAnimating];
-        self.icon.image = nil;
-        [self.title mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.centerX.mas_equalTo(self).offset(22);
-            make.width.mas_equalTo(titleWidth);
+        CGFloat topOffset = [theme[kSIEmptyViewThemeTopOffset] floatValue];
+        [self.indicatorView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.centerY.mas_equalTo(self).offset(topOffset / 2);
         }];
+        self.title.text = nil;
     } else {
-        [self.indicatorView stopAnimating];
         self.icon.image = [UIImage imageNamed:theme[kSIEmptyViewThemeIcon] ?: @"ic_no_content"];
         [self.title mas_updateConstraints:^(MASConstraintMaker *make) {
             make.centerX.mas_equalTo(self);
             make.width.mas_equalTo(titleWidth);
             make.height.mas_equalTo(titleSize.height);
         }];
+        CGFloat topOffset = [theme[kSIEmptyViewThemeTopOffset] floatValue];
+        CGSize size = self.icon.image.size;
+        [self.icon mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.centerY.mas_equalTo(self).offset(topOffset / 2);
+            make.size.mas_equalTo(size);
+        }];
     }
-
-    CGFloat topOffset = [theme[kSIEmptyViewThemeTopOffset] floatValue];
-    CGSize size = self.icon.image.size;
-    [self.icon mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(self).offset(topOffset / 2);
-        make.size.mas_equalTo(size);
-    }];
 }
 
 - (void)setTheme:(NSDictionary *)theme {
@@ -126,9 +134,9 @@
     return _title;
 }
 
-- (UIImageView *)icon {
+- (YYAnimatedImageView *)icon {
     if (!_icon) {
-        _icon = [[UIImageView alloc] init];
+        _icon = [[YYAnimatedImageView alloc] init];
         [self addSubview:_icon];
     }
     return _icon;
@@ -137,17 +145,17 @@
 - (UIButton *)button {
     if (!_button) {
         _button = [UIButton buttonWithType:UIButtonTypeCustom];
-        _button.layer.borderColor = [SIColor colorWithHex:0x979797].CGColor;
+        _button.layer.borderColor = [SIColor primaryColor].CGColor;
         _button.layer.borderWidth = 0.5;
         _button.layer.cornerRadius = 12;
         _button.layer.masksToBounds = YES;
-        _button.titleLabel.font = [SIFont lightSystemFontOfSize:12];
-        [_button setTitleColor:[SIColor colorWithHex:0x9b9b9b] forState:UIControlStateNormal];
+        _button.titleLabel.font = [SIFont systemFontOfSize:10];
+        [_button setTitleColor:[SIColor primaryColor] forState:UIControlStateNormal];
         [self addSubview:_button];
         [_button mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(84, 24));
+            make.size.mas_equalTo(CGSizeMake(64, 24));
             make.centerX.mas_equalTo(self);
-            make.top.mas_equalTo(self.title.mas_bottom).offset(24);
+            make.top.mas_equalTo(self.title.mas_bottom).offset(20);
         }];
         [_button addTarget:self action:@selector(action:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -241,25 +249,25 @@
 - (void)initUI {
     [self.indicatorView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self);
-        make.right.mas_equalTo(self.content.mas_left).inset(5);
+        make.centerX.mas_equalTo(self);
         make.width.mas_equalTo(24);
         make.height.mas_equalTo(44);
     }];
 
-    [self.content mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self);
-        make.height.mas_equalTo(44);
-        make.centerX.mas_equalTo(self).inset(15);
-        make.width.mas_equalTo(80);
-    }];
-    self.content.text = @"正在加载...";
+    //    [self.content mas_makeConstraints:^(MASConstraintMaker *make) {
+    //        make.top.mas_equalTo(self);
+    //        make.height.mas_equalTo(44);
+    //        make.centerX.mas_equalTo(self).inset(15);
+    //        make.width.mas_equalTo(80);
+    //    }];
+    //self.content.text = @"正在加载...";
     [self.indicatorView startAnimating];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(action:)];
     [self addGestureRecognizer:tap];
 }
 
 - (void)reloadWithData:(NSString *)model {
-    self.content.text = model ?: @"正在加载...";
+    //self.content.text = model ?: @"正在加载...";
 }
 
 - (void)action:(id)sender {

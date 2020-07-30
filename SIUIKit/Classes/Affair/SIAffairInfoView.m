@@ -76,7 +76,7 @@
     if (model.avatar.length > 0) {
         [self.avatar si_setImageWithURL:model.avatar placeholderImage:[UIImage imageWithColor:[SIColor colorWithHex:0xf4f5f6]]];
     } else {
-        NSString *placeholderImage = @"ic_default";
+        NSString *placeholderImage = @"affair_default_avatar";
         if ([model.data isKindOfClass:[SIAffairInfo class]]) {
             SIAffairInfo *affair = model.data;
             if (affair.mainAffair.boolValue) {

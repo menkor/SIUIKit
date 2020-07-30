@@ -18,6 +18,8 @@ typedef NS_ENUM(NSUInteger, SIEmptyViewType) {
 
 static NSString *const kSIEmptyViewThemeLoading = @"loading";
 
+static NSString *const kSIEmptyViewThemeNoNetWork = @"noNetWork";
+
 static NSString *const kSIEmptyViewThemeIcon = @"icon";
 
 static NSString *const kSIEmptyViewThemeTitle = @"title";
@@ -34,16 +36,19 @@ static NSString *const kSIEmptyViewNoNetworkingTitle = @"网络连接失败";
 
 static NSString *const kSIEmptyViewNoNetworkingAction = @"刷新";
 
-#define kSIEmptyViewThemeDict @{                     \
-    @(SIEmptyViewTypeNoNetWork): @{                  \
-        kSIEmptyViewThemeIcon: @"ic_no_network",     \
-        kSIEmptyViewThemeTitle: @"网络连接失败",     \
-        kSIEmptyViewThemeAction: @"刷新",            \
-    },                                               \
-    @(SIEmptyViewTypeNoPermission): @{               \
-        kSIEmptyViewThemeIcon: @"ic_no_permissions", \
-        kSIEmptyViewThemeTitle: @"您无权限查看",     \
-    },                                               \
+#define kSIEmptyViewNoNetWorkTheme @{          \
+    kSIEmptyViewThemeIcon: @"熊猫星球.gif",    \
+    kSIEmptyViewThemeTitle: @"唉？好像没网了", \
+    kSIEmptyViewThemeAction: @"点我重试",      \
+    kSIEmptyViewThemeNoNetWork: @(YES),        \
+}
+
+#define kSIEmptyViewThemeDict @{                             \
+    @(SIEmptyViewTypeNoNetWork): kSIEmptyViewNoNetWorkTheme, \
+    @(SIEmptyViewTypeNoPermission): @{                       \
+        kSIEmptyViewThemeIcon: @"ic_no_permissions",         \
+        kSIEmptyViewThemeTitle: @"您无权限查看",             \
+    },                                                       \
 }
 
 #endif /* SIEmptyViewDefine_h */

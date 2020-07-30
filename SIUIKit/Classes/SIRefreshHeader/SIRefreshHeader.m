@@ -101,7 +101,7 @@
     if (self.state == MJRefreshStateIdle) {
         return;
     }
-    if (self.resultState == SIRefreshResultStateSuccess) {
+    if (self.resultState == SIRefreshResultStateSuccess || self.resultState == SIRefreshResultStateError) {
         return;
     }
     NSTimeInterval timeInterval = kSIRefreshMinPullingTimeInterval - self.minPullingTimeInterval;

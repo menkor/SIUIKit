@@ -185,7 +185,7 @@
 }
 
 - (SINavigationBar *)add {
-    self.operation = SINavigationItemPositionAdd;
+    self.operation = SINavigationItemOperationAdd;
     return self;
 }
 
@@ -236,7 +236,6 @@
     [button addTarget:self
                   action:@selector(action:)
         forControlEvents:UIControlEventTouchUpInside];
-
     [self addItem:^NSArray<UIView *> * {
         return @[button];
     }];
@@ -414,9 +413,11 @@
 #pragma mark - Custom UI
 
 - (UIView *)addItem:(SINavigationBarAddItem)itemBlock {
-    self.operation = SINavigationItemPositionAdd;
+    if (self.position == SINavigationItemPositionError) {
+        return nil;
+    }
+    self.operation = SINavigationItemOperationAdd;
     return [self addItem:itemBlock action:nil];
-    ;
 }
 
 - (void)adjustPosition:(NSArray<UIView *> *)itemArray {
@@ -486,7 +487,7 @@
                         }];
                     } else {
                         [item mas_makeConstraints:^(MASConstraintMaker *make) {
-                            make.left.mas_equalTo(pre.mas_left);
+                            make.right.mas_equalTo(pre.mas_left).inset(8);
                             make.centerY.mas_equalTo(self.contentView.mas_centerY);
                             make.size.mas_equalTo(item.frame.size);
                         }];
@@ -506,8 +507,7 @@
     if (!itemBlock) {
         return nil;
     }
-    NSArray<UIView *> *itemArray = nil;
-    itemArray = itemBlock();
+    NSArray<UIView *> *itemArray = itemBlock();
     if ([itemArray isKindOfClass:[UIView class]]) {
         itemArray = @[(UIView *)itemArray];
     }
@@ -526,6 +526,7 @@
         [self.contentView addSubview:item];
         [self adjustPosition:@[item]];
         self.position = SINavigationItemPositionError;
+        self.operation = SINavigationItemOperationNone;
         return item;
     } else {
         [itemArray enumerateObjectsUsingBlock:^(UIView *_Nonnull item, NSUInteger idx, BOOL *_Nonnull stop) {
@@ -539,19 +540,27 @@
         self.itemDict[@(self.position)] = itemArray;
         [self adjustPosition:itemArray];
         self.position = SINavigationItemPositionError;
+        self.operation = SINavigationItemOperationNone;
     }
+
     return nil;
 }
 
 - (void)remove {
-    UIView *item = self.item;
-    if (item) {
-        [item removeFromSuperview];
+    NSArray *itemArray = self.itemDict[@(self.position)];
+    if ([itemArray isKindOfClass:[NSArray class]]) {
+        [itemArray enumerateObjectsUsingBlock:^(UIView *item, NSUInteger idx, BOOL *_Nonnull stop) {
+            [self removeItem:item];
+        }];
         [self.itemDict removeObjectForKey:@(self.position)];
-        NSString *key = [NSString stringWithFormat:@"%p", item];
-        [self.actionBlockDict removeObjectForKey:key];
-        [self.itemParamDict removeObjectForKey:key];
     }
+}
+
+- (void)removeItem:(UIView *)item {
+    [item removeFromSuperview];
+    NSString *key = [NSString stringWithFormat:@"%p", item];
+    [self.actionBlockDict removeObjectForKey:key];
+    [self.itemParamDict removeObjectForKey:key];
 }
 
 @end

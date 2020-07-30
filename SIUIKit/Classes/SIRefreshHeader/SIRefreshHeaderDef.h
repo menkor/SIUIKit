@@ -11,19 +11,19 @@
 #pragma mark - Style
 
 typedef NS_ENUM(NSUInteger, SIRefreshHeaderStyle) {
-    SIRefreshHeaderStyleRed,
+    SIRefreshHeaderStyleDefault,
     SIRefreshHeaderStyleWhite,
     SIRefreshHeaderStyleGray,
 };
 
-#define kSIRefreshHeaderIconDict @{                                           \
-    @(SIRefreshHeaderStyleRed): [UIImage imageNamed:@"ic_list_home_crown"],   \
-    @(SIRefreshHeaderStyleWhite): [UIImage imageNamed:@"ic_list_home_crown"], \
-    @(SIRefreshHeaderStyleGray): [UIImage imageNamed:@"ic_list_home_crown"],  \
+#define kSIRefreshHeaderIconDict @{                                             \
+    @(SIRefreshHeaderStyleDefault): [UIImage imageNamed:@"ic_list_home_crown"], \
+    @(SIRefreshHeaderStyleWhite): [UIImage imageNamed:@"ic_list_home_crown"],   \
+    @(SIRefreshHeaderStyleGray): [UIImage imageNamed:@"ic_list_home_crown"],    \
 }
 
 #define kSIRefreshHeaderColorDict @{                                         \
-    @(SIRefreshHeaderStyleRed): SIColor.primaryColor,                        \
+    @(SIRefreshHeaderStyleDefault): [SIColor colorWithHex:0x4a4a4a],         \
     @(SIRefreshHeaderStyleWhite): [SIColor colorWithHex:0xffffff alpha:0.6], \
     @(SIRefreshHeaderStyleGray): [SIColor colorWithHex:0x96a7b4 alpha:0.6],  \
 }
@@ -38,11 +38,11 @@ typedef NS_ENUM(NSUInteger, SIRefreshResultState) {
 
 #pragma mark - Text
 
-static NSString *const kSIRefreshHeaderTitleIdle = @"向下拉刷新";
+static NSString *const kSIRefreshHeaderTitleIdle = @"下拉刷新";
 
-static NSString *const kSIRefreshHeaderTitlePulling = @"释放立即更新...";
+static NSString *const kSIRefreshHeaderTitlePulling = @"释放立即刷新";
 
-static NSString *const kSIRefreshHeaderTitleRefreshing = @"正在加载数据...";
+static NSString *const kSIRefreshHeaderTitleRefreshing = @"正在刷新";
 
 static NSString *const kSIRefreshHeaderTitleSuccess = @"刷新完成";
 

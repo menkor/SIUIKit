@@ -48,7 +48,7 @@ typedef NS_ENUM(NSUInteger, SINavigationItemPosition) {
 
 typedef NS_ENUM(NSUInteger, SINavigationItemOperation) {
     SINavigationItemOperationNone = 0,
-    SINavigationItemPositionAdd = 1,
+    SINavigationItemOperationAdd = 1,
 };
 
 typedef NS_ENUM(NSUInteger, SINavigationTheme) {
