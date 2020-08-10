@@ -98,6 +98,8 @@
 #pragma mark - Finish or Fail
 
 - (void)finish {
+    [self.timeoutTimer invalidate];
+    self.timeoutTimer = nil;
     if (self.state == MJRefreshStateIdle) {
         return;
     }
