@@ -7,7 +7,6 @@
 //
 
 #import "SIEmptyViewDefine.h"
-#import <SIDefine/SIDataBindDefine.h>
 #import <UIKit/UIKit.h>
 
 @interface SIEmptyView : UIView
@@ -20,14 +19,14 @@
 
 @end
 
-@interface SIAutoRefreshHeader : UIView <SIDataBindProtocol>
+@interface SIAutoRefreshHeader : UIView
 
-@property (nonatomic, copy) SIBindActionBlock actionBlock;
+@property (nonatomic, copy) void (^actionBlock)(id data);
 
 @end
 
-@interface SIAutoRefreshFooter : UIView <SIDataBindProtocol>
+@interface SIAutoRefreshFooter : UIView
 
-@property (nonatomic, copy) SIBindActionBlock actionBlock;
+@property (nonatomic, copy) void (^actionBlock)(id data);
 
 @end

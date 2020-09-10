@@ -404,7 +404,6 @@
     UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 160, 21)];
     title.backgroundColor = [UIColor clearColor];
     title.textAlignment = NSTextAlignmentCenter;
-    title.adjustsFontSizeToFitWidth = YES;
     title.textColor = [SIColor colorWithHex:0x4a4a4a];
     [title setFont:kThemeFontTitle];
     return title;

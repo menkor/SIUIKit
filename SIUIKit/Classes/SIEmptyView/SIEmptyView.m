@@ -11,7 +11,6 @@
 #import <SIDefine/SIGlobalMacro.h>
 #import <SITheme/SIColor.h>
 #import <SITheme/SIFont.h>
-#import <SIUtils/NSString+SIKit.h>
 #import <YYKit/YYAnimatedImageView.h>
 #import <YYKit/YYImage.h>
 
@@ -68,7 +67,7 @@
     } else {
         self.backgroundColor = [SIColor colorWithHex:0xf7f7f7];
     }
-    CGSize titleSize = [self.title.text si_sizeFitWidth:ScreenWidth - 120 font:self.title.font];
+    CGSize titleSize = CGSizeMake(ScreenWidth - 120, self.title.font.lineHeight);
     CGFloat titleWidth = titleSize.width;
     _button.hidden = YES;
     if (theme[kSIEmptyViewThemeAction]) {

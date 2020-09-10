@@ -8,7 +8,7 @@
 
 #import "SIAlertView.h"
 #import "SIAlertViewCell.h"
-#import <SIDefine/SIDefine.h>
+#import <SIDefine/SIGlobalMacro.h>
 #import <SITheme/SIColor.h>
 #import <SITheme/SIFont.h>
 

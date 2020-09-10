@@ -142,4 +142,26 @@
 
 @property (nonatomic, strong) NSDictionary *theme;
 
+#pragma mark - Chain
+
+@property (nonatomic, readonly) SIMessageBox * (^willHold)(NSTimeInterval duration);
+
+@property (class, nonatomic, readonly) SIMessageBox * (^error)(NSString *error);
+
+@property (class, nonatomic, readonly) SIMessageBox * (^message)(NSString *message);
+
+@property (class, nonatomic, readonly) SIMessageBox * (^info)(NSString *info);
+
+@property (class, nonatomic, readonly) SIMessageBox * (^warning)(NSString *warning);
+
+@property (class, nonatomic, readonly) SIMessageBox * (^waiting)(NSString *waiting);
+
+@property (class, nonatomic, readonly) SIMessageBox * (^builder)(SIMessageBoxType type);
+
+@property (nonatomic, readonly) SIMessageBox * (^addTitle)(NSString *title);
+
+@property (nonatomic, readonly) SIMessageBox * (^addMessage)(NSString *message);
+
+@property (nonatomic, readonly) SIMessageBox * (^pop)(void);
+
 @end

@@ -40,6 +40,8 @@
 
 @property (nonatomic, weak) UIView *fromView;
 
+@property (nonatomic, assign) NSTimeInterval holderDuration;
+
 - (BOOL)isWaiting;
 
 @end
@@ -639,6 +641,79 @@
 - (void)setCustomMessageView:(UIView<SIMessageBoxCustomProtocol> *)view {
     self.messageView = view;
     self.message = nil;
+}
+
+#pragma mark - Lazy Load
+
+- (SIMessageBox * (^)(NSTimeInterval duration))willHold {
+    return ^(NSTimeInterval duration) {
+        self.hold = YES;
+        self.holderDuration = duration;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(duration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            self.hold = NO;
+            [self hide];
+        });
+        return self;
+    };
+}
+
++ (SIMessageBox * (^)(NSString *))error {
+    return ^(NSString *error) {
+        return [SIMessageBox showError:error];
+    };
+}
+
++ (SIMessageBox * (^)(NSString *))message {
+    return ^(NSString *message) {
+        return [SIMessageBox showMessage:message];
+    };
+}
+
++ (SIMessageBox * (^)(NSString *))info {
+    return ^(NSString *info) {
+        return [SIMessageBox showInfo:info];
+    };
+}
+
++ (SIMessageBox * (^)(NSString *))warning {
+    return ^(NSString *warning) {
+        SIMessageBox *box = [SIMessageBox boxWithType:SIMessageBoxStatusWarning title:warning message:nil];
+        [box hideAfterDelay:1.5];
+        return box;
+    };
+}
+
++ (SIMessageBox * (^)(NSString *))waiting {
+    return ^(NSString *waiting) {
+        return [SIMessageBox showWaiting:waiting];
+    };
+}
+
++ (SIMessageBox * (^)(SIMessageBoxType type))builder {
+    return ^(SIMessageBoxType type) {
+        return [SIMessageBox boxWithType:type title:nil message:nil];
+    };
+}
+
+- (SIMessageBox * (^)(NSString *))addTitle {
+    return ^(NSString *title) {
+        self.title = title;
+        return self;
+    };
+}
+
+- (SIMessageBox * (^)(NSString *))addMessage {
+    return ^(NSString *message) {
+        self.message = message;
+        return self;
+    };
+}
+
+- (SIMessageBox * (^)(void))pop {
+    return ^(void) {
+        [self show];
+        return self;
+    };
 }
 
 @end
