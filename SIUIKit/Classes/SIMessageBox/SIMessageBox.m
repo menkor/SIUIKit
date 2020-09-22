@@ -244,7 +244,9 @@
     NSNumber *cornerRadius = self.theme[@"cornerRadius"];
     containerView.layer.cornerRadius = cornerRadius ? cornerRadius.floatValue : kSIMessageBoxRadius;
     containerView.layer.masksToBounds = YES;
-    containerView.subviews[1].backgroundColor = self.theme[@"containerColor"] ?: [UIColor colorWithWhite:0 alpha:0.5];
+    if (containerView.subviews.count > 1) {
+        containerView.subviews[1].backgroundColor = self.theme[@"containerColor"] ?: [UIColor colorWithWhite:0 alpha:0.5];
+    }
     self.containerView = containerView;
     [self addSubview:containerView];
 }
