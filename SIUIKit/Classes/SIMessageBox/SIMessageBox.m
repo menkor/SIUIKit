@@ -258,7 +258,7 @@
     frame.size.height += kSIMessageBoxIconHeight + kSIMessageBoxIconTop;
 
     if (status == SIMessageBoxStatusWaiting) {
-        UIActivityIndicatorView *view = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        UIActivityIndicatorView *view = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
         [view startAnimating];
         [self.contentView addSubview:view];
         if (self.title.length > 0) {
@@ -458,7 +458,7 @@
 - (void)initSubviews {
     SIMessageBoxType status = self.type & SIMessageBoxStatusMask;
     if (status == SIMessageBoxStatusWaiting && !self.message && !self.title) {
-        UIActivityIndicatorView *view = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        UIActivityIndicatorView *view = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         view.color = [SIColor colorWithHex:0x4a4a4a];
         [view startAnimating];
         [self addSubview:view];
