@@ -43,6 +43,13 @@ static NSString *const kSIEmptyViewNoNetworkingAction = @"刷新";
     kSIEmptyViewThemeNoNetWork: @(YES),        \
 }
 
+#define kSIEmptyViewServerErrorTheme @{          \
+    kSIEmptyViewThemeIcon: @"熊猫星球.gif",    \
+    kSIEmptyViewThemeTitle: @"服务器开小差了", \
+    kSIEmptyViewThemeAction: @"点我重试",      \
+    kSIEmptyViewThemeNoNetWork: @(YES),        \
+}
+
 #define kSIEmptyViewThemeDict @{                             \
     @(SIEmptyViewTypeNoNetWork): kSIEmptyViewNoNetWorkTheme, \
     @(SIEmptyViewTypeNoPermission): @{                       \
