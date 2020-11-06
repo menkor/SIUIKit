@@ -13,6 +13,7 @@
 #import <SITheme/SIFont.h>
 #import <YYKit/YYAnimatedImageView.h>
 #import <YYKit/YYImage.h>
+#import <SIUtils/NSString+SIKit.h>
 
 @interface SIEmptyView ()
 
@@ -67,7 +68,7 @@
     } else {
         self.backgroundColor = [SIColor colorWithHex:0xf7f7f7];
     }
-    CGSize titleSize = CGSizeMake(ScreenWidth - 120, self.title.font.lineHeight);
+    CGSize titleSize = [self.title.text si_sizeFitWidth:ScreenWidth - 120 font:self.title.font];
     CGFloat titleWidth = titleSize.width;
     _button.hidden = YES;
     if (theme[kSIEmptyViewThemeAction]) {
@@ -92,11 +93,6 @@
         self.title.text = nil;
     } else {
         self.icon.image = [UIImage imageNamed:theme[kSIEmptyViewThemeIcon] ?: @"ic_no_content"];
-        [self.title mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.centerX.mas_equalTo(self);
-            make.width.mas_equalTo(titleWidth);
-            make.height.mas_equalTo(titleSize.height);
-        }];
         CGFloat topOffset = [theme[kSIEmptyViewThemeTopOffset] floatValue];
         CGSize size = self.icon.image.size;
         [self.icon mas_updateConstraints:^(MASConstraintMaker *make) {
@@ -104,6 +100,10 @@
             make.size.mas_equalTo(size);
         }];
     }
+    [self.title mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_equalTo(titleWidth);
+        make.height.mas_equalTo(titleSize.height);
+    }];
 }
 
 - (void)setTheme:(NSDictionary *)theme {
