@@ -604,10 +604,11 @@
             self.onShowup(self.containerView);
         }
     }
-    UIView *superView = self.fromView ?: [UIApplication sharedApplication].keyWindow;
-    self.backgroudView = [[UIScrollView alloc] initWithFrame:superView.bounds];
+    UIView *superView = self.fromView ?: UIApplication.sharedApplication.windows.firstObject;
+    CGRect frame = UIScreen.mainScreen.bounds;
+    self.backgroudView = [[UIScrollView alloc] initWithFrame:frame];
     [self.backgroudView addSubview:self];
-    self.backgroudView.contentSize = superView.bounds.size;
+    self.backgroudView.contentSize = frame.size;
     [superView addSubview:self.backgroudView];
     [superView bringSubviewToFront:self.backgroudView];
 }
@@ -711,9 +712,9 @@
     };
 }
 
-- (SIMessageBox * (^)(void))pop {
-    return ^(void) {
-        [self show];
+- (SIMessageBox * (^)(UIView *view))pop {
+    return ^(UIView *view) {
+        [self showFrom:view];
         return self;
     };
 }

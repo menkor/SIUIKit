@@ -162,6 +162,6 @@
 
 @property (nonatomic, readonly) SIMessageBox * (^addMessage)(NSString *message);
 
-@property (nonatomic, readonly) SIMessageBox * (^pop)(void);
+@property (nonatomic, readonly) SIMessageBox * (^pop)(UIView *view);
 
 @end
